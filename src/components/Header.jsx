@@ -5,11 +5,13 @@ const Header = () => {
     <header
       style={{
         paddingTop: "3px",
-        paddingLeft: "300px",
-        paddingRight: "300px",
+        paddingLeft: "15%",
+        paddingRight: "15%",
         backgroundColor: "white",
         color: "darkgreen",
         borderBottom: "5px solid darkgreen",
+        maxWidth: "1800px",
+        margin: "0 auto",
       }}
     >
       <nav
@@ -17,6 +19,7 @@ const Header = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          width: "100%",
         }}
       >
         <h1>

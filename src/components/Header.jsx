@@ -1,76 +1,73 @@
 import React from "react";
+import styled from "styled-components";
+
+const HeaderWrapper = styled.header`
+  padding-top: 3px;
+  padding-left: 15%;
+  padding-right: 15%;
+  background-color: white;
+  color: darkgreen;
+  border-bottom: 5px solid darkgreen;
+  max-width: 1800px;
+  margin: 0 auto;
+`;
+
+const Navbar = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+const HeaderTitle = styled.h1`
+  & span:first-child {
+    font-size: 22px;
+    font-weight: normal;
+  }
+
+  & span:last-child {
+    font-size: 36px;
+  }
+`;
+
+const NavLinks = styled.div`
+  a {
+    margin: 0 20px;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 550;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+
+  a:not(:last-child)::after {
+    content: "|";
+    margin-left: 20px;
+    color: black;
+  }
+
+  a:hover {
+    color: darkgreen;
+    text-decoration: underline;
+  }
+`;
 
 const Header = () => {
   return (
-    <header
-      style={{
-        paddingTop: "3px",
-        paddingLeft: "15%",
-        paddingRight: "15%",
-        backgroundColor: "white",
-        color: "darkgreen",
-        borderBottom: "5px solid darkgreen",
-        maxWidth: "1800px",
-        margin: "0 auto",
-      }}
-    >
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <h1>
-          <span style={{ fontSize: "22px", fontWeight: "normal" }}>
-            EWHA Scholar
-          </span>
+    <HeaderWrapper>
+      <Navbar>
+        <HeaderTitle>
+          <span>EWHA Scholar</span>
           <br />
-          <span style={{ fontSize: "36px" }}>이화장학</span>
-        </h1>
-        <div>
-          <a
-            href="/"
-            style={{
-              margin: "0 20px",
-              color: "black",
-              textDecoration: "none",
-              fontSize: "20px",
-              fontWeight: 550,
-            }}
-          >
-            홈
-          </a>
-          |
-          <a
-            href="/about"
-            style={{
-              margin: "0 20px",
-              color: "black",
-              textDecoration: "none",
-              fontSize: "20px",
-              fontWeight: 550,
-            }}
-          >
-            북마크 목록
-          </a>
-          |
-          <a
-            href="/contact"
-            style={{
-              margin: "0 20px",
-              color: "black",
-              textDecoration: "none",
-              fontSize: "20px",
-              fontWeight: 550,
-            }}
-          >
-            마이페이지
-          </a>
-        </div>
-      </nav>
-    </header>
+          <span>이화장학</span>
+        </HeaderTitle>
+        <NavLinks>
+          <a href="/">홈</a>
+          <a href="/bookmark">북마크 목록</a>
+          <a href="/myPage">마이페이지</a>
+        </NavLinks>
+      </Navbar>
+    </HeaderWrapper>
   );
 };
 

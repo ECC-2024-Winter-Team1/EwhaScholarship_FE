@@ -1,75 +1,81 @@
-/* 전체 컨테이너 스타일 */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background-color: #fff;
-  }
-  
-  /* 타이틀 스타일 */
-  .title-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 270px;
-    width: 427px;
-    height: 96px;
-  }
-  
-    /* 타이틀 중 찐타이틀 스타일 */
-  .title {
-    font-family: "Pretendard", sans-serif;
-    font-weight: bold;
-    font-size: 35px;
-    margin: -5px;
-    color: #00462A;
-  }
-  
-   /* 타이틀 중 부제목 스타일 */
-  .subtitle {
-    font-family: "Pretendard", sans-serif;
-    font-weight: 405;
-    font-size: 16px;
-    margin: -5px;
-    color: #00462A;
-  }
-  
-  /* 설명 문구 스타일 */
-  .description {
-    position: absolute;
-    top: 352px;
-    width: 348px;
-    text-align: center;
-    font-family: "Pretendard", sans-serif;
-    font-weight: 500;
-    font-size: 16.8px;
-    line-height: 21px;
-    color: #333333;
-  }
-  
-  /* 구글 로그인 버튼 스타일 */
-  .google-button {
-    position: absolute;
-    top: 426px;
-    width: 249px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
+@font-face {
+  font-family: 'SeoulNamsanM';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
-   /* 구글 로그인 이미지 스타일 */
-  .google-image {
-    width: 78%;
-    height: 78%;
-    object-fit: cover;
-  }  
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 270px;
+  width: 427px;
+  height: 96px;
+}
+
+.subtitle{
+  font-size: 1rem;
+  font-weight: 340; 
+  color: #00462A;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.title {
+  font-family: 'SeoulNamsanM', sans-serif;
+  font-weight: 730;
+  font-size: 2.15rem;
+  color: #00462A;
+  margin: 5px;
+  padding: 0;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.description {
+  position: absolute;
+  top: 337px;
+  width: 348px;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  font-size: 16.8px;
+  line-height: 21px;
+  color: #333333;
+}
+
+
+.google-button {
+  position: absolute;
+  top: 411px;
+  width: 249px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.google-image {
+  width: 74%;
+  height: 74%;
+  object-fit: cover;
+}  

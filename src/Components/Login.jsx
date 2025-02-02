@@ -1,6 +1,6 @@
 import React from "react";
 import GoogleButton from "./GoogleButton";
-import "./Login.css"; // 스타일 파일 import
+import "./Login.css";
 
 const Login = () => {
   return (

@@ -2,7 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/Header";
 import SearchBox from "./components/SearchBox";
-import Filter from "./components/Filter";
 import MainPage from "./components/MainPage";
 
 function App() {

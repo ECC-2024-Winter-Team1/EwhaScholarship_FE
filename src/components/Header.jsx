@@ -6,8 +6,8 @@ const HeaderWrapper = styled.header`
   padding-left: 15%;
   padding-right: 15%;
   background-color: white;
-  color: darkgreen;
-  border-bottom: 5px solid darkgreen;
+  color: #00462a;
+  border-bottom: 5px solid #00462a;
   max-width: 1800px;
   margin: 0 auto;
 `;
@@ -33,7 +33,7 @@ const HeaderTitle = styled.h1`
 const NavLinks = styled.div`
   a {
     margin: 0 20px;
-    color: black;
+    color: #333333;
     text-decoration: none;
     font-size: 20px;
     font-weight: 550;
@@ -47,8 +47,9 @@ const NavLinks = styled.div`
   }
 
   a:hover {
-    color: darkgreen;
+    color: #00462a;
     text-decoration: underline;
+    text-decoration-color: #00462a;
   }
 `;
 

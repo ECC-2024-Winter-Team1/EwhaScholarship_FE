@@ -22,8 +22,13 @@ const Input = styled.input`
   max-width: 1300px;
   padding: 10px 10px 10px 50px;
   font-size: 25px;
-  border: 2px solid darkgreen;
+  border: 2px solid #00462a;
   border-radius: 20px;
+
+  &::placeholder {
+    color: #b9b9b9;
+    outline: none;
+  }
 `;
 
 const Icon = styled.i`
@@ -32,13 +37,13 @@ const Icon = styled.i`
   top: 50%;
   transform: translateY(-50%);
   font-size: 25px;
-  color: darkgreen;
+  color: #00462a;
 `;
 
 const Button = styled.button`
   margin-left: 10px;
   padding: 10px 20px;
-  background-color: darkgreen;
+  background-color: #00462a;
   color: white;
   border: none;
   border-radius: 20px;

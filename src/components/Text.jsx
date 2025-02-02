@@ -8,6 +8,7 @@ const TextWrapper = styled.p`
   text-align: left;
   position: relative;
   left: 15%;
+  margin-bottom: 1px;
 `;
 
 const Text = () => {

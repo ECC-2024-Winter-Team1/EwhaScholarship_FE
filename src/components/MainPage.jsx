@@ -6,6 +6,12 @@ import FilterOption from "./FilterOption";
 
 const MainPage = () => {
   const [isOn, setIsOn] = useState(false);
+  const [filters, setFilters] = useState({
+    year: null,
+    college: null,
+    income: null,
+    grade: "",
+  });
 
   const handleToggle = () => {
     setIsOn(!isOn);
@@ -15,12 +21,16 @@ const MainPage = () => {
     console.log("검색어:", query); // 검색어를 출력하거나 처리
   };
 
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+  };
+
   return (
     <div>
       <SearchBox onSearch={handleSearch} />
       <Text />
       <Toggle isOn={isOn} onToggle={handleToggle} />
-      <FilterOption />
+      <FilterOption filters={filters} onFilterChange={handleFilterChange} />
     </div>
   );
 };

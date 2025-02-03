@@ -137,23 +137,11 @@ const Input = styled.input`
   }
 `;
 
-const FilterOption = () => {
-  const [selectedYear, setSelectedYear] = useState(null);
-
-  const [selectedCollege, setSelectedCollege] = useState(null);
-
-  const [selectedIncome, setSelectedIncome] = useState(null);
-
-  const [grade, setGrade] = useState("");
-
-  const handleGradeChange = (event) => {
-    setGrade(event.target.value);
-  };
-
+const FilterOption = ({ filters, onFilterChange }) => {
   const YearSingleValue = ({ data }) => (
     <>
       <StyledSingleValue>
-        <FontAwesomeIcon icon={faCalendar} style={{ marginRight: 5 }} />
+        <FontAwesomeIcon icon={faCalendar} />
         {data.label}
       </StyledSingleValue>
     </>
@@ -176,6 +164,22 @@ const FilterOption = () => {
       </StyledSingleValue>
     </>
   );
+
+  const handleYearChange = (selectedOption) => {
+    onFilterChange({ ...filters, year: selectedOption });
+  };
+
+  const handleCollegeChange = (selectedOption) => {
+    onFilterChange({ ...filters, college: selectedOption });
+  };
+
+  const handleIncomeChange = (selectedOption) => {
+    onFilterChange({ ...filters, income: selectedOption });
+  };
+
+  const handleGradeChange = (event) => {
+    onFilterChange({ ...filters, grade: event.target.value });
+  };
 
   const options1 = [
     { value: "freshman", label: "1학년" },
@@ -220,8 +224,8 @@ const FilterOption = () => {
     <Container>
       <Select
         options={options1}
-        value={selectedYear}
-        onChange={setSelectedYear}
+        value={filters.year}
+        onChange={handleYearChange}
         placeholder={
           <>
             <FontAwesomeIcon icon={faCalendar} />
@@ -234,8 +238,8 @@ const FilterOption = () => {
       />
       <Select
         options={options2}
-        value={selectedCollege}
-        onChange={setSelectedCollege}
+        value={filters.college}
+        onChange={handleCollegeChange}
         placeholder={
           <>
             <FontAwesomeIcon icon={faBook} />
@@ -248,8 +252,8 @@ const FilterOption = () => {
       />
       <Select
         options={options3}
-        value={selectedIncome}
-        onChange={setSelectedIncome}
+        value={filters.income}
+        onChange={handleIncomeChange}
         placeholder={
           <>
             <FontAwesomeIcon icon={faHouse} />
@@ -264,7 +268,7 @@ const FilterOption = () => {
         <Icon icon={faStar} />
         <Input
           type="text"
-          value={grade}
+          value={filters.grade}
           onChange={handleGradeChange}
           placeholder="학점 입력"
         />

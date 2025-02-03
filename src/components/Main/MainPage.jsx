@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchBox from "./SearchBox";
 import Text from "./Text";
 import Toggle from "./Toggle";
+import DropDown from "./DropDown";
 
 const MainPage = () => {
   const [isOn, setIsOn] = useState(false);
@@ -26,10 +27,11 @@ const MainPage = () => {
 
   return (
     <div>
-      <SearchBox onSearch={handleSearch} />
+      {/* <SearchBox onSearch={handleSearch} />
       <Text />
-      <Toggle isOn={isOn} onToggle={handleToggle} />
+      <Toggle isOn={isOn} onToggle={handleToggle} /> */}
       {/* <FilterOption filters={filters} onFilterChange={handleFilterChange} /> */}
+      <DropDown />
     </div>
   );
 };

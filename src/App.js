@@ -1,13 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Header from "./components/Header";
-import SearchBox from "./components/SearchBox";
-import MainPage from "./components/MainPage";
+import MainPage from "./components/Main/MainPage";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <MainPage />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

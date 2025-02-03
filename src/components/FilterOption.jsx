@@ -3,12 +3,21 @@ import Select from "react-select";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 1%;
+  gap: 6.5%;
   justify-content: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+  }
 `;
 
 const StyledSingleValue = styled.div`
@@ -17,6 +26,24 @@ const StyledSingleValue = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 200px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 150px;
+  }
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+  position: absolute;
+  left: 10px;
+  color: #00462a;
 `;
 
 const CustomStyles = {
@@ -31,13 +58,16 @@ const CustomStyles = {
     ...styles,
     height: "40px",
     borderColor: "#00462A",
-    borderRadius: "10px",
+    borderRadius: "15px",
     borderWidth: "2px",
     display: "flex",
     alignItems: "center",
-    width: "200px",
+    width: "250px",
     "&:hover": {
       borderColor: "#00462A",
+    },
+    "@media (max-width: 768px)": {
+      width: "100%",
     },
   }),
   valueContainer: (styles) => ({
@@ -63,8 +93,10 @@ const CustomStyles = {
     display: "flex",
     alignItems: "center",
     height: "100%",
-    color: "#00462A",
-    fontWeight: 550,
+  }),
+  indicatorSeparator: () => ({
+    //구분선 없애기
+    display: "none",
   }),
   option: (styles) => ({
     ...styles,
@@ -78,18 +110,18 @@ const CustomStyles = {
   menu: (styles) => ({
     ...styles, // 기존 스타일을 유지하면서 추가/변경
     borderRadius: "10px", // 드롭다운 메뉴의 둥근 정도
-    border: "1px solid black", // 메뉴 테두리
+    border: "1px", // 메뉴 테두리
   }),
 };
 
 const Input = styled.input`
-  padding: 10px 10px;
+  padding: 10px 10px 10px 35px;
   border: 2px solid #00462a;
-  border-radius: 10px;
+  border-radius: 15px;
   color: #00462a;
   font-size: 16px;
   font-weight: 550;
-  width: 100px;
+  width: 200px;
 
   &:focus {
     border-color: #00462a;
@@ -98,6 +130,10 @@ const Input = styled.input`
 
   &::placeholder {
     color: #00462a;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -118,6 +154,24 @@ const FilterOption = () => {
     <>
       <StyledSingleValue>
         <FontAwesomeIcon icon={faCalendar} style={{ marginRight: 5 }} />
+        {data.label}
+      </StyledSingleValue>
+    </>
+  );
+
+  const CollegeSingleValue = ({ data }) => (
+    <>
+      <StyledSingleValue>
+        <FontAwesomeIcon icon={faBook} />
+        {data.label}
+      </StyledSingleValue>
+    </>
+  );
+
+  const IncomeSingleValue = ({ data }) => (
+    <>
+      <StyledSingleValue>
+        <FontAwesomeIcon icon={faHouse} />
         {data.label}
       </StyledSingleValue>
     </>
@@ -182,24 +236,39 @@ const FilterOption = () => {
         options={options2}
         value={selectedCollege}
         onChange={setSelectedCollege}
-        placeholder="단과대학"
+        placeholder={
+          <>
+            <FontAwesomeIcon icon={faBook} />
+            단과대학
+          </>
+        }
         styles={CustomStyles}
         isClearable={true}
+        components={{ SingleValue: CollegeSingleValue }}
       />
       <Select
         options={options3}
         value={selectedIncome}
         onChange={setSelectedIncome}
-        placeholder="소득분위"
+        placeholder={
+          <>
+            <FontAwesomeIcon icon={faHouse} />
+            소득분위
+          </>
+        }
         styles={CustomStyles}
         isClearable={true}
+        components={{ SingleValue: IncomeSingleValue }}
       />
-      <Input
-        type="text"
-        value={grade}
-        onChange={handleGradeChange}
-        placeholder="학점 입력"
-      />
+      <InputWrapper>
+        <Icon icon={faStar} />
+        <Input
+          type="text"
+          value={grade}
+          onChange={handleGradeChange}
+          placeholder="학점 입력"
+        />
+      </InputWrapper>
     </Container>
   );
 };

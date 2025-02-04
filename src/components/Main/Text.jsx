@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledText = styled.p`
   font-size: 23px;
   margin-left: 225px;
+  margin-bottom: 3px;
 `;
 
 export default function Text() {

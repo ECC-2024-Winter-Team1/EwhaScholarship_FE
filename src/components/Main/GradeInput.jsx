@@ -10,6 +10,7 @@ const IconStyle = styled.i`
   position: absolute;
   padding: 10px 10px;
   font-size: 20px;
+  color: #00462a;
 `;
 
 const Wrapper = styled.div`
@@ -34,6 +35,8 @@ const StyledInput = styled.input`
   padding: 10px 10px 10px 35px;
   border-radius: 20px;
   font-size: 20px;
+  font-weight: 600;
+  color: #00462a;
   border: 2px solid #00462a;
   width: 150px;
 `;

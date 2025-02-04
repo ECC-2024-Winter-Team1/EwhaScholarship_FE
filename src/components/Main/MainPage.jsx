@@ -8,7 +8,7 @@ const FilterWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: auto;
-  gap: 11%;
+  gap: 8%;
 `;
 
 export default function MainPage() {

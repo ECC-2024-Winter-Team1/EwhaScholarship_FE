@@ -1,7 +1,17 @@
+import styled from "styled-components";
+
+const StyledSelect = styled.select`
+  border-radius: 10px;
+  border: 2px solid #00462a;
+  font-size: 20px;
+  padding: 10px 10px 10px 10px;
+  width: 200px;
+`;
+
 export default function DropDown() {
   return (
     <>
-      <select name="selectedYear">
+      <StyledSelect name="selectedYear">
         <option value="none" hidden>
           학년
         </option>
@@ -9,8 +19,8 @@ export default function DropDown() {
         <option value="sophomore">2학년</option>
         <option value="junior">3학년</option>
         <option value="senior">4학년</option>
-      </select>
-      <select name="selectedCollege">
+      </StyledSelect>
+      <StyledSelect name="selectedCollege">
         <option value="none" hidden>
           단과대학
         </option>
@@ -29,8 +39,8 @@ export default function DropDown() {
         <option value="scranton">스크랜튼대학</option>
         <option value="ai">인공지능대학</option>
         <option value="hokma">호크마교양대학</option>
-      </select>
-      <select name="selectedIncome">
+      </StyledSelect>
+      <StyledSelect name="selectedIncome">
         <option value="none" hidden>
           소득분위
         </option>
@@ -45,7 +55,7 @@ export default function DropDown() {
         <option value="8">8분위</option>
         <option value="9">9분위</option>
         <option value="10">10분위</option>
-      </select>
+      </StyledSelect>
     </>
   );
 }

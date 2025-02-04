@@ -5,6 +5,10 @@ import GradeInput from "./GradeInput";
 const FilterWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  gap: 11%;
 `;
 
 export default function MainPage() {

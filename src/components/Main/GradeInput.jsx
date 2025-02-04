@@ -6,10 +6,11 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-// const IconStyle = styled.i`
-//   position: absolute;
-//   left: 10px;
-// `;
+const IconStyle = styled.i`
+  position: absolute;
+  padding: 10px 10px;
+  font-size: 20px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   padding: 10px 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 15px;
   color: white;
   background-color: #00462a;
@@ -30,8 +31,8 @@ const Button = styled.button`
 `;
 
 const StyledInput = styled.input`
-  padding: 10px 10px 10px 10px;
-  border-radius: 10px;
+  padding: 10px 10px 10px 35px;
+  border-radius: 20px;
   font-size: 20px;
   border: 2px solid #00462a;
   width: 150px;
@@ -46,7 +47,9 @@ export default function GradeInput() {
     <form action={search}>
       <Wrapper>
         <InputWrapper>
-          {/* <FontAwesomeIcon icon={faStar} /> */}
+          <IconStyle>
+            <FontAwesomeIcon icon={faStar} />
+          </IconStyle>
           <StyledInput type="text" placeholder="학점 입력" />
         </InputWrapper>
         <Button>검색</Button>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Text from "./Text";
 import DropDown from "./DropDown";
 import GradeInput from "./GradeInput";
 
@@ -14,6 +15,7 @@ const FilterWrapper = styled.div`
 export default function MainPage() {
   return (
     <>
+      <Text />
       <FilterWrapper>
         <DropDown />
         <GradeInput />

@@ -27,5 +27,11 @@ export const Link = styled.a`
   span: after {
     content: "|";
     margin-left: 25px;
+    color: black;
+  }
+
+  &:hover {
+    color: #00462a;
+    text-decoration-line: underline;
   }
 `;

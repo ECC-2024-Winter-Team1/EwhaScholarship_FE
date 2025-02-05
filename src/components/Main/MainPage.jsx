@@ -13,10 +13,7 @@ export default function MainPage() {
         <ToggleText />
         <ToggleSwitch />
       </ToggleWrapper>
-      <FilterWrapper>
-        <DropDown />
-        <GradeInput />
-      </FilterWrapper>
+      <GradeInput />
     </>
   );
 }

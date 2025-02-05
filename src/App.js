@@ -1,9 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Header from "./components/Header/Header";
+import StyledHeader from "./components/Header/StyledHeader";
 
 function App() {
-  return <Header />;
+  return <StyledHeader />;
 }
 
 export default App;

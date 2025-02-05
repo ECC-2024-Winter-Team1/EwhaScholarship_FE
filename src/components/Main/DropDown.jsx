@@ -10,6 +10,45 @@ import {
 } from "./DropDown.style";
 
 export default function DropDown() {
+  const year = [
+    { value: "freshman", label: "1학년" },
+    { value: "sophomore", label: "2학년" },
+    { value: "junior", label: "3학년" },
+    { value: "senior", label: "4학년" },
+  ];
+
+  const college = [
+    { value: "humanities", label: "인문과학대학" },
+    { value: "social", label: "사회과학대학" },
+    { value: "natural", label: "자연과학대학" },
+    { value: "engineering", label: "공과대학" },
+    { value: "music", label: "음악대학" },
+    { value: "arts", label: "조형예술대학" },
+    { value: "education", label: "사범대학" },
+    { value: "business", label: "경영대학" },
+    { value: "convergence", label: "신산업융합대학" },
+    { value: "medical", label: "의과대학" },
+    { value: "nursing", label: "간호대학" },
+    { value: "pharmacy", label: "약학대학" },
+    { value: "scranton", label: "스크랜튼대학" },
+    { value: "ai", label: "인공지능대학" },
+    { value: "hokma", label: "호크마교양대학" },
+  ];
+
+  const income = [
+    { value: "0", label: "0분위" },
+    { value: "1", label: "1분위" },
+    { value: "2", label: "2분위" },
+    { value: "3", label: "3분위" },
+    { value: "4", label: "4분위" },
+    { value: "5", label: "5분위" },
+    { value: "6", label: "6분위" },
+    { value: "7", label: "7분위" },
+    { value: "8", label: "8분위" },
+    { value: "9", label: "9분위" },
+    { value: "10", label: "10분위" },
+  ];
+
   return (
     <>
       <DropDownWrapper>
@@ -20,10 +59,11 @@ export default function DropDown() {
           <option value="none" hidden>
             학년
           </option>
-          <StyledOption value="freshman">1학년</StyledOption>
-          <StyledOption value="sophomore">2학년</StyledOption>
-          <StyledOption value="junior">3학년</StyledOption>
-          <StyledOption value="senior">4학년</StyledOption>
+          {year.map(({ value, label }) => (
+            <StyledOption key={value} value={value}>
+              {label}
+            </StyledOption>
+          ))}
         </StyledSelect>
       </DropDownWrapper>
       <DropDownWrapper>
@@ -34,21 +74,11 @@ export default function DropDown() {
           <option value="none" hidden>
             단과대학
           </option>
-          <option value="humanities">인문과학대학</option>
-          <option value="social">사회과학대학</option>
-          <option value="natural">자연과학대학</option>
-          <option value="engineering">공과대학</option>
-          <option value="music">음악대학</option>
-          <option value="arts">조형예술대학</option>
-          <option value="education">사범대학</option>
-          <option value="business">경영대학</option>
-          <option value="convergence">신산업융합대학</option>
-          <option value="medical">의과대학</option>
-          <option value="nursing">간호대학</option>
-          <option value="pharmacy">약학대학</option>
-          <option value="scranton">스크랜튼대학</option>
-          <option value="ai">인공지능대학</option>
-          <option value="hokma">호크마교양대학</option>
+          {college.map(({ value, label }) => (
+            <StyledOption key={value} value={value}>
+              {label}
+            </StyledOption>
+          ))}
         </StyledSelect>
       </DropDownWrapper>
       <DropDownWrapper>
@@ -59,17 +89,11 @@ export default function DropDown() {
           <option value="none" hidden>
             소득분위
           </option>
-          <option value="0">0분위</option>
-          <option value="1">1분위</option>
-          <option value="2">2분위</option>
-          <option value="3">3분위</option>
-          <option value="4">4분위</option>
-          <option value="5">5분위</option>
-          <option value="6">6분위</option>
-          <option value="7">7분위</option>
-          <option value="8">8분위</option>
-          <option value="9">9분위</option>
-          <option value="10">10분위</option>
+          {income.map(({ value, label }) => (
+            <StyledOption key={value} value={value}>
+              {label}
+            </StyledOption>
+          ))}
         </StyledSelect>
       </DropDownWrapper>
     </>

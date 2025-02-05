@@ -1,46 +1,13 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
-
-const InputWrapper = styled.div`
-  position: relative;
-`;
-
-const IconStyle = styled.i`
-  position: absolute;
-  padding: 10px 10px;
-  font-size: 20px;
-  color: #00462a;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 5px;
-  gap: 2%;
-  width: 100%;
-`;
-
-const Button = styled.button`
-  padding: 10px 10px;
-  border-radius: 20px;
-  font-size: 15px;
-  color: white;
-  background-color: #00462a;
-  width: 60px;
-`;
-
-const StyledInput = styled.input`
-  padding: 10px 10px 10px 35px;
-  border-radius: 20px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #00462a;
-  border: 2px solid #00462a;
-  width: 150px;
-`;
+import {
+  InputWrapper,
+  IconStyle,
+  Wrapper,
+  Button,
+  StyledInput,
+} from "./GradeInput.style";
 
 export default function GradeInput() {
   const [gradeInput, setGradeInput] = useState("");

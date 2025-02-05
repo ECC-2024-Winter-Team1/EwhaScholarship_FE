@@ -1,36 +1,13 @@
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
-
-const DropDownWrapper = styled.div`
-  position: relative;
-`;
-
-const IconStyle = styled.i`
-  position: absolute;
-  padding: 10px 10px;
-  font-size: 20px;
-  color: #00462a;
-`;
-
-const StyledSelect = styled.select`
-  border-radius: 20px;
-  border: 2px solid #00462a;
-  color: #00462a;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 10px 10px 10px 35px;
-  width: 250px;
-`;
-
-const StyledOption = styled.option`
-  &:hover {
-    background-color: #00462a;
-    color: white;
-  }
-`;
+import {
+  DropDownWrapper,
+  IconStyle,
+  StyledSelect,
+  StyledOption,
+} from "./DropDown.style";
 
 export default function DropDown() {
   return (

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
@@ -42,20 +43,34 @@ const StyledInput = styled.input`
 `;
 
 export default function GradeInput() {
-  function search(formData) {
-    const gradeInput = formData.get("gradeInput");
-    alert(`You searched for '${gradeInput}'`);
-  }
+  const [gradeInput, setGradeInput] = useState("");
+
+  const handleGradeChange = (event) => {
+    setGradeInput(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const grade = formData.get("grade");
+  };
+
   return (
-    <form action={search}>
+    <form onSubmit={handleSubmit}>
       <Wrapper>
         <InputWrapper>
           <IconStyle>
             <FontAwesomeIcon icon={faStar} />
           </IconStyle>
-          <StyledInput type="text" placeholder="학점 입력" />
+          <StyledInput
+            name="grade"
+            type="text"
+            placeholder="학점 입력"
+            value={gradeInput}
+            onChange={handleGradeChange}
+          />
         </InputWrapper>
-        <Button>검색</Button>
+        <Button type="submit">검색</Button>
       </Wrapper>
     </form>
   );

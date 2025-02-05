@@ -1,40 +1,12 @@
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-`;
-
-const InputWrapper = styled.div`
-  position: relative;
-`;
-
-const IconStyle = styled.i`
-  position: absolute;
-  padding: 10px 20px;
-  font-size: 20px;
-  color: #00462a;
-`;
-
-const StyledInput = styled.input`
-  width: 900px;
-  border-radius: 20px;
-  border: 2px solid #00462a;
-  font-size: 25px;
-  padding: 10px 10px 10px 45px;
-`;
-
-const Button = styled.button`
-  width: 100px;
-  border-radius: 20px;
-  font-size: 25px;
-  background-color: #00462a;
-  color: white;
-  padding: 10px 20px;
-`;
+import {
+  Wrapper,
+  InputWrapper,
+  IconStyle,
+  StyledInput,
+  Button,
+} from "./SearchBox.style";
 
 export default function SearchBox() {
   return (

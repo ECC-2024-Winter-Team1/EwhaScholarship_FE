@@ -1,19 +1,22 @@
-import { HeaderWrapper, Title, Link, NavBar } from "./Header.style";
+import { HeaderWrapper, Title, Link } from "./Header.style";
 
 export default function StyledHeader() {
   return (
     <div>
       <HeaderWrapper>
         <Title>
-          Ewha scholar
-          <br />
-          이화장학
+          <div>Ewha scholar</div>
+          <div>이화장학</div>
         </Title>
-        <NavBar>
-          <Link href="#">홈</Link>
-          <Link href="#">북마크 목록</Link>
+        <nav>
+          <Link href="#">
+            <span>홈</span>
+          </Link>
+          <Link href="#">
+            <span>북마크 목록</span>
+          </Link>
           <Link href="#">마이페이지</Link>
-        </NavBar>
+        </nav>
       </HeaderWrapper>
     </div>
   );

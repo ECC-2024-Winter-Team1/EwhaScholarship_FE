@@ -10,14 +10,22 @@ export const HeaderWrapper = styled.header`
 
 export const Title = styled.h2`
   color: #00462a;
-`;
-
-export const NavBar = styled.nav`
-  margin-right: 30px;
+  div {
+    &:last-child {
+      font-size: 35px;
+    }
+  }
 `;
 
 export const Link = styled.a`
   color: black;
+  font-weight: 600;
+  font-size: 20px;
   text-decoration-line: none;
   margin-right: 30px;
+
+  span: after {
+    content: "|";
+    margin-left: 25px;
+  }
 `;

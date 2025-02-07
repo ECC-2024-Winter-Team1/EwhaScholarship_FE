@@ -8,7 +8,7 @@ const ReviewForm = () => {
     const [review, setReview] = useState("");
 
     const Submission = () => {
-        console.log({ received, year, semester, review});
+        console.log({ received, year, semester, review });
     };
 
     return (

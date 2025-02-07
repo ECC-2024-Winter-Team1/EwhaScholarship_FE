@@ -33,7 +33,7 @@ const ReviewList = () => {
         
         const findSemester = filterSemester === "" || `${review.applicationYear}-${review.semester}` === filterSemester;
         
-        return findIsAwarded && findSemester;
+        return findIsAwarded && findApplicationYear && findSemester;
     });
     
     const indexOfLastReview = currentPage * reviewsInOnePage;

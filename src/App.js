@@ -1,11 +1,11 @@
-import ReviewForm from "./Components/ReviewForm";
+import ReviewForm from "./Components/DetailPage/ReviewForm";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ReviewForm />
       </header>
+      <ReviewForm />
     </div>
   );
 }

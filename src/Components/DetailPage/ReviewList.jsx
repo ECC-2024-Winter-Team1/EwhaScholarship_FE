@@ -14,7 +14,7 @@ const dummies = [
     { reviewId: 10, isAwarded: true, applicationYear: 2018, semester: "2학기", content: "지원 당시 학점은 X.XX였어요." },
 ];
 
-const ReviewList = () => {
+function ReviewList() {
 
     const reviewsInOnePage = 5;
     const [currentPage, setCurrentPage] = useState(1);
@@ -24,13 +24,8 @@ const ReviewList = () => {
     const [filterSemester, setFilterSemester] = useState("");
 
     const filteredReviews = dummies.filter((review) => {
-        const findIsAwarded =
-            filterIsAwarded === "" ||
-            (filterIsAwarded === "수혜함" && review.isAwarded) ||
-            (filterIsAwarded === "수혜 안함" && !review.isAwarded);
-
+        const findIsAwarded = filterIsAwarded === "" || (filterIsAwarded === "수혜함" && review.isAwarded) || (filterIsAwarded === "수혜 안함" && !review.isAwarded);
         const findApplicationYear = filterApplicationYear === "" || review.applicationYear.toString() === filterApplicationYear;
-        
         const findSemester = filterSemester === "" || `${review.applicationYear}-${review.semester}` === filterSemester;
         
         return findIsAwarded && findApplicationYear && findSemester;
@@ -40,17 +35,17 @@ const ReviewList = () => {
     const indexOfFirstReview = indexOfLastReview - reviewsInOnePage;
     const currentReviews = filteredReviews.slice(indexOfFirstReview, indexOfLastReview);
 
-    const previousPage = () => {
+    function previousPage() {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
-    };
+    }
 
-    const nextPage = () => {
+    function nextPage() {
         if (indexOfLastReview < filteredReviews.length) {
             setCurrentPage(currentPage + 1);
         }
-    };
+    }
 
     return (
         <div>
@@ -104,6 +99,6 @@ const ReviewList = () => {
             </div>
         </div>
     );
-};
+}
 
 export default ReviewList;

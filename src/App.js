@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import logo from './logo.svg';
 import './App.css';
 
@@ -17,7 +18,18 @@ function App() {
         >
           Learn React
         </a>
+=======
+import ReviewForm from "./Components/DetailPage/ReviewForm";
+import ReviewList from "./Components/DetailPage/ReviewList";
+
+function App() {
+  return (
+    <div>
+      <header>
+>>>>>>> Stashed changes
       </header>
+        <ReviewForm />
+        <ReviewList />
     </div>
   );
 }

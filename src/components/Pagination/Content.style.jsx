@@ -6,12 +6,29 @@ export const BoxWrapper = styled.div`
   gap: 30px;
 `;
 
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+`;
+
+export const ItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+`;
+
 export const Box = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 50%;
-  width: 1200px;
+  width: auto;
   margin: 0 auto;
   border-radius: 25px;
   box-shadow: 1px 5px 5px 1px rgb(164, 177, 162);

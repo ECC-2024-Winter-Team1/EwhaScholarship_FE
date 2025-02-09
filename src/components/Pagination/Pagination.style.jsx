@@ -20,6 +20,6 @@ export const ButtonWrapper = styled.div`
 
 export const Text = styled.p`
   display: flex;
-  margin-left: 350px;
+  margin-left: 320px;
   font-size: 25px;
 `;

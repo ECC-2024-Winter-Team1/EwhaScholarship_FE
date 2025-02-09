@@ -1,7 +1,16 @@
-import { BoxWrapper, Box, LinkBox, TextWrapper } from "./Content.style";
+import {
+  BoxWrapper,
+  Box,
+  LinkBox,
+  TextWrapper,
+  IconWrapper,
+  ItemWrapper,
+} from "./Content.style";
 import { Pagination } from "./Pagination";
 import { useEffect, useState } from "react";
 import { Text } from "./Pagination.style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
 export default function ShowPostList() {
   const [posts, setPosts] = useState([]);
@@ -68,15 +77,20 @@ export default function ShowPostList() {
 
       <BoxWrapper>
         {currentPosts.map((item) => (
-          <Box key={item.id}>
-            <TextWrapper>
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-            </TextWrapper>
-            <LinkBox>
-              <a href="#">자세히 보기</a>
-            </LinkBox>
-          </Box>
+          <ItemWrapper>
+            <Box key={item.id}>
+              <TextWrapper>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </TextWrapper>
+              <LinkBox>
+                <a href="#">자세히 보기</a>
+              </LinkBox>
+            </Box>
+            <IconWrapper>
+              <FontAwesomeIcon icon={faBookmark} />
+            </IconWrapper>
+          </ItemWrapper>
         ))}
       </BoxWrapper>
 

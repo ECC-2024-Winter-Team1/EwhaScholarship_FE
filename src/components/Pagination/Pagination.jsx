@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, ButtonWrapper } from "./Pagination.style";
 export function Pagination({
   postsNum,
   postsPerPage,
@@ -36,23 +37,23 @@ export function Pagination({
   }
 
   return (
-    <div>
-      <button onClick={goToPrevPageGroup} disabled={currentPageGroup === 0}>
+    <ButtonWrapper>
+      <Button onClick={goToPrevPageGroup} disabled={currentPageGroup === 0}>
         {"<"}
-      </button>
+      </Button>
 
       {pageList.map((page) => (
-        <button key={page} onClick={() => setCurrentPage(page)}>
+        <Button key={page} onClick={() => setCurrentPage(page)}>
           {page}
-        </button>
+        </Button>
       ))}
 
-      <button
+      <Button
         onClick={goToNextPageGroup}
         disabled={currentPageGroup === totalPageGroup - 1}
       >
         {">"}
-      </button>
-    </div>
+      </Button>
+    </ButtonWrapper>
   );
 }

@@ -1,6 +1,7 @@
 import { BoxWrapper, Box, LinkBox, TextWrapper } from "./Content.style";
 import { Pagination } from "./Pagination";
 import { useEffect, useState } from "react";
+import { Text } from "./Pagination.style";
 
 export default function ShowPostList() {
   const [posts, setPosts] = useState([]);
@@ -63,9 +64,7 @@ export default function ShowPostList() {
 
   return (
     <>
-      <header>
-        <h1>N 개의 장학금 정보가 있어요</h1>
-      </header>
+      <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
 
       <BoxWrapper>
         {currentPosts.map((item) => (

@@ -1,9 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
-import MainPage from "./components/Main/MainPage";
+import MainPage from "./Components/main/MainPage";
+import StyledHeader from "./Components/Header/StyledHeader";
+import ShowPostList from "./Components/Pagination/ShowPostList";
 
 function App() {
-  return <MainPage />;
+  return (
+    <>
+      <StyledHeader />
+      <MainPage />
+      <ShowPostList />
+    </>
+  );
 }
 
 export default App;

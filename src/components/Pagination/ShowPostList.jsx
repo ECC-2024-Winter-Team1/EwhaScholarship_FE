@@ -16,6 +16,27 @@ export default function ShowPostList() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
+  const [bookmarks, setBookmarks] = useState([]);
+
+  const handleBookMark = (item) => {
+    const updatedBookmarks = [];
+
+    let found = false;
+
+    for (let i = 0; i < bookmarks.length; i++) {
+      if (bookmarks[i].scholarshipId === item.scholarshipId) {
+        found = true;
+      } else {
+        updatedBookmarks.push(bookmarks[i]);
+      }
+    }
+
+    if (!found) {
+      updatedBookmarks = updatedBookmarks.concat(item);
+    }
+
+    setBookmarks(updatedBookmarks);
+  };
 
   useEffect(() => {
     const Data = [
@@ -99,7 +120,7 @@ export default function ShowPostList() {
                 <a href="#">자세히 보기</a>
               </LinkBox>
             </Box>
-            <IconWrapper>
+            <IconWrapper onClick={() => handleBookMark(item)}>
               <FontAwesomeIcon icon={faBookmark} />
             </IconWrapper>
           </ItemWrapper>

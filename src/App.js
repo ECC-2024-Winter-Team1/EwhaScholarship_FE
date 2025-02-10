@@ -1,6 +1,6 @@
-import MainPage from "./Components/main/MainPage";
-import StyledHeader from "./Components/Header/StyledHeader";
-import ShowPostList from "./Components/Pagination/ShowPostList";
+import MainPage from "./components/Main/MainPage";
+import StyledHeader from "./components/Header/StyledHeader";
+import ShowPostList from "./components/Pagination/ShowPostList";
 
 function App() {
   return (

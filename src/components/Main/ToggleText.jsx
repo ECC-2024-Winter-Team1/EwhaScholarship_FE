@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledText = styled.p`
   font-size: 20px;
-  margin-left: 225px;
+  margin-left: 320px;
 `;
 
 export default function ToggleText() {

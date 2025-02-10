@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledText = styled.p`
   font-size: 23px;
-  margin-left: 225px;
+  margin-left: 320px;
   margin-bottom: 3px;
 `;
 

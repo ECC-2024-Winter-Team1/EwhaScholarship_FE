@@ -7,6 +7,7 @@ import {
   IconStyle,
   StyledSelect,
   StyledOption,
+  Wrapper,
 } from "./DropDown.style";
 
 export default function DropDown(props) {
@@ -50,7 +51,7 @@ export default function DropDown(props) {
   ];
 
   return (
-    <>
+    <Wrapper>
       <DropDownWrapper>
         <IconStyle>
           <FontAwesomeIcon icon={faCalendar} />
@@ -96,6 +97,6 @@ export default function DropDown(props) {
           ))}
         </StyledSelect>
       </DropDownWrapper>
-    </>
+    </Wrapper>
   );
 }

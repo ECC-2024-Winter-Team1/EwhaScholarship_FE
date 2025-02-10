@@ -1,12 +1,9 @@
-import React from "react";
-import Login from "./components/Login"; 
+import logo from "./logo.svg";
+import "./App.css";
+import MainPage from "./components/Main/MainPage";
 
 function App() {
-  return (
-    <div>
-      <Login /> 
-    </div>
-  );
+  return <MainPage />;
 }
 
 export default App;

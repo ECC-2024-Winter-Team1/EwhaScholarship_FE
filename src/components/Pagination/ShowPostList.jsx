@@ -20,49 +20,61 @@ export default function ShowPostList() {
   useEffect(() => {
     const Data = [
       {
-        id: 1,
-        title: "이화미래설계",
-        description: "최대 400만원 | 3월/9월 | 학업보조비",
+        scholarshipId: 1,
+        name: "이화미래설계",
+        amount: "최대 400만원",
+        applicationPeriod: "3월/9월",
+        type: "학업보조비",
       },
       {
-        id: 2,
-        title: "전공리더십",
-        description: "학과별 상이 | 4월/10월 | 학비감면",
+        scholarshipId: 2,
+        name: "전공리더십",
+        amount: "학과별 상이",
+        applicationPeriod: "4월/10월",
+        type: "학비감면",
       },
       {
-        id: 3,
-        title: "이화복지",
-        description: "차등지급 | 11월/5월 | 학비감면",
+        scholarshipId: 3,
+        name: "이화복지",
+        amount: "차등지급",
+        applicationPeriod: "11월/5월",
+        type: "학비감면",
       },
       {
-        id: 4,
-        title: "등록금 옴부즈만",
-        description: "최대 400만원 | 2월/8월 | 학비감면",
-      },
-      { id: 5, title: "기타 장학금", description: "기타 상세 내용" },
-      { id: 6, title: "해외연수 지원", description: "국제 경험을 위한 지원" },
-      {
-        id: 7,
-        title: "이화미래설계",
-        description: "최대 400만원 | 3월/9월 | 학업보조비",
+        scholarshipId: 4,
+        name: "등록금 옴부즈만",
+        amount: "최대 400만원",
+        applicationPeriod: "2월/8월",
+        type: "학비감면",
       },
       {
-        id: 8,
-        title: "전공리더십",
-        description: "학과별 상이 | 4월/10월 | 학비감면",
+        scholarshipId: 5,
+        name: "이화미래설계",
+        amount: 400,
+        applicationPeriod: "3월/9월",
+        type: "학업보조비",
       },
       {
-        id: 9,
-        title: "이화복지",
-        description: "차등지급 | 11월/5월 | 학비감면",
+        scholarshipId: 6,
+        name: "전공리더십",
+        amount: "학과별 상이",
+        applicationPeriod: "4월/10월",
+        type: "학비감면",
       },
       {
-        id: 10,
-        title: "등록금 옴부즈만",
-        description: "최대 400만원 | 2월/8월 | 학비감면",
+        scholarshipId: 7,
+        name: "이화복지",
+        amount: "차등지급",
+        applicationPeriod: "11월/5월",
+        type: "학비감면",
       },
-      { id: 11, title: "기타 장학금", description: "기타 상세 내용" },
-      { id: 12, title: "해외연수 지원", description: "국제 경험을 위한 지원" },
+      {
+        scholarshipId: 8,
+        name: "등록금 옴부즈만",
+        amount: "최대 400만원",
+        applicationPeriod: "2월/8월",
+        type: "학비감면",
+      },
     ];
     setPosts(Data);
   }, []);
@@ -78,10 +90,10 @@ export default function ShowPostList() {
       <BoxWrapper>
         {currentPosts.map((item) => (
           <ItemWrapper>
-            <Box key={item.id}>
+            <Box key={item.scholarshipId}>
               <TextWrapper>
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
+                <h2>{item.name}</h2>
+                <p>{`${item.amount} | ${item.applicationPeriod} | ${item.type}`}</p>
               </TextWrapper>
               <LinkBox>
                 <a href="#">자세히 보기</a>

@@ -1,13 +1,11 @@
-import ReviewForm from "./Components/DetailPage/ReviewForm";
-import ReviewList from "./Components/DetailPage/ReviewList";
+import ScholarshipInfo from "./Components/DetailPage/ScholarshipInfo";
 
 function App() {
   return (
     <div>
       <header>
       </header>
-        <ReviewForm />
-        <ReviewList />
+      <ScholarshipInfo />
     </div>
   );
 }

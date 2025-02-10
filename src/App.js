@@ -1,4 +1,3 @@
-import ReviewForm from "./Components/DetailPage/ReviewForm";
 import ReviewList from "./Components/DetailPage/ReviewList";
 
 function App() {
@@ -6,7 +5,6 @@ function App() {
     <div>
       <header>
       </header>
-        <ReviewForm />
         <ReviewList />
     </div>
   );

@@ -1,13 +1,9 @@
-import ReviewForm from "./Components/DetailPage/ReviewForm";
+import logo from "./logo.svg";
+import "./App.css";
+import MainPage from "./components/Main/MainPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <ReviewForm />
-    </div>
-  );
+  return <MainPage />;
 }
 
 export default App;

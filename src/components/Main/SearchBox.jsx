@@ -9,7 +9,7 @@ import {
   Button,
 } from "./SearchBox.style";
 
-export default function SearchBox() {
+export default function SearchBox({ searchKeyWord }) {
   const [searchInput, setSearchInput] = useState("");
 
   const handleSearchChange = (event) => {
@@ -18,8 +18,7 @@ export default function SearchBox() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const search = formData.get("search");
+    searchKeyWord(searchInput);
   };
 
   return (

@@ -3,9 +3,9 @@ import {
   Container, ProfileCard, ProfileInfo, ProfileIcon, 
   SaveButton, InfoCard, InfoRow, Dropdown, 
   DropdownIcon, Select, InputField 
-} from "./Info.style";
+} from "./NewInfo.style";
 
-const Info = () => {
+const NewInfo = () => {
   const token = localStorage.getItem("token");
 
   const [email, setEmail] = useState(""); 
@@ -71,8 +71,7 @@ const Info = () => {
       <ProfileCard>
         <ProfileIcon src="/user.png" alt="Profile Icon" />
         <ProfileInfo> 
-          <h2>김이화님 안녕하세요</h2> 
-          <p>{email}</p> 
+          <h2>{email}님 안녕하세요</h2> 
         </ProfileInfo>
       </ProfileCard>
 
@@ -152,4 +151,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default NewInfo;

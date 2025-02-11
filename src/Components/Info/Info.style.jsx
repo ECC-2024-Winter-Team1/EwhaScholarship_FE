@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
   font-family: "Pretendard", sans-serif;
   background-color: white;
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const ProfileCard = styled.div`
+export const ProfileCard = styled.div`
   display: flex;
   width: 600px;
   height: 74px;
@@ -21,7 +21,7 @@ const ProfileCard = styled.div`
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 `;
 
-const ProfileIcon = styled.img`
+export const ProfileIcon = styled.img`
   margin: 20px;
   width: 70px;
   height: 70px;
@@ -30,11 +30,11 @@ const ProfileIcon = styled.img`
   margin-left: 18px;
 `;
 
-const ProfileInfo = styled.div`
+export const ProfileInfo = styled.div`
   h2 {
-    font-size: 22px;
-    font-weight: 550;
-    margin: 15px 0 1px 0;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0px 0 1px 0;
     color: #00462a;
   }
   p {
@@ -45,7 +45,7 @@ const ProfileInfo = styled.div`
   }
 `;
 
-const InfoCard = styled.div`
+export const InfoCard = styled.div`
   width: 600px;
   background: #f0f7f4;
   padding: 25px;
@@ -54,7 +54,7 @@ const InfoCard = styled.div`
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 `;
 
-const InfoRow = styled.div`
+export const InfoRow = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -71,7 +71,7 @@ const InfoRow = styled.div`
   }
 `;
 
-const Dropdown = styled.div`
+export const Dropdown = styled.div`
   display: flex;
   align-items: center;
   background: white;
@@ -82,13 +82,13 @@ const Dropdown = styled.div`
   height: 23px;
 `;
 
-const DropdownIcon = styled.img`
+export const DropdownIcon = styled.img`
   width: 17px;
   height: 17px;
   margin-left: 7px;
 `;
 
-const Select = styled.select`
+export const Select = styled.select`
   border: none;
   outline: none;
   color: #00462a;
@@ -99,7 +99,7 @@ const Select = styled.select`
   padding-left: 5px;
 `;
 
-const InputField = styled.input`
+export const InputField = styled.input`
   width: 100%;
   height: 30px;
   padding: 8px 12px;
@@ -110,7 +110,7 @@ const InputField = styled.input`
   font-size: 14px;
 `;
 
-const SaveButton = styled.button`
+export const SaveButton = styled.button`
   background: #00462a;
   color: white;
   border: none;
@@ -125,17 +125,3 @@ const SaveButton = styled.button`
     background: #1e3b23;
   }
 `;
-
-export{
-Container, 
-ProfileCard,
-ProfileInfo,
-ProfileIcon,
-SaveButton,
-InfoCard, 
-InfoRow,
-Dropdown,
-DropdownIcon,
-Select,
-InputField
-};

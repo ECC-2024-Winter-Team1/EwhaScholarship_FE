@@ -1,12 +1,14 @@
-import ScholarshipInfo from "./Components/DetailPage/ScholarshipInfo";
+import MainPage from "./Components/main/MainPage";
+import StyledHeader from "./Components/Header/StyledHeader";
+import ShowPostList from "./Components/Pagination/ShowPostList";
 
 function App() {
   return (
-    <div>
-      <header>
-      </header>
-      <ScholarshipInfo />
-    </div>
+    <>
+      <StyledHeader />
+      <MainPage />
+      <ShowPostList />
+    </>
   );
 }
 

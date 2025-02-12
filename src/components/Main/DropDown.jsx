@@ -10,7 +10,7 @@ import {
   Wrapper,
 } from "./DropDown.style";
 
-export default function DropDown(props) {
+export default function DropDown(setOption) {
   const year = [
     { value: "freshman", label: "1학년" },
     { value: "sophomore", label: "2학년" },
@@ -56,7 +56,10 @@ export default function DropDown(props) {
         <IconStyle>
           <FontAwesomeIcon icon={faCalendar} />
         </IconStyle>
-        <StyledSelect name="selectedYear" onChange={props.setOption}>
+        <StyledSelect
+          name="year"
+          onChange={(event) => setOption(event.target.name, event.target.value)}
+        >
           <option value="none" hidden>
             학년
           </option>
@@ -71,7 +74,10 @@ export default function DropDown(props) {
         <IconStyle>
           <FontAwesomeIcon icon={faBook} />
         </IconStyle>
-        <StyledSelect name="selectedCollege" onChange={props.setOption}>
+        <StyledSelect
+          name="college"
+          onChange={(event) => setOption(event.target.name, event.target.value)}
+        >
           <option value="none" hidden>
             단과대학
           </option>
@@ -86,7 +92,10 @@ export default function DropDown(props) {
         <IconStyle>
           <FontAwesomeIcon icon={faHouse} />
         </IconStyle>
-        <StyledSelect name="selectedIncome" onChange={props.setOption}>
+        <StyledSelect
+          name="income"
+          onChange={(event) => setOption(event.target.name, event.target.value)}
+        >
           <option value="none" hidden>
             소득분위
           </option>

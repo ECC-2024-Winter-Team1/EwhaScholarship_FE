@@ -25,8 +25,9 @@ export const LoginTitle = styled.h1`
     font-size: 1rem;
     font-weight: 340;
     color: #00462A;
+    padding-left: 7px;
     margin: 0;
-    padding: 0;
+    padding-left: 3px;
     line-height: 1;
     width: 105%;
 `;

@@ -1,12 +1,14 @@
-import ReviewList from "./Components/DetailPage/ReviewList";
+import MainPage from "./Components/main/MainPage";
+import StyledHeader from "./Components/Header/StyledHeader";
+import ShowPostList from "./Components/Pagination/ShowPostList";
 
 function App() {
   return (
-    <div>
-      <header>
-      </header>
-        <ReviewList />
-    </div>
+    <>
+      <StyledHeader />
+      <MainPage />
+      <ShowPostList />
+    </>
   );
 }
 

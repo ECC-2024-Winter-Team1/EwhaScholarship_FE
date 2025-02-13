@@ -19,7 +19,6 @@ export default function ShowPostList() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
-  const [bookmarks, setBookmarks] = useState([]);
   const [searchKeyWord, setSearchKeyWord] = useState("");
   const [filterOption, setFilterOption] = useState({
     year: "",
@@ -27,37 +26,36 @@ export default function ShowPostList() {
     income: "",
     grade: "",
   });
+  const [bookmarkedIds, setBookmarkedIds] = useState([]);
 
-  const handleBookMark = ({
-    scholarshipId,
-    name,
-    amount,
-    applicationPeriod,
-    type,
-  }) => {
-    let updatedBookmarks = [];
-
+  const handleBookmarkClick = (scholarshipId) => {
+    let newIds = [];
     let found = false;
 
-    for (let i = 0; i < bookmarks.length; i++) {
-      if (bookmarks[i].scholarshipId === scholarshipId) {
+    for (let i = 0; i < bookmarkedIds.length; i++) {
+      if (bookmarkedIds[i] === scholarshipId) {
         found = true;
       } else {
-        updatedBookmarks.push(bookmarks[i]);
+        newIds[newIds.length] = bookmarkedIds[i];
       }
     }
 
     if (!found) {
-      updatedBookmarks = updatedBookmarks.concat({
-        scholarshipId,
-        name,
-        amount,
-        applicationPeriod,
-        type,
-      });
+      newIds[newIds.length] = scholarshipId;
     }
 
-    setBookmarks(updatedBookmarks);
+    setBookmarkedIds(newIds);
+  };
+
+  const setBookmarkColor = (scholarshipId) => {
+    let isBookmarked = false;
+    for (let i = 0; i < bookmarkedIds.length; i++) {
+      if (bookmarkedIds[i] === scholarshipId) {
+        isBookmarked = true;
+        break;
+      }
+    }
+    return isBookmarked ? "rgb(10, 141, 88)" : "black";
   };
 
   // useEffect(() => {
@@ -74,6 +72,68 @@ export default function ShowPostList() {
   //   fetchScholarships();
   // }, [searchKeyWord, filterOption]);
 
+  useEffect(() => {
+    const Data = [
+      {
+        scholarshipId: 1,
+        name: "이화미래설계",
+        amount: "최대 400만원",
+        applicationPeriod: "3월/9월",
+        type: "학업보조비",
+      },
+      {
+        scholarshipId: 2,
+        name: "전공리더십",
+        amount: "학과별 상이",
+        applicationPeriod: "4월/10월",
+        type: "학비감면",
+      },
+      {
+        scholarshipId: 3,
+        name: "이화복지",
+        amount: "차등지급",
+        applicationPeriod: "11월/5월",
+        type: "학비감면",
+      },
+      {
+        scholarshipId: 4,
+        name: "등록금 옴부즈만",
+        amount: "최대 400만원",
+        applicationPeriod: "2월/8월",
+        type: "학비감면",
+      },
+      {
+        scholarshipId: 5,
+        name: "이화미래설계",
+        amount: 400,
+        applicationPeriod: "3월/9월",
+        type: "학업보조비",
+      },
+      {
+        scholarshipId: 6,
+        name: "전공리더십",
+        amount: "학과별 상이",
+        applicationPeriod: "4월/10월",
+        type: "학비감면",
+      },
+      {
+        scholarshipId: 7,
+        name: "이화복지",
+        amount: "차등지급",
+        applicationPeriod: "11월/5월",
+        type: "학비감면",
+      },
+      {
+        scholarshipId: 8,
+        name: "등록금 옴부즈만",
+        amount: "최대 400만원",
+        applicationPeriod: "2월/8월",
+        type: "학비감면",
+      },
+    ];
+    setPosts(Data);
+  }, []);
+
   const firstPostIndex = (currentPage - 1) * postsPerPage;
   const lastPostIndex = firstPostIndex + postsPerPage;
   const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
@@ -88,8 +148,8 @@ export default function ShowPostList() {
       <BoxWrapper>
         {currentPosts.map(
           ({ scholarshipId, name, amount, applicationPeriod, type }) => (
-            <ItemWrapper>
-              <Box key={scholarshipId}>
+            <ItemWrapper key={scholarshipId}>
+              <Box>
                 <TextWrapper>
                   <h2>{name}</h2>
                   <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
@@ -98,18 +158,13 @@ export default function ShowPostList() {
                   <a href="#">자세히 보기</a>
                 </LinkBox>
               </Box>
-              <IconWrapper
-                onClick={() =>
-                  handleBookMark({
-                    scholarshipId,
-                    name,
-                    amount,
-                    applicationPeriod,
-                    type,
-                  })
-                }
-              >
-                <FontAwesomeIcon icon={faBookmark} />
+              <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>
+                <FontAwesomeIcon
+                  icon={faBookmark}
+                  style={{
+                    color: setBookmarkColor(scholarshipId),
+                  }}
+                />
               </IconWrapper>
             </ItemWrapper>
           )

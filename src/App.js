@@ -1,3 +1,9 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
 import MainPage from "./Components/main/MainPage";
 import StyledHeader from "./Components/Header/StyledHeader";
 import ShowPostList from "./Components/Pagination/ShowPostList";

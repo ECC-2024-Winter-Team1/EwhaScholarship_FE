@@ -28,23 +28,32 @@ export default function ShowPostList() {
   });
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
 
-  const handleBookmarkClick = (scholarshipId) => {
-    let newIds = [];
-    let found = false;
+  const handleBookmarkClick = async (scholarshipId) => {
+    try {
+      let newIds = [];
+      let found = false;
 
-    for (let i = 0; i < bookmarkedIds.length; i++) {
-      if (bookmarkedIds[i] === scholarshipId) {
-        found = true;
-      } else {
-        newIds[newIds.length] = bookmarkedIds[i];
+      for (let i = 0; i < bookmarkedIds.length; i++) {
+        if (bookmarkedIds[i] === scholarshipId) {
+          found = true;
+        } else {
+          newIds[newIds.length] = bookmarkedIds[i];
+        }
       }
-    }
 
-    if (!found) {
-      newIds[newIds.length] = scholarshipId;
-    }
+      if (found) {
+        // await fetch("", { method: "DELETE" });
+        console.log("북마크 삭제 성공!");
+      } else {
+        newIds[newIds.length] = scholarshipId;
+        // await fetch("", { method: "POST" });
+        console.log("북마크 등록 성공!");
+      }
 
-    setBookmarkedIds(newIds);
+      setBookmarkedIds(newIds);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const setBookmarkColor = (scholarshipId) => {

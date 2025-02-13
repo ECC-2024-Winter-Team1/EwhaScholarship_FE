@@ -1,12 +1,14 @@
 import MainPage from "./components/Main/MainPage";
 import StyledHeader from "./components/Header/StyledHeader";
-import ShowPostList from "./components/Pagination/ShowPostList";
+import ShowingPagination from "./components/Pagination/ShowingPagination";
+import BookMark from "./components/BookMark/BookMark";
 
 function App() {
   return (
     <>
       <StyledHeader />
-      <ShowPostList />
+      {/* <ShowingPagination /> */}
+      <BookMark />
     </>
   );
 }

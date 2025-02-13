@@ -4,17 +4,22 @@ import {
   Route
 } from "react-router-dom";
 
-import MainPage from "./Components/main/MainPage";
-import StyledHeader from "./Components/Header/StyledHeader";
-import ShowPostList from "./Components/Pagination/ShowPostList";
+import MainPage from "./Components/Main/MainPage";
+import DetailPage from "./Components/detailpage/DetailPage";
+import Login from "./Components/Login/Login";
+import Join from "./Components/Join/Join";
 
 function App() {
   return (
-    <>
-      <StyledHeader />
-      <MainPage />
-      <ShowPostList />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="join" element={<Join />} />
+        <Route path="main" element={<MainPage />} />
+        <Route path="post/:scholarshipId" element={<DetailPage />} />
+        <Route path="bookmarks" element={<BookmarkList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

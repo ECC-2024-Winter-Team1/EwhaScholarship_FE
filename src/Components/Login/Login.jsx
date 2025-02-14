@@ -4,22 +4,28 @@ import { Container, TitleContainer, Subtitle, Title, Description } from "./Login
 
 
 const Login = () => {
-  return (
-    <Container> 
-        <TitleContainer>
-            <Subtitle>
-                EWHA Scholar
-            </Subtitle>
-            <Title>
-                이화장학
-            </Title>
-        </TitleContainer>
-        <Description>
-            로그인하시고 <br /> 받을 수 있는 장학금을 찾아보세요!
-        </Description>
-        <GoogleButton />
-    </Container>
-  )
-}
+    const navigate = useNavigate();
+
+    const handleLoginSuccess = () => {
+        navigate("/main");
+    };
+
+    return (
+        <Container> 
+            <TitleContainer>
+                <Subtitle>
+                    EWHA Scholar
+                </Subtitle>
+                <Title>
+                    이화장학
+                </Title>
+            </TitleContainer>
+            <Description>
+                로그인하시고 <br /> 받을 수 있는 장학금을 찾아보세요!
+            </Description>
+            <GoogleButton onLoginSuccess={handleLoginSuccess} />
+        </Container>
+    );
+};
 
 export default Login;

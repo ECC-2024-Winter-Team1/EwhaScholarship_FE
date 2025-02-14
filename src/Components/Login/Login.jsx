@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 
 const Login = () => {
-    const [id, setId] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginCheck, setLoginCheck] = useState(false); 
     const navigate = useNavigate();
@@ -18,9 +18,9 @@ const Login = () => {
 
         try {
             const response = await axios.post(
-                "로그인서버주소넣을공간",
+                "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/auth/login",
                 {
-                    id: id,
+                    username: username,
                     password: password,
                 },
                 {
@@ -34,18 +34,33 @@ const Login = () => {
 
             if (response.status === 200) {
                 setLoginCheck(false); 
-                sessionStorage.setItem("token", result.token);
-                sessionStorage.setItem("id", result.id);
+                localStorage.setItem("token", result.token);
                 navigate("/"); 
+                alert("로그인되었습니다");
             } 
             else {
                 setLoginCheck(true); 
                 alert("아이디와 비밀번호가 일치하지 않습니다."); 
             }
         } catch (error) {
-            setLoginCheck(true); 
-            alert("로그인 오류가 발생했습니다. 다시 시도해주세요."); 
+            setLoginCheck(true);
+        
+            if (error.response) {
+                console.error("로그인 오류:", error.response.data || error.message); 
+      
+                if (error.response.status === 500) {
+                    alert("아이디와 비밀번호가 일치하지 않습니다.");
+                } 
+                if (error.response.status === 404 ){
+                    alert("존재하지 않는 아이디입니다.");
+                }
+                
+            } else {
+                alert("네트워크 오류가 발생했습니다. 인터넷 연결을 확인하세요.");
+            }
         }
+        
+        
     };
 
     return (
@@ -59,8 +74,8 @@ const Login = () => {
                         <Icon2 src="/profile.png" alt="Icon"/>
                         <InputLabel htmlFor="id">아이디</InputLabel>
                         <InputStyle1 
-                            value={id} onChange={(e) => setId(e.target.value)}
-                            type="text" id="form_id" name="form_id"/>
+                            value={username} onChange={(e) => setUsername(e.target.value)}
+                            type="text" id="form_username" name="form_username"/>
                     </Item>
                     <Item>
                         <Icon2 src="/key.png" alt="Icon"/>

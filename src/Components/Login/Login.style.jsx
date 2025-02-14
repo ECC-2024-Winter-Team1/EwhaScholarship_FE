@@ -25,9 +25,8 @@ export const LoginTitle = styled.h1`
     font-size: 1rem;
     font-weight: 340;
     color: #00462A;
-    padding-left: 7px;
     margin: 0;
-    padding-left: 3px;
+    padding-left: 7px;
     line-height: 1;
     width: 105%;
 `;
@@ -112,6 +111,6 @@ export const StyledLink = styled(Link)`
   text-decoration: underline;
   
   &:hover {
-    color: gray;
+    color: gray; // 마우스 오버 시 색상 변경 (선택 사항)
   }
 `;

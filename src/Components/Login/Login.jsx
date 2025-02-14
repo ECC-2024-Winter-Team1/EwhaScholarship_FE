@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleButton from "./GoogleButton";
 import { Container, TitleContainer, Subtitle, Title, Description } from "./Login.style";
-
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const navigate = useNavigate();

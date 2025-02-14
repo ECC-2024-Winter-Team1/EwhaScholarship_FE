@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const ProfileCard = styled.div`
   display: flex;
   width: 600px;
-  height: 74px;
+  height: 64px;
   border-radius: 17px;
   align-items: center;
   background: #f0f7f4;
@@ -23,8 +23,8 @@ export const ProfileCard = styled.div`
 
 export const ProfileIcon = styled.img`
   margin: 20px;
-  width: 70px;
-  height: 70px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   margin-right: 28px;
   margin-left: 18px;
@@ -125,3 +125,4 @@ export const SaveButton = styled.button`
     background: #1e3b23;
   }
 `;
+

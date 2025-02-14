@@ -4,11 +4,12 @@ import {
   SaveButton, InfoCard, InfoRow, Dropdown, 
   DropdownIcon, Select, InputField 
 } from "./NewInfo.style";
+import axios from "axios";
 
 const NewInfo = () => {
   const token = localStorage.getItem("token");
 
-  const [email, setEmail] = useState(""); 
+  const [username, setUsername] = useState(""); 
   const [department, setDepartment] = useState('');
   const [year, setYear] = useState('');
   const [gpa, setGpa] = useState('');
@@ -17,25 +18,20 @@ const NewInfo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try { 
-        const response = await fetch("http://localhost:5000/user", { 
-          method: "GET",
+        const response = await axios.get("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/user", {
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
           }
         });
-
-        if (response.ok) {
-          const result = await response.json();
-          setEmail(result.email);
-          setDepartment(result.department);
-          setYear(result.year);
-          setGpa(result.gpa);
-          setIncomeLevel(result.incomeLevel);
-        } else {
-          console.error("유저 정보 가져오기 실패");
-        }
+        
+        setUsername(response.data.username);
+        setDepartment(response.data.department);
+        setYear(response.data.year);
+        setGpa(response.data.gpa);
+        setIncomeLevel(response.data.incomeLevel);
       } catch (error) {
+        alert("데이터 가져오는 중 오류 발생");
         console.error("데이터 가져오는 중 오류 발생:", error);
       }
     };
@@ -47,31 +43,25 @@ const NewInfo = () => {
     try {
       const payload = { department, year, gpa, incomeLevel };
 
-      const response = await fetch("http://localhost:5000/user", { 
-        method: "PUT",
+      await axios.put("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/user", payload, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify(payload),
+        }
       });
-
-      if (response.ok) {
-        alert("정보 수정 성공");
-      } else {
-        alert("정보 수정 실패");
-      }
+      alert("정보 수정 성공");
     } catch (error) {
-      alert("정보 수정 중 오류 발생:", error.message);
+      alert("정보 수정 중 오류 발생");
+      console.error("정보 수정 중 오류 발생:", error);
     }
   };
 
   return (
     <Container>
       <ProfileCard>
-        <ProfileIcon src="/user.png" alt="Profile Icon" />
+        <ProfileIcon src="/user.png" alt="Icon" />
         <ProfileInfo> 
-          <h2>{email}님 안녕하세요</h2> 
+          <h2>{username}님 안녕하세요</h2> 
         </ProfileInfo>
       </ProfileCard>
 
@@ -81,10 +71,10 @@ const NewInfo = () => {
           <Dropdown>
             <DropdownIcon src="/calender.png" alt="Icon" />
             <Select value={year} onChange={(e) => setYear(e.target.value)}>
-              <option value="1학년">1학년</option>
-              <option value="2학년">2학년</option>
-              <option value="3학년">3학년</option>
-              <option value="4학년">4학년</option>
+              <option value="1">1학년</option>
+              <option value="2">2학년</option>
+              <option value="3">3학년</option>
+              <option value="4">4학년</option>
             </Select>
           </Dropdown>
         </InfoRow>
@@ -118,16 +108,16 @@ const NewInfo = () => {
           <Dropdown>
             <DropdownIcon src="/home.png" alt="Icon" />
             <Select value={incomeLevel} onChange={(e) => setIncomeLevel(e.target.value)}>
-              <option value="1분위">1분위</option>
-              <option value="2분위">2분위</option>
-              <option value="3분위">3분위</option>
-              <option value="4분위">4분위</option>
-              <option value="5분위">5분위</option>
-              <option value="6분위">6분위</option>
-              <option value="7분위">7분위</option>
-              <option value="8분위">8분위</option>
-              <option value="9분위">9분위</option>
-              <option value="10분위">10분위</option>
+              <option value="1">1분위</option>
+              <option value="2">2분위</option>
+              <option value="3">3분위</option>
+              <option value="4">4분위</option>
+              <option value="5">5분위</option>
+              <option value="6">6분위</option>
+              <option value="7">7분위</option>
+              <option value="8">8분위</option>
+              <option value="9">9분위</option>
+              <option value="10">10분위</option>
             </Select>
           </Dropdown>
         </InfoRow>

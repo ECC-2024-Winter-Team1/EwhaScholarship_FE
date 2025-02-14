@@ -28,7 +28,7 @@ const Login = () => {
                 로그인하시고 <br /> 받을 수 있는 장학금을 찾아보세요!
             </Description>
             <GoogleButton onLoginSuccess={handleLoginSuccess} />
-            <button onClick={moveToJoin}>회원가입입</button>
+            <button onClick={moveToJoin}>회원가입</button>
         </Container>
     );
 };

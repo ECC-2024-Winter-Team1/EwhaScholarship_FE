@@ -19,7 +19,7 @@ export default function ShowPostList() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
-  const [searchKeyWord, setSearchKeyWord] = useState("");
+  const [search, setSearch] = useState("");
   const [filterOption, setFilterOption] = useState({
     year: "",
     department: "",
@@ -88,7 +88,7 @@ export default function ShowPostList() {
     };
 
     fetchScholarships();
-  }, [searchKeyWord, filterOption]);
+  }, [search, filterOption]);
 
   // useEffect(() => {
   //   const Data = [
@@ -158,7 +158,7 @@ export default function ShowPostList() {
 
   return (
     <>
-      <SearchBox searchKeyword={setSearchKeyWord} />
+      <SearchBox search={setSearch} />
       <MainPage />
       <GradeInput setFilterOption={setFilterOption} />
       <Text>{posts.length} 개의 장학금 정보가 있어요</Text>

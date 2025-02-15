@@ -76,11 +76,23 @@ export default function ShowPostList() {
   useEffect(() => {
     const fetchScholarships = async () => {
       try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("로그인 먼저 필요함.");
+          return;
+        }
         const response = await fetch(
-          "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships"
+          "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
         );
         const data = await response.json();
-        //setPosts(data.data.content);
+        setPosts(data.data.content);
         console.log(data);
       } catch (error) {
         console.error("Error:", error);

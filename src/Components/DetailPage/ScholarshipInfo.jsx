@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Container, TitleWrapper, Title, Summary, InfoWrapper, InfoBlock, Highlight, InfoTitle, InfoContent } from "./ScholarshipInfo.style";
 const ScholarshipInfo = () => {
     const scholarship = {
       name: "이화미래설계",
@@ -13,32 +13,34 @@ const ScholarshipInfo = () => {
   
 
     return (
-        <div>
-            <h2>{scholarship.name}</h2>
-            <p>최대 {scholarship.amount} | {scholarship.applicationPeriod} | {scholarship.type} </p>
-            <div>
-                <div>
-                    <h3>선발기준 및 대상</h3>
-                    <p>{scholarship.criteria}</p>
-                </div>
-                <div>
-                    <h3>장학금액</h3>
-                    <p>최대 {scholarship.amount}</p>
-                </div>
-                <div>
-                    <h3>관련학과</h3>
-                    <p>{scholarship.department}</p>
-                </div>
-                <div>
-                    <h3>성적기준</h3>
-                    <p>{scholarship.criteria}</p>
-                </div>
-                <div>
-                    <h3>장학금성격</h3>
-                    <p>{scholarship.type}</p>
-                </div>
-            </div>
-        </div>
+        <Container>
+            <TitleWrapper>
+                <Title>{scholarship.name}</Title>
+                <Summary>최대 {scholarship.amount} | {scholarship.applicationPeriod} | {scholarship.type}</Summary>
+            </TitleWrapper>
+            <InfoWrapper>
+                <InfoBlock>
+                    <InfoTitle><Highlight>선발기준 및 대상</Highlight></InfoTitle>
+                    <InfoContent>{scholarship.criteria}</InfoContent>
+                </InfoBlock>
+                <InfoBlock>
+                    <InfoTitle><Highlight>장학금액</Highlight></InfoTitle>
+                    <InfoContent>최대 {scholarship.amount}</InfoContent>
+                </InfoBlock>
+                <InfoBlock>
+                    <InfoTitle><Highlight>관련학과</Highlight></InfoTitle>
+                    <InfoContent>{scholarship.department}</InfoContent>
+                </InfoBlock>
+                <InfoBlock>
+                    <InfoTitle><Highlight>성적기준</Highlight></InfoTitle>
+                    <InfoContent>{scholarship.criteria}</InfoContent>
+                </InfoBlock>
+                <InfoBlock>
+                    <InfoTitle><Highlight>장학금성격</Highlight></InfoTitle>
+                    <InfoContent>{scholarship.type}</InfoContent>
+                </InfoBlock>
+            </InfoWrapper>
+        </Container>
     );
 }
 

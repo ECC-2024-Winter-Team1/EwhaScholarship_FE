@@ -17,7 +17,7 @@ function App() {
         <Route index element={<Login />} />
         <Route path="join" element={<Join />} />
         <Route path="main" element={<MainPage />} />
-        <Route path="post/:scholarshipId" element={<DetailPage />} />
+        <Route path="scholarship/:scholarshipId" element={<DetailPage />} />
         <Route path="bookmarks" element={<BookMark />} />
       </Routes>
     </BrowserRouter>

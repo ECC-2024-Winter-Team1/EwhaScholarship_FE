@@ -42,7 +42,7 @@ export default function Content() {
                 <p>{item.description}</p>
               </TextWrapper>
               <LinkBox>
-                <a href="#">자세히 보기</a>
+                <Link to={`/scholarship/${item.scholarshipId}`}>자세히 보기</Link>
               </LinkBox>
             </Box>
             <IconWrapper>

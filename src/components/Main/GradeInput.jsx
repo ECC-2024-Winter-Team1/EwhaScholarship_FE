@@ -14,13 +14,13 @@ import DropDown from "./DropDown";
 export default function GradeInput({ setFilterOption }) {
   const [formData, setFormData] = useState({
     year: "",
-    college: "",
-    income: "",
-    grade: "",
+    department: "",
+    incomeLevel: "",
+    gpa: "",
   });
 
   const handleGradeChange = (event) => {
-    setFormData({ ...formData, grade: event.target.value });
+    setFormData({ ...formData, gpa: event.target.value });
   };
 
   const handleSubmit = (event) => {
@@ -42,10 +42,10 @@ export default function GradeInput({ setFilterOption }) {
               <FontAwesomeIcon icon={faStar} />
             </IconStyle>
             <StyledInput
-              name="grade"
+              name="gpa"
               type="text"
               placeholder="학점 입력"
-              value={formData.grade}
+              value={formData.gpa}
               onChange={handleGradeChange}
             />
           </InputWrapper>

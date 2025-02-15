@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <StyledHeader />
-      {/* <ShowingPagination /> */}
-      <BookMark />
+      <ShowingPagination />
+      {/* <BookMark /> */}
     </>
   );
 }

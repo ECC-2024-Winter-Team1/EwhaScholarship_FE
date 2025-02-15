@@ -35,7 +35,7 @@ const Login = () => {
             if (response.status === 200) {
                 setLoginCheck(false); 
                 localStorage.setItem("token", result.token);
-                navigate("/"); 
+                navigate("/main"); 
                 alert("로그인되었습니다");
             } 
             else {

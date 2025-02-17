@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import DetailPage from "./Components/DetailPage/DetailPage";
-import Login from "./Components/login/Login";
+import Login from "./Components/Login/Login";
 import Join from "./Components/Join/Join";
 import BookMark from "./Components/BookMark/BookMark";
 import MainPage from "./Components/Pagination/ShowingPagination";

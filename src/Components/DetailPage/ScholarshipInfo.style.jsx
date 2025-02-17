@@ -1,10 +1,12 @@
-import styled from "styled-componenets";
+import styled from "styled-components";
 
 export const Container = styled.div`
+    max-width: 919px;
+    margin: 30px;
+    background-color: white;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 30px;
-    width: 918px;
 `;
 
 export const Title = styled.h2`
@@ -19,7 +21,7 @@ export const ShortInfo = styled.div`
 
 `;
 
-export const List = styled.div`
+export const ListContainer = styled.div`
     gap: 10px;
     display: flex;
     flex-direction: column;

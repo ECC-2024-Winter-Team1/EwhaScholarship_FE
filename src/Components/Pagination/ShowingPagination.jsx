@@ -11,9 +11,9 @@ import { useEffect, useState } from "react";
 import { Text } from "./Pagination.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import SearchBox from "../main/SearchBox";
-import GradeInput from "../main/GradeInput";
-import MainText from "../main/MainText";
+import SearchBox from "../Main/SearchBox";
+import GradeInput from "../Main/GradeInput";
+import MainText from "../Main/MainText";
 import { API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
 

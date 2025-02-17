@@ -8,6 +8,7 @@ export const Button = styled.button`
   color: #333333;
   &:focus {
     color: #00462a;
+    text-decoration: underline 5px #00462a;
   }
 `;
 
@@ -16,6 +17,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 50px;
+  margin-bottom: 10px;
 `;
 
 export const Text = styled.p`

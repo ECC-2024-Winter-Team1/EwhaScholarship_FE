@@ -9,13 +9,11 @@ import { FilterWrapper, ToggleWrapper } from "./MainPage.style";
 export default function MainPage() {
   return (
     <>
-      <SearchBox />
       <Text />
       <ToggleWrapper>
         <ToggleText />
         <ToggleSwitch />
       </ToggleWrapper>
-      <GradeInput />
     </>
   );
 }

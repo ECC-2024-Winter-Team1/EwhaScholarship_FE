@@ -4,6 +4,7 @@ export const Form = styled.form`
   display: flex;
   justify-content: center;
   gap: 5px;
+  margin-top: 25px;
 `;
 
 export const InputWrapper = styled.div`
@@ -18,7 +19,7 @@ export const IconStyle = styled.i`
 `;
 
 export const StyledInput = styled.input`
-  width: 900px;
+  width: 1100px;
   border-radius: 20px;
   border: 2px solid #00462a;
   font-size: 25px;

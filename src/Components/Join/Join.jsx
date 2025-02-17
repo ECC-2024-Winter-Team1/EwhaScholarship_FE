@@ -129,7 +129,7 @@ export default function Join() {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              hasError={errors.username}
+              $hasError={errors.username}
             />
           </SelectItem>
 
@@ -143,7 +143,7 @@ export default function Join() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              hasError={errors.password}
+              $hasError={errors.password}
             />
           </SelectItem>
 
@@ -209,7 +209,7 @@ export default function Join() {
               step="0.01"
               min="0"
               max="4.5"
-              hasError={errors.gpa}
+              $hasError={errors.gpa}
               value={formData.gpa}
               onChange={handleChange}
             />

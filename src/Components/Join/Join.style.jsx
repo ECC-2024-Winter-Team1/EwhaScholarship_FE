@@ -78,7 +78,7 @@ const InputField = styled.input`
 const InputStyle = styled.input`
   width: 60%;
   padding: 12px 16px;
-  border: 1px solid ${(props) => (props.hasError ? "#FF0000" : "#00462A")};
+  border: 1px solid ${(props) => (props.$hasError ? "#FF0000" : "#00462A")};
   border-radius: 12px;
   background-color: white;
   font-size: 0.875rem;
@@ -88,7 +88,7 @@ const InputStyle = styled.input`
 const InputStyle1 = styled.input`
   width: 190%;
   padding: 11px 16px;
-  border: 1px solid ${(props) => (props.hasError ? "#FF0000" : "#00462A")};
+  border: 1px solid ${(props) => (props.$hasError ? "#FF0000" : "#00462A")};
   border-radius: 12px;
   background-color: white;
   font-size: 0.875rem;

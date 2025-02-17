@@ -10,7 +10,6 @@ const ScholarshipInfo = () => {
       type: "일반보조비",
       academicCriteria: "직전학기 2.0 이상"
     };
-  
 
     return (
         <div>

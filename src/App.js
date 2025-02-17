@@ -1,5 +1,10 @@
-import MainPage from "./components/Main/MainPage";
-import StyledHeader from "./components/Header/StyledHeader";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+import StyledHeader from "./Components/Header/StyledHeader";
 import ShowingPagination from "./components/Pagination/ShowingPagination";
 import BookMark from "./components/BookMark/BookMark";
 

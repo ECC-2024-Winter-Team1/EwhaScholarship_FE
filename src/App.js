@@ -4,17 +4,23 @@ import {
   Route
 } from "react-router-dom";
 
-import StyledHeader from "./Components/Header/StyledHeader";
-import ShowingPagination from "./components/Pagination/ShowingPagination";
-import BookMark from "./components/BookMark/BookMark";
+import MainPage from "./Components/Main/MainPage";
+import DetailPage from "./Components/detailpage/DetailPage";
+import Login from "./Components/Login/Login";
+import Join from "./Components/Join/Join";
+import BookMark from "./Components/BookMark/BookMark";
 
 function App() {
   return (
-    <>
-      <StyledHeader />
-      <ShowingPagination />
-      {/* <BookMark /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route path="join" element={<Join />} />
+        <Route path="main" element={<MainPage />} />
+        <Route path="scholarship/:scholarshipId" element={<DetailPage />} />
+        <Route path="bookmarks" element={<BookMark />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const ScholarshipInfo = () => {
-    const scholarship = {
-      name: "이화미래설계",
-      amount: "400만원",
-      applicationPeriod: "3월/9월",
-      department: "각 대학 관련부서",
-      criteria: "5~7급 등급을 보유한 자로서 미래설계에 대한 계획과 의지가 있는 학생",
-      type: "일반보조비",
-      academicCriteria: "직전학기 2.0 이상"
-    };
+function ScholarshipInfo() {
+
+    const { scholarshipId } = useParams();
+    const [scholarship, setScholarship] = useState(null);
+
+    useEffect(() => {
+        const fetchScholarship = async () => {
+            try {
+                const response = await fetch(`http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com//api/scholarships/{scholarshipId}`);
+                const data = await response.json();
+                setScholarship(data);
+            }
+            catch (error) {
+                console.error(error);
+            }
+        };
+        fetchScholarship();
+    }, [scholarshipId]);
 
     return (
         <div>

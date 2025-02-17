@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import DetailPage from "./Components/DetailPage/DetailPage";
-import Login from "./Components/login/Login";
-import Join from "./Components/Join/Join";
-import BookMark from "./Components/BookMark/BookMark";
-import MainPage from "./Components/Pagination/ShowingPagination";
+import DetailPage from "./components/DetailPage/DetailPage";
+import Login from "./components/Login/Login";
+import Join from "./components/Join/Join";
+import BookMark from "./components/BookMark/BookMark";
+import MainPage from "./components/Pagination/MainPage";
 
 function App() {
   return (

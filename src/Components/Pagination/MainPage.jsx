@@ -11,11 +11,12 @@ import { useEffect, useState } from "react";
 import { Text } from "./Pagination.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import SearchBox from "../main/SearchBox";
-import GradeInput from "../main/GradeInput";
-import MainText from "../main/MainText";
-import { API_URL } from "../../consts";
+import SearchBox from "../Main/SearchBox";
+import GradeInput from "../Main/GradeInput";
+import MainText from "../Main/MainText";
+import { COMMON_API_URL, API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
+import StyledHeader from "../Header/StyledHeader";
 
 export default function MainPage() {
   const [posts, setPosts] = useState([]);
@@ -29,6 +30,7 @@ export default function MainPage() {
     gpa: "",
   });
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
+  const [totalElements, setTotalElements] = useState(0);
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
@@ -45,17 +47,15 @@ export default function MainPage() {
 
       console.log(found, scholarshipId);
       if (found) {
-        await fetch(
-          `http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks/${scholarshipId}`,
-          { method: "DELETE" },
-        );
+        await fetchApi(`${COMMON_API_URL}/bookmarks/${scholarshipId}`, {
+          method: "DELETE",
+        });
         console.log("북마크 삭제 성공!");
       } else {
         newIds[newIds.length] = scholarshipId;
-        await fetch(
-          `http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks/${scholarshipId}`,
-          { method: "POST" },
-        );
+        await fetchApi(`${COMMON_API_URL}/bookmarks/${scholarshipId}`, {
+          method: "POST",
+        });
         console.log("북마크 등록 성공!");
       }
 
@@ -80,76 +80,16 @@ export default function MainPage() {
     try {
       const data = await fetchApi(API_URL.SCHOLARSHIP, { method: "GET" });
       setPosts(data.content);
+      setTotalElements(data.totalElements);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   useEffect(() => {
+    setCurrentPage(1);
     fetchScholarships();
-  }, []);
-
-  // useEffect(() => {
-  //   const Data = [
-  //     {
-  //       scholarshipId: 1,
-  //       name: "이화미래설계",
-  //       amount: "최대 400만원",
-  //       applicationPeriod: "3월/9월",
-  //       type: "학업보조비",
-  //     },
-  //     {
-  //       scholarshipId: 2,
-  //       name: "전공리더십",
-  //       amount: "학과별 상이",
-  //       applicationPeriod: "4월/10월",
-  //       type: "학비감면",
-  //     },
-  //     {
-  //       scholarshipId: 3,
-  //       name: "이화복지",
-  //       amount: "차등지급",
-  //       applicationPeriod: "11월/5월",
-  //       type: "학비감면",
-  //     },
-  //     {
-  //       scholarshipId: 4,
-  //       name: "등록금 옴부즈만",
-  //       amount: "최대 400만원",
-  //       applicationPeriod: "2월/8월",
-  //       type: "학비감면",
-  //     },
-  //     {
-  //       scholarshipId: 5,
-  //       name: "이화미래설계",
-  //       amount: 400,
-  //       applicationPeriod: "3월/9월",
-  //       type: "학업보조비",
-  //     },
-  //     {
-  //       scholarshipId: 6,
-  //       name: "전공리더십",
-  //       amount: "학과별 상이",
-  //       applicationPeriod: "4월/10월",
-  //       type: "학비감면",
-  //     },
-  //     {
-  //       scholarshipId: 7,
-  //       name: "이화복지",
-  //       amount: "차등지급",
-  //       applicationPeriod: "11월/5월",
-  //       type: "학비감면",
-  //     },
-  //     {
-  //       scholarshipId: 8,
-  //       name: "등록금 옴부즈만",
-  //       amount: "최대 400만원",
-  //       applicationPeriod: "2월/8월",
-  //       type: "학비감면",
-  //     },
-  //   ];
-  //   setPosts(Data);
-  // }, []);
+  }, [search, filterOption]);
 
   const firstPostIndex = (currentPage - 1) * postsPerPage;
   const lastPostIndex = firstPostIndex + postsPerPage;
@@ -157,6 +97,7 @@ export default function MainPage() {
 
   return (
     <>
+      <StyledHeader />
       <SearchBox search={setSearch} />
       <MainText />
       <GradeInput setFilterOption={setFilterOption} />
@@ -184,13 +125,13 @@ export default function MainPage() {
                 />
               </IconWrapper>
             </ItemWrapper>
-          ),
+          )
         )}
       </BoxWrapper>
 
       <footer>
         <Pagination
-          postsNum={posts.length}
+          postsNum={totalElements}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}

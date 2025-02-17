@@ -1,16 +1,19 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
-    JoinContainer, JoinForm, JoinTitle, JoinSubtitle, InputGroup, 
-    InputLabel, InputField, InputStyle, SelectGroup, SelectItem, 
-    SelectLabel, SelectField, SubmitButton, DropdownIcon 
-} from "./Join.style";
+    JoinContainer, JoinForm, JoinTitle, JoinSubtitle, 
+    InputLabel, InputStyle, SelectGroup, SelectItem, 
+    SelectLabel, SelectField, SubmitButton, Icon1, Icon2, InputStyle1
+} from "./NewJoin.style";
 import axios from "axios";
 
-const Join = () => {
-    const emailRef = useRef(null);
+const NewJoin = () => {
+    const navigate = useNavigate();
+    const usernameRef = useRef(null);
+    const passwordRef = useRef(null);
     const departmentRef = useRef(null);
     const yearRef = useRef(null);
-    const gradeRef = useRef(null);
+    const gpaRef = useRef(null);
     const incomeLevelRef = useRef(null);
 
     const Departments = [
@@ -29,51 +32,44 @@ const Join = () => {
         { value: "스크랜튼대학", label: "스크랜튼대학" },
         { value: "인공지능대학", label: "인공지능대학" },
         { value: "호크마교양대학", label: "호크마교양대학" }
-      ];
+    ];
 
     const Years = [
-        { value: "1학년", label: "1학년" },
-        { value: "2학년", label: "2학년" },
-        { value: "3학년", label: "3학년" },
-        { value: "4학년", label: "4학년" },
-    ]
+        { value: "1", label: "1학년" },
+        { value: "2", label: "2학년" },
+        { value: "3", label: "3학년" },
+        { value: "4", label: "4학년" },
+    ];
 
     const IncomeLevels = [
-        { value: "1분위", label: "1분위" },
-        { value: "2분위", label: "2분위" },
-        { value: "3분위", label: "3분위" },
-        { value: "4분위", label: "4분위" },
-        { value: "5분위", label: "5분위" },
-        { value: "6분위", label: "6분위" },
-        { value: "7분위", label: "7분위" },
-        { value: "8분위", label: "8분위" },
-        { value: "9분위", label: "9분위" },
-        { value: "10분위", label: "10분위" },
+        { value: "1", label: "1분위" },
+        { value: "2", label: "2분위" },
+        { value: "3", label: "3분위" },
+        { value: "4", label: "4분위" },
+        { value: "5", label: "5분위" },
+        { value: "6", label: "6분위" },
+        { value: "7", label: "7분위" },
+        { value: "8", label: "8분위" },
+        { value: "9", label: "9분위" },
+        { value: "10", label: "10분위" },
+    ];
+
+    function onSubmit(e) {
+        e.preventDefault();  
    
-
-    ]
-
-    function onSubmit() {
-        const email = emailRef.current.value;
+        const username = usernameRef.current.value;
+        const password = passwordRef.current.value;
         const department = departmentRef.current.value;
         const year = yearRef.current.value;
-        const grade = gradeRef.current.value;
+        const gpa = gpaRef.current.value;
         const incomeLevel = incomeLevelRef.current.value;
-        
-        if (!email) {
-            emailRef.current.focus();
+
+        if (!username) {
+            usernameRef.current.focus();
             return false;
         }
-        if (!department) {
-            departmentRef.current.focus();
-            return false;
-        }
-        if (!year) {
-            yearRef.current.focus();
-            return false;
-        }
-        if (!grade) {
-            gradeRef.current.focus();
+        if (!password) {
+            passwordRef.current.focus();
             return false;
         }
         if (!incomeLevel) {
@@ -81,34 +77,66 @@ const Join = () => {
             return false;
         }
 
-        axios.post("http://localhost:5000/users", {
-            email,
-            department,
-            year,
-            grade,
-            incomeLevel,
-        }).then(() => {
+        axios.post("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/auth/register", 
+            {
+                username,
+                password,
+                department,
+                year,
+                gpa,
+                incomeLevel,
+            }, 
+            {
+                headers: { 
+                    "Content-Type": "application/json" 
+                }
+            }
+        )
+
+        .then(() => {
             alert("회원가입이 완료되었습니다.");
-            window.location.href = "/";
-        }).catch(() => {
-            alert("회원가입 중 오류가 발생했습니다.");
+            navigate("/");  
+        })
+
+        .catch((error) => {
+            let errorMessage = "회원가입 중 오류가 발생했습니다.";
+        
+            if (error.response?.data?.message?.includes("Duplicate entry")) {
+                errorMessage = "아이디가 중복되었습니다. 다른 아이디를 사용해주세요.";
+            } 
+        
+            alert(errorMessage);
+            console.error("회원가입 오류", error);
         });
-    }
+}
 
     return (
         <JoinContainer>
             <JoinForm>
                 <JoinTitle>EWHA Scholar</JoinTitle>
                 <JoinSubtitle>이화장학</JoinSubtitle>
-
-                <InputGroup>
-                    <InputLabel htmlFor="email">이메일</InputLabel>
-                    <InputField ref={emailRef} type="email" id="form_email" name="form_email" placeholder="example@ewhain.net" />
-                </InputGroup>
-
+                
                 <SelectGroup>
+
+                <SelectItem style={{ display: "flex", alignItems: "center" }}>
+                        <Icon2 src="/profile.png" alt="profileIcon"/>
+                        <InputLabel htmlFor="username">아이디</InputLabel>
+                        <InputStyle1 
+                            ref={usernameRef} 
+                            type="text" 
+                            id="form_username" 
+                            name="form_username"
+                        />
+                </SelectItem>
+
+                   <SelectItem>
+                        <Icon2 src="/key.png" alt="keyIcon"/>
+                        <InputLabel htmlFor="password">비밀번호</InputLabel>
+                        <InputStyle1 ref={passwordRef} type="text" id="form_password" name="form_password" />
+                   </SelectItem>
+
                     <SelectItem>
-                        <DropdownIcon src="/book.png" alt="bookIcon"/>
+                        <Icon1 src="/book.png" alt="bookIcon"/>
                         <SelectLabel htmlFor="department">단과대학</SelectLabel>
                         <SelectField ref={departmentRef} id="form_department" name="form_department">
                             {Departments.map(({ value, label }) => (
@@ -120,7 +148,7 @@ const Join = () => {
                     </SelectItem>
 
                     <SelectItem>
-                        <DropdownIcon src="/calender.png" alt="calenderIcon"/>
+                        <Icon1 src="/calender.png" alt="calenderIcon"/>
                         <SelectLabel htmlFor="year">학년</SelectLabel>
                         <SelectField ref={yearRef} id="form_year" name="form_year">
                             {Years.map(({ value, label }) => (
@@ -132,7 +160,7 @@ const Join = () => {
                     </SelectItem>
 
                     <SelectItem>
-                        <DropdownIcon src="/home.png" alt="homeIcon"/>
+                        <Icon1 src="/home.png" alt="homeIcon"/>
                         <SelectLabel htmlFor="incomeLevel">소득분위</SelectLabel>
                         <SelectField ref={incomeLevelRef} id="form_incomeLevel" name="form_incomeLevel">
                             {IncomeLevels.map(({ value, label }) => (
@@ -144,9 +172,9 @@ const Join = () => {
                     </SelectItem>
 
                     <SelectItem>
-                        <DropdownIcon src="/star.png" alt="Icon"/>
-                        <SelectLabel htmlFor="grade">학점</SelectLabel>
-                        <InputStyle ref={gradeRef} type="number" id="form_grade" name="form_grade" placeholder="0.00" step="0.01" min="0" max="4.5" />
+                        <Icon1 src="/star.png" alt="Icon"/>
+                        <SelectLabel htmlFor="gpa">학점</SelectLabel>
+                        <InputStyle ref={gpaRef} type="number" id="form_grade" name="form_grade" placeholder="0.00" step="0.01" min="0" max="4.5" />
                    </SelectItem>
 
                 </SelectGroup>
@@ -157,6 +185,5 @@ const Join = () => {
             </JoinForm>
         </JoinContainer>
     );
-};
-
-export default Join;
+}; 
+export default NewJoin;

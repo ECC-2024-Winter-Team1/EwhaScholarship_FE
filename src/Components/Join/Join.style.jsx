@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
-const DropdownIcon = styled.img`
+export const Icon1 = styled.img`
     width: 17px;
     height: 17px;
+    margin-left: 7px;
+`;
+
+export const Icon2 = styled.img`
+    width: 20x;
+    height: 20px;
     margin-left: 7px;
 `;
 
@@ -27,9 +33,11 @@ const JoinTitle = styled.h1`
     margin: 0;
     padding: 0;
     line-height: 1;
+    width: 105%;
 `;
 
 const JoinSubtitle = styled.h2`
+    width: 105%;
     font-family: 'SeoulNamsanM', sans-serif;
     font-weight: 730;
     font-size: 2.15rem;
@@ -37,7 +45,7 @@ const JoinSubtitle = styled.h2`
     margin: 5px;
     padding: 0;
     line-height: 1;
-    margin-bottom: 24px;
+    margin-bottom: 35px;
 `;
 
 const InputGroup = styled.div`
@@ -77,10 +85,22 @@ const InputStyle = styled.input`
     outline: none;
 `;
 
+const InputStyle1 = styled.input`
+    width: 190%;
+    padding: 11px 16px;
+    border: 1px solid #00462A;
+    border-radius: 12px;
+    background-color: white;
+    font-size: 0.875rem;
+    outline: none;
+`;
+
+
 const SelectGroup = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 105%;
 `;
 
 const SelectItem = styled.div`
@@ -111,7 +131,7 @@ const SelectField = styled.select`
 `;
 
 const SubmitButton = styled.button`
-    width: 100%;
+    width: 105%;
     background-color: #00462A;
     color: white;
     padding: 12px;
@@ -124,7 +144,6 @@ const SubmitButton = styled.button`
 `;
 
 export {
-    DropdownIcon,
     JoinContainer,
     JoinForm,
     JoinTitle,
@@ -137,5 +156,6 @@ export {
     SelectItem,
     SelectLabel,
     SelectField,
-    SubmitButton
+    SubmitButton,
+    InputStyle1
 };

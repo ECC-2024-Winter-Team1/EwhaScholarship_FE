@@ -4,7 +4,7 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 50%;
+  gap: 40%;
   border-bottom: 5px solid #00462a;
 `;
 

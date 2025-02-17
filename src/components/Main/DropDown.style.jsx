@@ -4,6 +4,12 @@ export const DropDownWrapper = styled.div`
   position: relative;
 `;
 
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 40px;
+`;
+
 export const IconStyle = styled.i`
   position: absolute;
   padding: 10px 10px;

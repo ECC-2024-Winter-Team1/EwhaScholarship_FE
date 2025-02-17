@@ -7,9 +7,10 @@ import {
   IconStyle,
   StyledSelect,
   StyledOption,
+  Wrapper,
 } from "./DropDown.style";
 
-export default function DropDown(props) {
+export default function DropDown(setOption) {
   const year = [
     { value: "freshman", label: "1학년" },
     { value: "sophomore", label: "2학년" },
@@ -17,7 +18,7 @@ export default function DropDown(props) {
     { value: "senior", label: "4학년" },
   ];
 
-  const college = [
+  const department = [
     { value: "humanities", label: "인문과학대학" },
     { value: "social", label: "사회과학대학" },
     { value: "natural", label: "자연과학대학" },
@@ -35,7 +36,7 @@ export default function DropDown(props) {
     { value: "hokma", label: "호크마교양대학" },
   ];
 
-  const income = [
+  const incomeLevel = [
     { value: "0", label: "0분위" },
     { value: "1", label: "1분위" },
     { value: "2", label: "2분위" },
@@ -50,12 +51,15 @@ export default function DropDown(props) {
   ];
 
   return (
-    <>
+    <Wrapper>
       <DropDownWrapper>
         <IconStyle>
           <FontAwesomeIcon icon={faCalendar} />
         </IconStyle>
-        <StyledSelect name="selectedYear" onChange={props.setOption}>
+        <StyledSelect
+          name="year"
+          onChange={(event) => setOption(event.target.name, event.target.value)}
+        >
           <option value="none" hidden>
             학년
           </option>
@@ -70,11 +74,14 @@ export default function DropDown(props) {
         <IconStyle>
           <FontAwesomeIcon icon={faBook} />
         </IconStyle>
-        <StyledSelect name="selectedCollege" onChange={props.setOption}>
+        <StyledSelect
+          name="department"
+          onChange={(event) => setOption(event.target.name, event.target.value)}
+        >
           <option value="none" hidden>
             단과대학
           </option>
-          {college.map(({ value, label }) => (
+          {department.map(({ value, label }) => (
             <StyledOption key={value} value={value}>
               {label}
             </StyledOption>
@@ -85,17 +92,20 @@ export default function DropDown(props) {
         <IconStyle>
           <FontAwesomeIcon icon={faHouse} />
         </IconStyle>
-        <StyledSelect name="selectedIncome" onChange={props.setOption}>
+        <StyledSelect
+          name="incomeLevel"
+          onChange={(event) => setOption(event.target.name, event.target.value)}
+        >
           <option value="none" hidden>
             소득분위
           </option>
-          {income.map(({ value, label }) => (
+          {incomeLevel.map(({ value, label }) => (
             <StyledOption key={value} value={value}>
               {label}
             </StyledOption>
           ))}
         </StyledSelect>
       </DropDownWrapper>
-    </>
+    </Wrapper>
   );
 }

@@ -141,9 +141,8 @@ const SubmitButton = styled.button`
   border-radius: 0;
   cursor: pointer;
 
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  &:hover {
+    background-color: #007647;
   }
 `;
 

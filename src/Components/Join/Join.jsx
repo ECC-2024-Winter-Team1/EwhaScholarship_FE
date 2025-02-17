@@ -34,7 +34,7 @@ export default function Join() {
   const [errors, setErrors] = useState({
     username: false,
     password: false,
-    incomeLevel: false,
+    gpa: false,
   });
 
   const handleChange = (e) => {

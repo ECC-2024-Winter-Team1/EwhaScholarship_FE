@@ -11,27 +11,30 @@ import {
 } from "./GradeInput.style";
 import DropDown from "./DropDown";
 
-export default function GradeInput() {
-  const [gradeInput, setGradeInput] = useState("");
-  const [option, setOption] = useState(null);
+export default function GradeInput({ setFilterOption }) {
+  const [formData, setFormData] = useState({
+    year: "",
+    department: "",
+    incomeLevel: "",
+    gpa: "",
+  });
 
   const handleGradeChange = (event) => {
-    setGradeInput(event.target.value);
+    setFormData({ ...formData, gpa: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const grade = formData.get("grade");
+    setFilterOption({ ...formData });
   };
 
-  const handleOption = (option) => {
-    setOption(option);
+  const handleOptionChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
   };
 
   return (
     <FilterWrapper>
-      <DropDown setOption={setOption} />
+      <DropDown setOption={handleOptionChange} />
       <form onSubmit={handleSubmit}>
         <Wrapper>
           <InputWrapper>
@@ -39,10 +42,10 @@ export default function GradeInput() {
               <FontAwesomeIcon icon={faStar} />
             </IconStyle>
             <StyledInput
-              name="grade"
+              name="gpa"
               type="text"
               placeholder="학점 입력"
-              value={gradeInput}
+              value={formData.gpa}
               onChange={handleGradeChange}
             />
           </InputWrapper>

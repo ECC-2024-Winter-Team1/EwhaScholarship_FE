@@ -4,16 +4,16 @@ import {
   Route
 } from "react-router-dom";
 
-import MainPage from "./Components/main/MainPage";
 import StyledHeader from "./Components/Header/StyledHeader";
-import ShowPostList from "./Components/Pagination/ShowPostList";
+import ShowingPagination from "./components/Pagination/ShowingPagination";
+import BookMark from "./components/BookMark/BookMark";
 
 function App() {
   return (
     <>
       <StyledHeader />
-      <MainPage />
-      <ShowPostList />
+      <ShowingPagination />
+      {/* <BookMark /> */}
     </>
   );
 }

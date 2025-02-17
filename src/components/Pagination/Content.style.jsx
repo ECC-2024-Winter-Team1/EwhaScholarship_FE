@@ -36,6 +36,12 @@ export const Box = styled.div`
   padding: 10px 20px;
 `;
 
+export const Text = styled.p`
+  margin-left: 320px;
+  font-size: 25px;
+  font-weight: 550;
+`;
+
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;

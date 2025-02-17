@@ -12,7 +12,7 @@ export const Icon2 = styled.img`
     margin-left: 7px;
 `;
 
-export const JoinContainer = styled.div`
+const JoinContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,12 +21,12 @@ export const JoinContainer = styled.div`
     font-family: 'Pretendard', sans-serif;
 `;
 
-export const JoinForm = styled.div`
+const JoinForm = styled.div`
     text-align: center;
     width: 18rem;
 `;
 
-export const JoinTitle = styled.h1`
+const JoinTitle = styled.h1`
     font-size: 1rem;
     font-weight: 340;
     color: #00462A;
@@ -36,7 +36,7 @@ export const JoinTitle = styled.h1`
     width: 105%;
 `;
 
-export const JoinSubtitle = styled.h2`
+const JoinSubtitle = styled.h2`
     width: 105%;
     font-family: 'SeoulNamsanM', sans-serif;
     font-weight: 730;
@@ -48,7 +48,7 @@ export const JoinSubtitle = styled.h2`
     margin-bottom: 35px;
 `;
 
-export const InputGroup = styled.div`
+const InputGroup = styled.div`
     margin-bottom: 32px;
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@ export const InputGroup = styled.div`
     width: 100%;
 `;
 
-export const InputLabel = styled.label`
+const InputLabel = styled.label`
     font-size: 1rem;
     font-weight: 500;
     color: #333333;
@@ -65,7 +65,7 @@ export const InputLabel = styled.label`
     text-align: left;
 `;
 
-export const InputField = styled.input`
+const InputField = styled.input`
     width: 88.5%;
     padding: 12px 16px;
     border: 1.5px solid #00462A;
@@ -75,7 +75,7 @@ export const InputField = styled.input`
     outline: none;
 `;
 
-export const InputStyle = styled.input`
+const InputStyle = styled.input`
     width: 60%;
     padding: 12px 16px;
     border: 1px solid #00462A;
@@ -85,9 +85,9 @@ export const InputStyle = styled.input`
     outline: none;
 `;
 
-export const InputStyle1 = styled.input`
+const InputStyle1 = styled.input`
     width: 190%;
-    padding: 12px 16px;
+    padding: 11px 16px;
     border: 1px solid #00462A;
     border-radius: 12px;
     background-color: white;
@@ -95,14 +95,15 @@ export const InputStyle1 = styled.input`
     outline: none;
 `;
 
-export const SelectGroup = styled.div`
+
+const SelectGroup = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 105%;
 `;
 
-export const SelectItem = styled.div`
+const SelectItem = styled.div`
     display: flex;
     align-items: center;
     gap: 14px;
@@ -110,7 +111,7 @@ export const SelectItem = styled.div`
     height: 40px;
 `;
 
-export const SelectLabel = styled.label`
+const SelectLabel = styled.label`
     font-size: 1rem;
     font-weight: 500;
     color: #333333;
@@ -118,7 +119,7 @@ export const SelectLabel = styled.label`
     text-align: left;
 `;
 
-export const SelectField = styled.select`
+const SelectField = styled.select`
     width: 70%;
     height: 40px;
     padding: 8px 12px;
@@ -129,7 +130,7 @@ export const SelectField = styled.select`
     outline: none;
 `;
 
-export const SubmitButton = styled.button`
+const SubmitButton = styled.button`
     width: 105%;
     background-color: #00462A;
     color: white;
@@ -141,3 +142,20 @@ export const SubmitButton = styled.button`
     border-radius: 0;
     cursor: pointer;
 `;
+
+export {
+    JoinContainer,
+    JoinForm,
+    JoinTitle,
+    JoinSubtitle,
+    InputGroup,
+    InputLabel,
+    InputField,
+    InputStyle,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectField,
+    SubmitButton,
+    InputStyle1
+};

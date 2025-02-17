@@ -1,13 +1,15 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
-    JoinContainer, JoinForm, JoinTitle, JoinSubtitle, InputGroup, 
-    InputLabel, InputField, InputStyle, SelectGroup, SelectItem, 
+    JoinContainer, JoinForm, JoinTitle, JoinSubtitle, 
+    InputLabel, InputStyle, SelectGroup, SelectItem, 
     SelectLabel, SelectField, SubmitButton, Icon1, Icon2, InputStyle1
 } from "./NewJoin.style";
 import axios from "axios";
 
 const NewJoin = () => {
-    const idRef = useRef(null);
+    const navigate = useNavigate();
+    const usernameRef = useRef(null);
     const passwordRef = useRef(null);
     const departmentRef = useRef(null);
     const yearRef = useRef(null);
@@ -30,54 +32,44 @@ const NewJoin = () => {
         { value: "스크랜튼대학", label: "스크랜튼대학" },
         { value: "인공지능대학", label: "인공지능대학" },
         { value: "호크마교양대학", label: "호크마교양대학" }
-      ];
+    ];
 
     const Years = [
-        { value: "1학년", label: "1학년" },
-        { value: "2학년", label: "2학년" },
-        { value: "3학년", label: "3학년" },
-        { value: "4학년", label: "4학년" },
-    ]
+        { value: "1", label: "1학년" },
+        { value: "2", label: "2학년" },
+        { value: "3", label: "3학년" },
+        { value: "4", label: "4학년" },
+    ];
 
     const IncomeLevels = [
-        { value: "1분위", label: "1분위" },
-        { value: "2분위", label: "2분위" },
-        { value: "3분위", label: "3분위" },
-        { value: "4분위", label: "4분위" },
-        { value: "5분위", label: "5분위" },
-        { value: "6분위", label: "6분위" },
-        { value: "7분위", label: "7분위" },
-        { value: "8분위", label: "8분위" },
-        { value: "9분위", label: "9분위" },
-        { value: "10분위", label: "10분위" },
-    ]
+        { value: "1", label: "1분위" },
+        { value: "2", label: "2분위" },
+        { value: "3", label: "3분위" },
+        { value: "4", label: "4분위" },
+        { value: "5", label: "5분위" },
+        { value: "6", label: "6분위" },
+        { value: "7", label: "7분위" },
+        { value: "8", label: "8분위" },
+        { value: "9", label: "9분위" },
+        { value: "10", label: "10분위" },
+    ];
 
-    function onSubmit() {
-        const id = idRef.current.value;
+    function onSubmit(e) {
+        e.preventDefault();  
+   
+        const username = usernameRef.current.value;
         const password = passwordRef.current.value;
         const department = departmentRef.current.value;
         const year = yearRef.current.value;
         const gpa = gpaRef.current.value;
         const incomeLevel = incomeLevelRef.current.value;
-        
-        if (!id) {
-            idRef.current.focus();
+
+        if (!username) {
+            usernameRef.current.focus();
             return false;
         }
         if (!password) {
             passwordRef.current.focus();
-            return false;
-        }
-        if (!department) {
-            departmentRef.current.focus();
-            return false;
-        }
-        if (!year) {
-            yearRef.current.focus();
-            return false;
-        }
-        if (!gpa) {
-            gpaRef.current.focus();
             return false;
         }
         if (!incomeLevel) {
@@ -85,20 +77,38 @@ const NewJoin = () => {
             return false;
         }
 
-        axios.post("http://localhost:5000/users", {
-            id,
-            password,
-            department,
-            year,
-            gpa,
-            incomeLevel,
-        }).then(() => {
+        axios.post("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/auth/register", 
+            {
+                username,
+                password,
+                department,
+                year,
+                gpa,
+                incomeLevel,
+            }, 
+            {
+                headers: { 
+                    "Content-Type": "application/json" 
+                }
+            }
+        )
+
+        .then(() => {
             alert("회원가입이 완료되었습니다.");
-            window.location.href = "/";
-        }).catch(() => {
-            alert("회원가입 중 오류가 발생했습니다.");
+            navigate("/");  
+        })
+
+        .catch((error) => {
+            let errorMessage = "회원가입 중 오류가 발생했습니다.";
+        
+            if (error.response?.data?.message?.includes("Duplicate entry")) {
+                errorMessage = "아이디가 중복되었습니다. 다른 아이디를 사용해주세요.";
+            } 
+        
+            alert(errorMessage);
+            console.error("회원가입 오류", error);
         });
-    }
+}
 
     return (
         <JoinContainer>
@@ -108,14 +118,19 @@ const NewJoin = () => {
                 
                 <SelectGroup>
 
-                   <SelectItem>
-                        <Icon2 src="/profile.png" alt="Icon"/>
-                        <InputLabel htmlFor="id">아이디</InputLabel>
-                        <InputStyle1 ref={idRef} type="text" id="form_id" name="form_id"/>
-                   </SelectItem>
+                <SelectItem style={{ display: "flex", alignItems: "center" }}>
+                        <Icon2 src="/profile.png" alt="profileIcon"/>
+                        <InputLabel htmlFor="username">아이디</InputLabel>
+                        <InputStyle1 
+                            ref={usernameRef} 
+                            type="text" 
+                            id="form_username" 
+                            name="form_username"
+                        />
+                </SelectItem>
 
                    <SelectItem>
-                        <Icon2 src="/key.png" alt="Icon"/>
+                        <Icon2 src="/key.png" alt="keyIcon"/>
                         <InputLabel htmlFor="password">비밀번호</InputLabel>
                         <InputStyle1 ref={passwordRef} type="text" id="form_password" name="form_password" />
                    </SelectItem>

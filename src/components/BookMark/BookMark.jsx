@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import {
   BoxWrapper,
   Box,
@@ -8,8 +10,6 @@ import {
   IconWrapper,
   ItemWrapper,
 } from "../Pagination/Content.style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);

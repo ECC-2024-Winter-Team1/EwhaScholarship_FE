@@ -4,9 +4,8 @@ export const FilterWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  height: auto;
-  gap: 8%;
+  justify-content: flex-start;
+  gap: 40px;
 `;
 
 export const InputWrapper = styled.div`
@@ -25,17 +24,23 @@ export const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   font-size: 5px;
-  gap: 2%;
-  width: 100%;
+  gap: 40px;
 `;
 
 export const Button = styled.button`
-  padding: 10px 10px;
+  padding: 15px 10px;
   border-radius: 20px;
   font-size: 15px;
   color: white;
+  font-weight: bold;
   background-color: #00462a;
-  width: 60px;
+  width: 120px;
+  border: 1px solid #00462a;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #007245;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -45,5 +50,5 @@ export const StyledInput = styled.input`
   font-weight: 600;
   color: #00462a;
   border: 2px solid #00462a;
-  width: 150px;
+  width: 180px;
 `;

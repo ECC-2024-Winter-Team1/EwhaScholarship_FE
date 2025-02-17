@@ -7,7 +7,7 @@ import {
 } from "./Content.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-
+import { Link } from "react-router-dom";
 export default function Content() {
   const ScholarShipData = [
     {
@@ -31,26 +31,25 @@ export default function Content() {
       description: "최대 400만원 | 2월/8월 | 학비감면",
     },
   ];
+
   return (
     <BoxWrapper>
-      {
-        (ScholarShipData = (item) => {
-          <>
-            <Box key={item.id}>
-              <TextWrapper>
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-              </TextWrapper>
-              <LinkBox>
-                <Link to={`/scholarship/${item.scholarshipId}`}>자세히 보기</Link>
-              </LinkBox>
-            </Box>
-            <IconWrapper>
-              <FontAwesomeIcon icon={faBookmark} />
-            </IconWrapper>
-          </>;
-        })
-      }
+      {ScholarShipData.map((item) => {
+        <>
+          <Box key={item.id}>
+            <TextWrapper>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+            </TextWrapper>
+            <LinkBox>
+              <Link to={`/scholarship/${item.scholarshipId}`}>자세히 보기</Link>
+            </LinkBox>
+          </Box>
+          <IconWrapper>
+            <FontAwesomeIcon icon={faBookmark} />
+          </IconWrapper>
+        </>;
+      })}
     </BoxWrapper>
   );
 }

@@ -11,11 +11,13 @@ import { useEffect, useState } from "react";
 import { Text } from "./Pagination.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import SearchBox from "../Main/SearchBox";
-import GradeInput from "../Main/GradeInput";
-import MainPage from "../Main/MainPage";
+import SearchBox from "../main/SearchBox";
+import GradeInput from "../main/GradeInput";
+import MainText from "../main/MainText";
+import { API_URL } from "../../consts";
+import { fetchApi } from "../../utils";
 
-export default function ShowPostList() {
+export default function MainPage() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(4);
@@ -41,17 +43,18 @@ export default function ShowPostList() {
         }
       }
 
+      console.log(found, scholarshipId);
       if (found) {
         await fetch(
-          "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks/{scholarshipId}",
-          { method: "DELETE" }
+          `http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks/${scholarshipId}`,
+          { method: "DELETE" },
         );
         console.log("북마크 삭제 성공!");
       } else {
         newIds[newIds.length] = scholarshipId;
         await fetch(
-          "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks/{scholarshipId}",
-          { method: "POST" }
+          `http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks/${scholarshipId}`,
+          { method: "POST" },
         );
         console.log("북마크 등록 성공!");
       }
@@ -73,34 +76,18 @@ export default function ShowPostList() {
     return isBookmarked ? "rgb(10, 141, 88)" : "black";
   };
 
-  useEffect(() => {
-    const fetchScholarships = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          console.error("로그인 먼저 필요함.");
-          return;
-        }
-        const response = await fetch(
-          "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        setPosts(data.data.content);
-        console.log(data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
+  const fetchScholarships = async () => {
+    try {
+      const data = await fetchApi(API_URL.SCHOLARSHIP, { method: "GET" });
+      setPosts(data.content);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchScholarships();
-  }, [search, filterOption]);
+  }, []);
 
   // useEffect(() => {
   //   const Data = [
@@ -171,7 +158,7 @@ export default function ShowPostList() {
   return (
     <>
       <SearchBox search={setSearch} />
-      <MainPage />
+      <MainText />
       <GradeInput setFilterOption={setFilterOption} />
       <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
 
@@ -197,7 +184,7 @@ export default function ShowPostList() {
                 />
               </IconWrapper>
             </ItemWrapper>
-          )
+          ),
         )}
       </BoxWrapper>
 

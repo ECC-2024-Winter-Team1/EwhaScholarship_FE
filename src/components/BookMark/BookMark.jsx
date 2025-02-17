@@ -14,38 +14,38 @@ import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);
 
+  const fetchBookmarks = async () => {
+    try {
+      const response = await fetch(
+        "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks",
+      );
+      const data = await response.json();
+      setBookmarks(data);
+    } catch (error) {
+      console.log("북마크 목록이 없습니다.");
+    }
+  };
+
+  // const data = [
+  //   {
+  //     scholarshipId: 1,
+  //     name: "이화미래설계",
+  //     amount: "최대 400만원",
+  //     applicationPeriod: "3월/9월",
+  //     type: "학업보조비",
+  //   },
+  //   {
+  //     scholarshipId: 2,
+  //     name: "전공리더십",
+  //     amount: "학과별 상이",
+  //     applicationPeriod: "4월/10월",
+  //     type: "학비감면",
+  //   },
+  // ];
+
+  // setBookmarks(data);
+
   useEffect(() => {
-    const fetchBookmarks = async () => {
-      try {
-        const response = await fetch(
-          "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks"
-        );
-        const data = await response.json();
-        setBookmarks(data);
-      } catch (error) {
-        console.log("북마크 목록이 없습니다.");
-      }
-    };
-
-    // const data = [
-    //   {
-    //     scholarshipId: 1,
-    //     name: "이화미래설계",
-    //     amount: "최대 400만원",
-    //     applicationPeriod: "3월/9월",
-    //     type: "학업보조비",
-    //   },
-    //   {
-    //     scholarshipId: 2,
-    //     name: "전공리더십",
-    //     amount: "학과별 상이",
-    //     applicationPeriod: "4월/10월",
-    //     type: "학비감면",
-    //   },
-    // ];
-
-    // setBookmarks(data);
-
     fetchBookmarks();
   }, []);
 
@@ -100,7 +100,7 @@ export default function BookMark() {
                     />
                   </IconWrapper>
                 </ItemWrapper>
-              )
+              ),
             )}
           </BoxWrapper>
         </>

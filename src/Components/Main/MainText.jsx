@@ -6,7 +6,7 @@ import DropDown from "./DropDown";
 import GradeInput from "./GradeInput";
 import { FilterWrapper, ToggleWrapper } from "./MainPage.style";
 
-export default function MainPage() {
+export default function MainText() {
   return (
     <>
       <Text />

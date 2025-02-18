@@ -10,10 +10,10 @@ const Info = () => {
   const token = localStorage.getItem("token");
 
   const [username, setUsername] = useState(""); 
-  const [department, setDepartment] = useState('');
-  const [year, setYear] = useState('');
-  const [gpa, setGpa] = useState('');
-  const [incomeLevel, setIncomeLevel] = useState('');
+  const [department, setDepartment] = useState("");
+  const [year, setYear] = useState("");
+  const [gpa, setGpa] = useState("");
+  const [incomeLevel, setIncomeLevel] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,11 +25,13 @@ const Info = () => {
           }
         });
         
-        setUsername(response.data.username);
-        setDepartment(response.data.department);
-        setYear(response.data.year);
-        setGpa(response.data.gpa);
-        setIncomeLevel(response.data.incomeLevel);
+        setUsername(response.data.data.username);
+        setDepartment(response.data.data.department);
+        setYear(String(response.data.data.year));
+        setGpa(String(response.data.data.gpa));
+        setIncomeLevel(String(response.data.data.incomeLevel));
+
+        console.log("🔥 서버 응답:", response.data); // 여기서 데이터 확인
       } catch (error) {
         alert("데이터 가져오는 중 오류 발생");
         console.error("데이터 가져오는 중 오류 발생:", error);
@@ -43,7 +45,7 @@ const Info = () => {
     try {
       const payload = { department, year, gpa, incomeLevel };
 
-      await axios.put("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/user", payload, {
+      await axios.patch("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/user", payload, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
@@ -55,6 +57,7 @@ const Info = () => {
       console.error("정보 수정 중 오류 발생:", error);
     }
   };
+ 
 
   return (
     <Container>

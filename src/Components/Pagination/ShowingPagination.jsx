@@ -1,3 +1,13 @@
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { Pagination } from "./Pagination";
+import SearchBox from "../main/SearchBox";
+import GradeInput from "../main/GradeInput";
+import MainText from "../main/MainText";
+import { API_URL } from "../../consts";
+import { fetchApi } from "../../utils";
+import { Text, MainContainer, PaginationWrapper } from "./Pagination.style";
 import {
   BoxWrapper,
   Box,
@@ -6,16 +16,6 @@ import {
   IconWrapper,
   ItemWrapper,
 } from "./Content.style";
-import { Pagination } from "./Pagination";
-import { useEffect, useState } from "react";
-import { Text } from "./Pagination.style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import SearchBox from "../main/SearchBox";
-import GradeInput from "../main/GradeInput";
-import MainText from "../main/MainText";
-import { API_URL } from "../../consts";
-import { fetchApi } from "../../utils";
 
 export default function MainPage() {
   const [posts, setPosts] = useState([]);
@@ -156,7 +156,7 @@ export default function MainPage() {
   const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
 
   return (
-    <>
+    <MainContainer>
       <SearchBox search={setSearch} />
       <MainText />
       <GradeInput setFilterOption={setFilterOption} />
@@ -188,14 +188,14 @@ export default function MainPage() {
         )}
       </BoxWrapper>
 
-      <footer>
+      <PaginationWrapper>
         <Pagination
           postsNum={posts.length}
           postsPerPage={postsPerPage}
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-      </footer>
-    </>
+      </PaginationWrapper>
+    </MainContainer>
   );
 }

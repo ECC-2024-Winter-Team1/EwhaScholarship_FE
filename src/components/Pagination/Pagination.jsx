@@ -43,7 +43,11 @@ export function Pagination({
       </Button>
 
       {pageList.map((page) => (
-        <Button key={page} onClick={() => setCurrentPage(page)}>
+        <Button
+          key={page}
+          onClick={() => setCurrentPage(page)}
+          $selected={currentPage === page}
+        >
           {page}
         </Button>
       ))}

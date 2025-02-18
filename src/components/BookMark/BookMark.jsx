@@ -10,40 +10,25 @@ import {
   IconWrapper,
   ItemWrapper,
 } from "../Pagination/Content.style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { API_URL } from "../../consts";
+import { fetchApi } from "../../utils";
+import StyledHeader from "../Header/StyledHeader";
 
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);
 
   const fetchBookmarks = async () => {
     try {
-      const response = await fetch(
-        "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks",
-      );
-      const data = await response.json();
+      const data = await fetchApi(API_URL.BOOKMARK, {
+        method: "GET",
+      });
       setBookmarks(data);
     } catch (error) {
       console.log("북마크 목록이 없습니다.");
     }
   };
-
-  // const data = [
-  //   {
-  //     scholarshipId: 1,
-  //     name: "이화미래설계",
-  //     amount: "최대 400만원",
-  //     applicationPeriod: "3월/9월",
-  //     type: "학업보조비",
-  //   },
-  //   {
-  //     scholarshipId: 2,
-  //     name: "전공리더십",
-  //     amount: "학과별 상이",
-  //     applicationPeriod: "4월/10월",
-  //     type: "학비감면",
-  //   },
-  // ];
-
-  // setBookmarks(data);
 
   useEffect(() => {
     fetchBookmarks();
@@ -51,8 +36,6 @@ export default function BookMark() {
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
-      // await fetch("", {method: "DELETE",});
-
       let updatedBookmarks = [];
 
       for (let i = 0; i < bookmarks.length; i++) {
@@ -73,6 +56,7 @@ export default function BookMark() {
 
   return (
     <>
+      <StyledHeader />
       {bookmarks.length > 0 ? (
         <>
           <Text>{bookmarks.length}개의 북마크한 장학금이 있어요</Text>
@@ -100,7 +84,7 @@ export default function BookMark() {
                     />
                   </IconWrapper>
                 </ItemWrapper>
-              ),
+              )
             )}
           </BoxWrapper>
         </>

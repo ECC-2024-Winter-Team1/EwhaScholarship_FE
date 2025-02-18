@@ -3,10 +3,10 @@ import {
   Container, ProfileCard, ProfileInfo, ProfileIcon, 
   SaveButton, InfoCard, InfoRow, Dropdown, 
   DropdownIcon, Select, InputField 
-} from "./NewInfo.style";
+} from "./Info.style";
 import axios from "axios";
 
-const NewInfo = () => {
+const Info = () => {
   const token = localStorage.getItem("token");
 
   const [username, setUsername] = useState(""); 
@@ -141,4 +141,4 @@ const NewInfo = () => {
   );
 };
 
-export default NewInfo;
+export default Info;

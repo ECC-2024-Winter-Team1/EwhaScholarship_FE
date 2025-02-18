@@ -5,7 +5,6 @@ import { Pagination } from "./Pagination";
 import SearchBox from "../Main/SearchBox";
 import GradeInput from "../Main/GradeInput";
 import MainText from "../Main/MainText";
-import { API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
 import { Text, MainContainer, PaginationWrapper } from "./Pagination.style";
 import {
@@ -16,16 +15,7 @@ import {
   IconWrapper,
   ItemWrapper,
 } from "./Content.style";
-import { Pagination } from "./Pagination";
-import { useEffect, useState } from "react";
-import { Text } from "./Pagination.style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import SearchBox from "../Main/SearchBox";
-import GradeInput from "../Main/GradeInput";
-import MainText from "../Main/MainText";
 import { COMMON_API_URL, API_URL } from "../../consts";
-import { fetchApi } from "../../utils";
 import StyledHeader from "../Header/StyledHeader";
 
 export default function MainPage() {
@@ -119,47 +109,49 @@ export default function MainPage() {
   const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
 
   return (
-    <MainContainer>
+    <>
       <StyledHeader />
-      <SearchBox search={setSearch} />
-      <MainText />
-      <GradeInput setFilterOption={setFilterOption} />
-      <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
+      <MainContainer>
+        <SearchBox search={setSearch} />
+        <MainText />
+        <GradeInput setFilterOption={setFilterOption} />
+        <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
 
-      <BoxWrapper>
-        {currentPosts.map(
-          ({ scholarshipId, name, amount, applicationPeriod, type }) => (
-            <ItemWrapper key={scholarshipId}>
-              <Box>
-                <TextWrapper>
-                  <h2>{name}</h2>
-                  <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
-                </TextWrapper>
-                <LinkBox>
-                  <a href="#">자세히 보기</a>
-                </LinkBox>
-              </Box>
-              <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>
-                <FontAwesomeIcon
-                  icon={faBookmark}
-                  style={{
-                    color: setBookmarkColor(scholarshipId),
-                  }}
-                />
-              </IconWrapper>
-            </ItemWrapper>
-          )
-        )}
-      </BoxWrapper>
+        <BoxWrapper>
+          {currentPosts.map(
+            ({ scholarshipId, name, amount, applicationPeriod, type }) => (
+              <ItemWrapper key={scholarshipId}>
+                <Box>
+                  <TextWrapper>
+                    <h2>{name}</h2>
+                    <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
+                  </TextWrapper>
+                  <LinkBox>
+                    <a href="#">자세히 보기</a>
+                  </LinkBox>
+                </Box>
+                <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>
+                  <FontAwesomeIcon
+                    icon={faBookmark}
+                    style={{
+                      color: setBookmarkColor(scholarshipId),
+                    }}
+                  />
+                </IconWrapper>
+              </ItemWrapper>
+            )
+          )}
+        </BoxWrapper>
 
-      <PaginationWrapper>
-        <Pagination
-          postsNum={totalElements}
-          postsPerPage={postsPerPage}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />
-      </PaginationWrapper>
-    </MainContainer>
+        <PaginationWrapper>
+          <Pagination
+            postsNum={totalElements}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </PaginationWrapper>
+      </MainContainer>
+    </>
   );
 }

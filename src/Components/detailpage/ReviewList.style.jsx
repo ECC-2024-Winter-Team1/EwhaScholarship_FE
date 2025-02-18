@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Container = styled.div`
     max-width: 919px;
-    margin: 20px auto;
+    margin: 30px;
     background-color: white;
     display: flex;
     align-items: center;
@@ -16,7 +16,7 @@ export const FilterContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-    font-size: 24px;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 16px;
 `;

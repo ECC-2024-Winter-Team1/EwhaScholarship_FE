@@ -17,7 +17,7 @@ function ScholarshipInfo() {
         },
       });
       const data = await response.json();
-      setScholarship(data.content[0]);
+      setScholarship(data.data[0]);
     } catch (error) {
       console.error(error);
     }

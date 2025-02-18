@@ -1,7 +1,16 @@
 import styled from "styled-components";
 
-export const ReviewSectionName = styled.h2`
+export const Container = styled.div`
+    max-width: 919px;
+    margin-left: 200px;
+    background-color: white;
+    display: flex;
+`;
 
+export const ReviewSectionName = styled.h2`
+    font-size: 40px;
+    margin-left: 200px;
+    font-weight: normal;
 `;
 
 export const ReviewFormArea = styled.div`
@@ -13,6 +22,7 @@ export const ReviewFormArea = styled.div`
     border-radius: 20px;
     flex-direction: column;
     gap: 15px;
+    margin-left: 200px;
 `;
 
 export const Conditions = styled.div`

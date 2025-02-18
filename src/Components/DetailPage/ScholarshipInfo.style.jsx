@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     max-width: 919px;
-    margin: 30px;
+    margin-left: 200px;
     background-color: white;
     display: flex;
-    align-items: center;
     flex-direction: column;
 `;
 
 export const Title = styled.h2`
     font-size: 40px;
+    font-weight: normal;
 `;
 
 export const ShortInfo = styled.div`
@@ -29,7 +29,7 @@ export const ListContainer = styled.div`
 
 export const ListTitle = styled.h3`
     font-size: 30px;
-    font-weight: bold;
+    font-weight: normal;
 `;
 
 export const Highlight = styled.span`

@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { ToggleWrapper, ToggleButton } from "./ToggleSwitch.style";
 
-export const ToggleSwitch = () => {
+export const ToggleSwitch = ({ onToggleChange }) => {
   const [isOn, setIsOn] = useState(false);
 
   const handleToggle = () => {
-    setIsOn(!isOn);
+    setIsOn((prev) => {
+      const newState = !prev;
+      onToggleChange(newState);
+      return newState;
+    });
   };
 
   return (

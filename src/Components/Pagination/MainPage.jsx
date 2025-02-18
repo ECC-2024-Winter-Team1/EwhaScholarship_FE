@@ -17,6 +17,12 @@ import {
 } from "./Content.style";
 import { COMMON_API_URL, API_URL } from "../../consts";
 import StyledHeader from "../Header/StyledHeader";
+import {
+  ToggleWrapper,
+  MainTextContainer,
+  StyledText,
+} from "../Main/MainText.style";
+import { ToggleSwitch } from "../Main/ToggleSwitch";
 
 export default function MainPage() {
   const [posts, setPosts] = useState([]);
@@ -31,6 +37,11 @@ export default function MainPage() {
   });
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggleChange = (status) => {
+    setIsToggled(status);
+  };
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
@@ -79,6 +90,27 @@ export default function MainPage() {
 
   const fetchScholarships = async () => {
     try {
+      // if (isToggled) {
+      //   const userData = await fetchApi(API_URL.CUSTOM_SCHOLARSHIP, {
+      //     method: "GET",
+      //   });
+
+      //   setFilterOption((prev) => ({
+      //     ...prev,
+      //     year: userData.year,
+      //     department: userData.department,
+      //     incomeLevel: userData.incomeLevel,
+      //     gpa: userData.gpa,
+      //   }));
+      // } else {
+      //   setFilterOption({
+      //     year: "",
+      //     department: "",
+      //     incomeLevel: "",
+      //     gpa: "",
+      //   });
+      // }
+
       const queryParams = new URLSearchParams();
 
       if (search) queryParams.append("search", search);
@@ -89,10 +121,14 @@ export default function MainPage() {
         queryParams.append("incomeLevel", filterOption.incomeLevel);
       if (filterOption.gpa) queryParams.append("gpa", filterOption.gpa);
 
-      const url = `${API_URL.SCHOLARSHIP}?${queryParams.toString()}`;
+      const apiUrl = isToggled
+        ? API_URL.CUSTOM_SCHOLARSHIP
+        : API_URL.SCHOLARSHIP;
+      const url = `${apiUrl}?${queryParams.toString()}`;
+
       const data = await fetchApi(url, { method: "GET" });
-      setPosts(data.content);
-      setTotalElements(data.totalElements);
+      setPosts(data.content || []);
+      setTotalElements(data.totalElements || 0);
       console.log("받아온 데이터:", data);
     } catch (error) {
       console.error("Error:", error);
@@ -100,9 +136,36 @@ export default function MainPage() {
   };
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetchApi(API_URL.CUSTOM_SCHOLARSHIP, {
+        method: "GET",
+      });
+      if (userData) {
+        setFilterOption({
+          year: userData.year,
+          department: userData.department,
+          incomeLevel: userData.incomeLevel,
+          gpa: userData.gpa,
+        });
+      }
+    };
+
+    if (isToggled) {
+      fetchUserData();
+    } else {
+      setFilterOption({
+        year: "",
+        department: "",
+        incomeLevel: "",
+        gpa: "",
+      });
+    }
+  }, [isToggled]);
+
+  useEffect(() => {
     setCurrentPage(1);
     fetchScholarships();
-  }, [search, filterOption]);
+  }, [search, filterOption, isToggled]);
 
   const firstPostIndex = (currentPage - 1) * postsPerPage;
   const lastPostIndex = firstPostIndex + postsPerPage;
@@ -113,7 +176,13 @@ export default function MainPage() {
       <StyledHeader />
       <MainContainer>
         <SearchBox search={setSearch} />
-        <MainText />
+        <MainTextContainer>
+          <StyledText>원하는 조건별로 검색하세요</StyledText>
+          <ToggleWrapper>
+            <StyledText>내 정보로 바로 검색하기</StyledText>
+            <ToggleSwitch onToggleChange={handleToggleChange} />
+          </ToggleWrapper>
+        </MainTextContainer>
         <GradeInput setFilterOption={setFilterOption} />
         <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
 

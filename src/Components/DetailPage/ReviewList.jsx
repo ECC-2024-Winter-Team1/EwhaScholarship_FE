@@ -1,17 +1,19 @@
 import React from "react";
 import { useState } from "react";
+import { Container, Title, TitleAndFilter, FilterLabel, DropDown, Number, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton } from "./ReviewList.style";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const dummies = [
-    { reviewId: 1, isAwarded: true, applicationYear: 2023, semester: "1학기", content: "장학금 신청 과정이 간단했어요!" },
-    { reviewId: 2, isAwarded: false, applicationYear: 2024, semester: "2학기", content: "선발 기준이 명확하지 않아서 아쉬웠어요." },
-    { reviewId: 3, isAwarded: true, applicationYear: 2022, semester: "1학기", content: "받아서 학비 부담이 줄었어요!" },
-    { reviewId: 4, isAwarded: false, applicationYear: 2021, semester: "2학기", content: "지원했지만 탈락해서 아쉬웠어요." },
-    { reviewId: 5, isAwarded: true, applicationYear: 2020, semester: "1학기", content: "금액이 생각보다 많아서 만족했어요!" },
-    { reviewId: 6, isAwarded: true, applicationYear: 2022, semester: "1학기", content: "성적이 조금 부족한가 싶었는데 괜찮았어요." },
-    { reviewId: 7, isAwarded: false, applicationYear: 2024, semester: "1학기", content: "다음에 다시 신청하려고요.." },
-    { reviewId: 8, isAwarded: true, applicationYear: 2020, semester: "2학기", content: "학점보단 면접이 더 중요한 것 같아요!" },
-    { reviewId: 9, isAwarded: false, applicationYear: 2021, semester: "1학기", content: "왜 떨어졌는지 잘 모르겠어요ㅠㅠ" },
-    { reviewId: 10, isAwarded: true, applicationYear: 2018, semester: "2학기", content: "지원 당시 학점은 X.XX였어요." },
+    { reviewId: 1, isAwarded: true, applicationYear: 2023, semester: "1", content: "장학금 신청 과정이 간단했어요!" },
+    { reviewId: 2, isAwarded: false, applicationYear: 2024, semester: "2", content: "선발 기준이 명확하지 않아서 아쉬웠어요." },
+    { reviewId: 3, isAwarded: true, applicationYear: 2022, semester: "1", content: "받아서 학비 부담이 줄었어요!" },
+    { reviewId: 4, isAwarded: false, applicationYear: 2021, semester: "2", content: "지원했지만 탈락해서 아쉬웠어요." },
+    { reviewId: 5, isAwarded: true, applicationYear: 2020, semester: "1", content: "금액이 생각보다 많아서 만족했어요!" },
+    { reviewId: 6, isAwarded: true, applicationYear: 2022, semester: "1", content: "성적이 조금 부족한가 싶었는데 괜찮았어요." },
+    { reviewId: 7, isAwarded: false, applicationYear: 2024, semester: "1", content: "다음에 다시 신청하려고요.." },
+    { reviewId: 8, isAwarded: true, applicationYear: 2020, semester: "2", content: "학점보단 면접이 더 중요한 것 같아요!" },
+    { reviewId: 9, isAwarded: false, applicationYear: 2021, semester: "1", content: "왜 떨어졌는지 잘 모르겠어요ㅠㅠ" },
+    { reviewId: 10, isAwarded: true, applicationYear: 2018, semester: "2", content: "지원 당시 학점은 X.XX였어요." },
 ];
 
 function ReviewList() {
@@ -48,56 +50,69 @@ function ReviewList() {
     }
 
     return (
-        <div>
-            <h2>학생들의 리뷰</h2>
-
-            <div>
-                <label>
+        <Container>
+            <TitleAndFilter>
+                <Title>학생들의 리뷰</Title>
+                <FilterLabel>
                     수혜 여부
-                    <select value={filterIsAwarded} onChange={(e) => setFilterIsAwarded(e.target.value)}>
+                    <DropDown value={filterIsAwarded} onChange={(e) => setFilterIsAwarded(e.target.value)}>
                         <option value="">전체</option>
                         <option value="수혜함">수혜함</option>
                         <option value="수혜 안함">수혜 안함</option>
-                    </select>
-                </label>
+                    </DropDown>
+                </FilterLabel>
 
-                <label>
+                <FilterLabel>
                     신청 연도
-                    <input
+                    <Number
                         type="number"
-                        placeholder="신청 연도를 입력하세요"
+                        placeholder="신청 연도"
                         value={filterApplicationYear}
                         onChange={(e) => setFilterApplicationYear(e.target.value)}
                     />
-                </label>
+                </FilterLabel>
 
-                <label>
+                <FilterLabel>
                     학기
-                    <select value={filterSemester} onChange={(e) => setFilterSemester(e.target.value)}>
-                    <option value="">전체</option>
-                        <option value="1학기">1학기</option>
-                        <option value="2학기">2학기</option>
-                    </select>
-                </label>
-            </div>
+                    <DropDown value={filterSemester} onChange={(e) => setFilterSemester(e.target.value)}>
+                        <option value="">전체</option>
+                        <option value="1">1학기</option>
+                        <option value="2">2학기</option>
+                    </DropDown>
+                </FilterLabel>
+            </TitleAndFilter>
 
             <div>
                 {currentReviews.length > 0 && currentReviews.map((review) => (
-                        <div key={review.reviewId}>
-                            <p><strong>익명</strong></p>
-                            <p>{review.isAwarded ? "수혜함" : "수혜 안함"}</p>
-                            <p>{review.applicationYear}-{review.semester}</p>
-                            <p>{review.content}</p>
-                        </div>
+                        <ReviewCard key={review.reviewId}>
+                            <Content>
+                                <ProfileImage src="/profileicon.jpg" alt="Profile" />
+                                <Text>
+                                    <Top>
+                                        <Name>익명</Name>
+                                        <Badge>
+                                            {review.isAwarded ? (
+                                                <FaCheckCircle size={16} />
+                                            ) : (
+                                                <FaTimesCircle size={16} />
+                                            )}
+                                            {review.isAwarded ? "수혜함" : "수혜 안함"}
+                                        </Badge>
+                                        <Badge>{review.applicationYear}-{review.semester}</Badge>
+                                    </Top>
+                                    <Info>{review.content}</Info>
+                                </Text>
+                            </Content>
+                        </ReviewCard>
                     ))}
             </div>
 
-            <div>
-                <button onClick={previousPage} disabled={currentPage === 1}>이전</button>
+            <Pagination>
+                <PaginationButton onClick={previousPage} disabled={currentPage === 1}>&lt;</PaginationButton>
                 <span> {currentPage} </span>
-                <button onClick={nextPage} disabled={indexOfLastReview >= filteredReviews.length}>다음</button>
-            </div>
-        </div>
+                <PaginationButton onClick={nextPage} disabled={indexOfLastReview >= filteredReviews.length}>&gt;</PaginationButton>
+            </Pagination>
+        </Container>
     );
 }
 

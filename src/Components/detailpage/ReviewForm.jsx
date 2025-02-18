@@ -12,7 +12,7 @@ const ReviewForm = () => {
     };
 
     return (
-        <div>
+        <Container>
             <ReviewSectionName>리뷰쓰기</ReviewSectionName>
             <ReviewFormArea>
                 <Conditions>
@@ -43,14 +43,14 @@ const ReviewForm = () => {
                     <textarea
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
-                        placeHolder="장학금 신청 과정이 어떠했나요? &#13;&#10;입금 금액 및 시기, 선발 기준, 팁 등 장학금에 관한 정보와 경험을 자유롭게 남겨주세요."
+                        placeholder="장학금 신청 과정이 어떠했나요? &#13;&#10;입금 금액 및 시기, 선발 기준, 팁 등 장학금에 관한 정보와 경험을 자유롭게 남겨주세요."
                     />
                 </ReviewContent>
 
                 <Button onClick={Submission}>리뷰 작성하기</Button>
 
             </ReviewFormArea>
-        </div>
+        </Container>
     );
 };
 

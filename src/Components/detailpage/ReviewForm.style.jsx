@@ -2,27 +2,26 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     max-width: 919px;
-    margin-left: 200px;
-    background-color: white;
     display: flex;
+    margin-top: 100px;
+    flex-direction: column;
 `;
 
 export const ReviewSectionName = styled.h2`
     font-size: 40px;
-    margin-left: 200px;
     font-weight: normal;
+    margin-left: 250px;
 `;
 
 export const ReviewFormArea = styled.div`
-    position: absolute;
     width: 918px;
     height: 240px;
     padding: 14px 23px;
     background-color: #00462A;
-    border-radius: 20px;
+    border-radius: 25px;
     flex-direction: column;
     gap: 15px;
-    margin-left: 200px;
+    margin-left: 250px;
 `;
 
 export const Conditions = styled.div`
@@ -95,4 +94,11 @@ export const Button = styled.button`
     height: 50px;
     background-color: #F0F7F4;
     border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:active {
+    background-color: #00462A;
+    transform: translateY(2px);
+    }
 `;

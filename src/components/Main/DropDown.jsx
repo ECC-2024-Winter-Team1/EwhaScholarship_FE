@@ -50,6 +50,10 @@ export default function DropDown({ setOption }) {
     { value: "10", label: "10분위" },
   ];
 
+  const handleChange = (name, value) => {
+    setOption(name, value);
+  };
+
   return (
     <Wrapper>
       <DropDownWrapper>
@@ -58,7 +62,9 @@ export default function DropDown({ setOption }) {
         </IconStyle>
         <StyledSelect
           name="year"
-          onChange={(event) => setOption(event.target.name, event.target.value)}
+          onChange={(event) =>
+            handleChange(event.target.name, event.target.value)
+          }
         >
           <option value="none" hidden>
             학년
@@ -76,7 +82,9 @@ export default function DropDown({ setOption }) {
         </IconStyle>
         <StyledSelect
           name="department"
-          onChange={(event) => setOption(event.target.name, event.target.value)}
+          onChange={(event) =>
+            handleChange(event.target.name, event.target.value)
+          }
         >
           <option value="none" hidden>
             단과대학
@@ -94,7 +102,9 @@ export default function DropDown({ setOption }) {
         </IconStyle>
         <StyledSelect
           name="incomeLevel"
-          onChange={(event) => setOption(event.target.name, event.target.value)}
+          onChange={(event) =>
+            handleChange(event.target.name, event.target.value)
+          }
         >
           <option value="none" hidden>
             소득분위

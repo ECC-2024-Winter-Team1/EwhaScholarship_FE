@@ -53,8 +53,9 @@ export default function MainPage() {
         console.log("북마크 삭제 성공!");
       } else {
         newIds[newIds.length] = scholarshipId;
-        await fetchApi(`${COMMON_API_URL}/bookmarks/${scholarshipId}`, {
+        await fetchApi(`${COMMON_API_URL}/bookmarks`, {
           method: "POST",
+          body: JSON.stringify({ scholarshipId }),
         });
         console.log("북마크 등록 성공!");
       }
@@ -78,9 +79,21 @@ export default function MainPage() {
 
   const fetchScholarships = async () => {
     try {
-      const data = await fetchApi(API_URL.SCHOLARSHIP, { method: "GET" });
+      const queryParams = new URLSearchParams();
+
+      if (search) queryParams.append("search", search);
+      if (filterOption.year) queryParams.append("year", filterOption.year);
+      if (filterOption.department)
+        queryParams.append("department", filterOption.department);
+      if (filterOption.incomeLevel)
+        queryParams.append("incomeLevel", filterOption.incomeLevel);
+      if (filterOption.gpa) queryParams.append("gpa", filterOption.gpa);
+
+      const url = `${API_URL.SCHOLARSHIP}?${queryParams.toString()}`;
+      const data = await fetchApi(url, { method: "GET" });
       setPosts(data.content);
       setTotalElements(data.totalElements);
+      console.log("받아온 데이터:", data);
     } catch (error) {
       console.error("Error:", error);
     }

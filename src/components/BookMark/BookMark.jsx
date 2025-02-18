@@ -12,16 +12,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
+import StyledHeader from "../Header/StyledHeader";
 
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);
 
   const fetchBookmarks = async () => {
     try {
-      const response = await fetchApi(API_URL.BOOKMARK, {
+      const data = await fetchApi(API_URL.BOOKMARK, {
         method: "GET",
       });
-      const data = await response.json();
       setBookmarks(data);
     } catch (error) {
       console.log("북마크 목록이 없습니다.");
@@ -34,8 +34,6 @@ export default function BookMark() {
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
-      // await fetch("", {method: "DELETE",});
-
       let updatedBookmarks = [];
 
       for (let i = 0; i < bookmarks.length; i++) {
@@ -56,6 +54,7 @@ export default function BookMark() {
 
   return (
     <>
+      <StyledHeader />
       {bookmarks.length > 0 ? (
         <>
           <Text>{bookmarks.length}개의 북마크한 장학금이 있어요</Text>

@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DetailPage from "./Components/DetailPage/DetailPage";
@@ -7,7 +6,7 @@ import Login from "./Components/Login/Login";
 import Join from "./Components/Join/Join";
 import BookMark from "./Components/BookMark/BookMark";
 import MainPage from "./Components/Pagination/ShowingPagination";
-import Info from "./Components/Info";
+import Info from "./Components/Info/Info";
 
 function App() {
   return (
@@ -19,10 +18,9 @@ function App() {
           <Route path="join" element={<Join />} />
           <Route path="scholarship/:scholarshipId" element={<DetailPage />} />
           <Route path="bookmarks" element={<BookMark />} />
+          <Route path="info" element={<Info />} />
         </Routes>
       </BrowserRouter>
-      
-      <Info />
     </>
   );
 }

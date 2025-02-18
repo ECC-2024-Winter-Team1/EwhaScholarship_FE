@@ -38,8 +38,8 @@ const JoinTitle = styled.h1`
 
 const JoinSubtitle = styled.h2`
   width: 105%;
-  font-family: "SeoulNamsanM", sans-serif;
-  font-weight: 730;
+  font-family: 'SeoulNamsanM', sans-serif;
+  font-weight: 700;
   font-size: 2.15rem;
   color: #00462a;
   margin: 5px;

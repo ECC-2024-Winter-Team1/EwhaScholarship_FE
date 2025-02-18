@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import DetailPage from "./Components/DetailPage/DetailPage";
 import Login from "./Components/Login/Login";
 import Join from "./Components/Join/Join";

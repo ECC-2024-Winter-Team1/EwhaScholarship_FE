@@ -17,7 +17,7 @@ export const Title = styled.h2`
   }
 `;
 
-export const Link = styled.a`
+export const StyledLink = styled.a`
   color: black;
   font-weight: 600;
   font-size: 20px;

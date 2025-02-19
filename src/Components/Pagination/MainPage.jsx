@@ -23,6 +23,7 @@ import {
   StyledText,
 } from "../Main/MainText.style";
 import { ToggleSwitch } from "../Main/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   const [posts, setPosts] = useState([]);
@@ -90,27 +91,6 @@ export default function MainPage() {
 
   const fetchScholarships = async () => {
     try {
-      // if (isToggled) {
-      //   const userData = await fetchApi(API_URL.CUSTOM_SCHOLARSHIP, {
-      //     method: "GET",
-      //   });
-
-      //   setFilterOption((prev) => ({
-      //     ...prev,
-      //     year: userData.year,
-      //     department: userData.department,
-      //     incomeLevel: userData.incomeLevel,
-      //     gpa: userData.gpa,
-      //   }));
-      // } else {
-      //   setFilterOption({
-      //     year: "",
-      //     department: "",
-      //     incomeLevel: "",
-      //     gpa: "",
-      //   });
-      // }
-
       const queryParams = new URLSearchParams();
 
       if (search) queryParams.append("search", search);
@@ -136,21 +116,22 @@ export default function MainPage() {
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userData = await fetchApi(API_URL.CUSTOM_SCHOLARSHIP, {
-        method: "GET",
-      });
-      if (userData) {
-        setFilterOption({
-          year: userData.year,
-          department: userData.department,
-          incomeLevel: userData.incomeLevel,
-          gpa: userData.gpa,
-        });
-      }
-    };
-
     if (isToggled) {
+      const fetchUserData = async () => {
+        const userData = await fetchApi(API_URL.CUSTOM_SCHOLARSHIP, {
+          method: "GET",
+        });
+
+        if (userData) {
+          setFilterOption({
+            year: userData.year,
+            department: userData.department,
+            incomeLevel: userData.incomeLevel,
+            gpa: userData.gpa,
+          });
+        }
+      };
+
       fetchUserData();
     } else {
       setFilterOption({
@@ -196,7 +177,7 @@ export default function MainPage() {
                     <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
                   </TextWrapper>
                   <LinkBox>
-                    <a href="#">자세히 보기</a>
+                    <Link to={`/scholarship${scholarshipId}`}>자세히 보기</Link>
                   </LinkBox>
                 </Box>
                 <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>

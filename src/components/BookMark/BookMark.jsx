@@ -10,7 +10,7 @@ import {
 } from "../Pagination/Content.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { API_URL } from "../../consts";
+import { COMMON_API_URL, API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
 import StyledHeader from "../Header/StyledHeader";
 
@@ -34,6 +34,10 @@ export default function BookMark() {
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
+      await fetchApi(`${COMMON_API_URL}/bookmarks/${scholarshipId}`, {
+        method: "DELETE",
+      });
+
       let updatedBookmarks = [];
 
       for (let i = 0; i < bookmarks.length; i++) {

@@ -169,7 +169,14 @@ export default function MainPage() {
 
         <BoxWrapper>
           {currentPosts.map(
-            ({ scholarshipId, name, amount, applicationPeriod, type }) => (
+            ({
+              scholarshipId,
+              name,
+              amount,
+              applicationPeriod,
+              type,
+              isBookmarked,
+            }) => (
               <ItemWrapper key={scholarshipId}>
                 <Box>
                   <TextWrapper>

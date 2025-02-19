@@ -21,7 +21,12 @@ export default function StyledHeader() {
             </StyledLink>
           </Link>
           <Link to="/info">
-            <StyledLink>마이페이지</StyledLink>
+            <StyledLink>
+              <span>마이페이지</span>
+            </StyledLink>
+          </Link>
+          <Link to="/login">
+            <StyledLink>로그아웃</StyledLink>
           </Link>
         </nav>
       </HeaderWrapper>

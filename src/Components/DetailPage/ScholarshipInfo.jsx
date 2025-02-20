@@ -10,14 +10,12 @@ function ScholarshipInfo() {
 
   const fetchScholarship = async () => {
     try {
-      const response = await fetchApi(`${API_URL.SCHOLARSHIP}`, {
-        method: "GET",
-        params: {
-          scholarshipId,
-        },
-      });
-      const data = await response.json();
-      setScholarship(data.data[0]);
+      const url = `${API_URL.SCHOLARSHIP}/${scholarshipId}`;
+      const data = await fetchApi(url, { method: "GET" });
+      
+      if (data) {
+        setScholarship(data.data[0]);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -36,28 +34,26 @@ function ScholarshipInfo() {
         최대 {scholarship?.amount} | {scholarship?.applicationPeriod} |{" "}
         {scholarship?.type}
       </ShortInfo>
-      <div>
-        <ListContainer>
+      <ListContainer>
         <ListTitle><Highlight>선발기준 및 대상</Highlight></ListTitle>
-          <ListContent>{scholarship?.criteria}</ListContent>
-        </ListContainer>
+        <ListContent>{scholarship?.criteria}</ListContent>
+      </ListContainer>
+      <ListContainer>
+        <ListTitle><Highlight>장학금액</Highlight></ListTitle>
+        <ListContent>최대 {scholarship?.amount}</ListContent>
+      </ListContainer>
+      <ListContainer>
+        <ListTitle><Highlight>관련학과</Highlight></ListTitle>
+        <ListContent>{scholarship?.department}</ListContent>
+      </ListContainer>
+      <ListContainer>
+        <ListTitle><Highlight>성적기준</Highlight></ListTitle>
+        <ListContent>{scholarship?.criteria}</ListContent>
+      </ListContainer>
         <ListContainer>
-          <ListTitle><Highlight>장학금액</Highlight></ListTitle>
-          <ListContent>최대 {scholarship?.amount}</ListContent>
-        </ListContainer>
-        <ListContainer>
-          <ListTitle><Highlight>관련학과</Highlight></ListTitle>
-          <ListContent>{scholarship?.department}</ListContent>
-        </ListContainer>
-        <ListContainer>
-          <ListTitle><Highlight>성적기준</Highlight></ListTitle>
-          <ListContent>{scholarship?.criteria}</ListContent>
-        </ListContainer>
-        <ListContainer>
-          <ListTitle><Highlight>장학금성격</Highlight></ListTitle>
-          <ListContent>{scholarship?.type}</ListContent>
-        </ListContainer>
-      </div>
+        <ListTitle><Highlight>장학금성격</Highlight></ListTitle>
+        <ListContent>{scholarship?.type}</ListContent>
+      </ListContainer>
     </Container>
   );
 }

@@ -1,14 +1,50 @@
 import { Container, ReviewSectionName, Button, ReviewFormArea, Conditions, IfReward, Checkbox, Number, DropDown, ReviewContent } from "./ReviewForm.style";
 import { useState } from "react";
+import { fetchApi } from "../../utils";
+import { API_URL } from "../../consts";
 
-const ReviewForm = () => {
+const ReviewForm = ({ scholarshipId }) => {
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
     const [received, setReceived] = useState(false);
     const [year, setYear] = useState("");
     const [semester, setSemester] = useState("");
     const [review, setReview] = useState("");
 
-    const Submission = () => {
-        console.log({ received, year, semester, review });
+    const handleSubmit = async () => {
+        if (!year || !semester || !review) {
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
+
+        const applicationGrade = semester === "1학기" ? 1 : 2;
+        const requestBody = {
+            scholarshipId,
+            isAwarded: received,
+            applicationYear: parseInt(year, 10),
+            applicationGrade,
+            content: review,
+        };
+
+        setLoading(true);
+        setMessage("");
+
+        try {
+            const data = await fetchApi(`${API_URL.SCHOLARSHIP}/${scholarshipId}/reviews`, {
+                method: "POST",
+                body: JSON.stringify(requestBody),
+            });
+
+            if (data) {
+                setMessage("리뷰 등록 성공!");
+            } else {
+                setMessage("리뷰 등록 실패");
+            }
+        } catch (error) {
+            setMessage("서버 요청 중 오류가 발생했습니다.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -47,8 +83,8 @@ const ReviewForm = () => {
                     />
                 </ReviewContent>
 
-                <Button onClick={Submission}>리뷰 작성하기</Button>
-
+                <Button onClick={handleSubmit} disabled={loading}>{loading ? "제출 중..." : "리뷰 작성하기"}</Button>
+                {message && <p>{message}</p>}
             </ReviewFormArea>
         </Container>
     );

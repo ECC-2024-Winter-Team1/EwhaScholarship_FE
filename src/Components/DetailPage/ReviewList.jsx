@@ -28,7 +28,7 @@ function ReviewList() {
     const filteredReviews = dummies.filter((review) => {
         const findIsAwarded = filterIsAwarded === "" || (filterIsAwarded === "수혜함" && review.isAwarded) || (filterIsAwarded === "수혜 안함" && !review.isAwarded);
         const findApplicationYear = filterApplicationYear === "" || review.applicationYear.toString() === filterApplicationYear;
-        const findSemester = filterSemester === "" || `${review.applicationYear}-${review.semester}` === filterSemester;
+        const findSemester = filterSemester === "" || review.semester === filterSemester;
         
         return findIsAwarded && findApplicationYear && findSemester;
     });

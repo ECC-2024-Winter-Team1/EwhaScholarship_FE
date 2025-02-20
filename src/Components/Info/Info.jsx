@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { 
   Container, ProfileCard, ProfileInfo, ProfileIcon, 
   SaveButton, InfoCard, InfoRow, Dropdown, 
-  DropdownIcon, Select, InputField 
+  DropdownIcon, Select, InputField, DeleteButton
 } from "./Info.style";
 import axios from "axios";
 
@@ -31,7 +31,6 @@ const Info = () => {
         setGpa(String(response.data.data.gpa));
         setIncomeLevel(String(response.data.data.incomeLevel));
 
-        console.log("🔥 서버 응답:", response.data); // 여기서 데이터 확인
       } catch (error) {
         alert("데이터 가져오는 중 오류 발생");
         console.error("데이터 가져오는 중 오류 발생:", error);
@@ -57,6 +56,23 @@ const Info = () => {
       console.error("정보 수정 중 오류 발생:", error);
     }
   };
+
+  const handleDeleteAccount = async () => {
+    if (window.confirm("회원탈퇴 하시겠습니까?")) {
+      try {
+        await axios.delete("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/auth/delete-account", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        alert("회원 탈퇴 성공");
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      } catch (error) {
+        alert("회원 탈퇴 중 오류 발생");
+      }
+    }
+  };
  
 
   return (
@@ -66,6 +82,7 @@ const Info = () => {
         <ProfileInfo> 
           <h2>{username}님 안녕하세요</h2> 
         </ProfileInfo>
+        <DeleteButton onClick={handleDeleteAccount} >회원탈퇴</DeleteButton>
       </ProfileCard>
 
       <InfoCard>

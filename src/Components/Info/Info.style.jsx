@@ -1,5 +1,21 @@
 import styled from "styled-components";
 
+export const DeleteButton = styled.button`
+  background: #00462a;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto;
+
+  &:hover {
+    background: #1e3b23;
+  }
+`;
+
 export const Container = styled.div`
   font-family: "Pretendard", sans-serif;
   background-color: white;

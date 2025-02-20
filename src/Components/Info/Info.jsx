@@ -5,6 +5,7 @@ import {
   DropdownIcon, Select, InputField, DeleteButton
 } from "./Info.style";
 import axios from "axios";
+import Header from "../Header/StyledHeader";
 
 const Info = () => {
   const token = localStorage.getItem("token");
@@ -76,6 +77,8 @@ const Info = () => {
  
 
   return (
+    <>
+    <Header />
     <Container>
       <ProfileCard>
         <ProfileIcon src="/user.png" alt="Icon" />
@@ -158,6 +161,7 @@ const Info = () => {
 
       <SaveButton onClick={setChangeInfo}>저장하기</SaveButton>
     </Container>
+    </>
   );
 };
 

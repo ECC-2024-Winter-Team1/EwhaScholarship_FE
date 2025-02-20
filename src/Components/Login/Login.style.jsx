@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 export const Icon2 = styled.img`
   width: 20x;
   height: 20px;
@@ -32,8 +33,8 @@ export const LoginTitle = styled.h1`
 `;
 
 export const LoginSubtitle = styled.h2`
+  font-family: "Orbit", sans-serif;
   width: 105%;
-  font-family: "SeoulNamsanM", sans-serif;
   font-weight: 730;
   font-size: 2.15rem;
   color: #00462a;

@@ -34,6 +34,7 @@ export const ProfileCard = styled.div`
   align-items: center;
   background: #f0f7f4;
   padding: 22px;
+  margin-top:-190px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 `;
 
@@ -66,7 +67,7 @@ export const InfoCard = styled.div`
   background: #f0f7f4;
   padding: 25px;
   border-radius: 17px;
-  margin: 20px 0;
+  margin: 15px 0;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 `;
 
@@ -131,7 +132,7 @@ export const SaveButton = styled.button`
   color: white;
   border: none;
   padding: 12px;
-  width: 640px;
+  width: 655px;
   border-radius: 17px;
   font-size: 16px;
   cursor: pointer;

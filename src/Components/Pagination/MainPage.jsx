@@ -183,7 +183,9 @@ export default function MainPage() {
                     <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
                   </TextWrapper>
                   <LinkBox>
-                    <Link to={`/scholarship${scholarshipId}`}>자세히 보기</Link>
+                    <Link to={`/scholarship/${scholarshipId}`}>
+                      자세히 보기
+                    </Link>
                   </LinkBox>
                 </Box>
                 <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>

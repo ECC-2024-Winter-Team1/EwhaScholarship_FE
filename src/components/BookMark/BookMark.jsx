@@ -13,6 +13,7 @@ import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
 import { COMMON_API_URL, API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
 import StyledHeader from "../Header/StyledHeader";
+import { Link } from "react-router-dom";
 
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -68,7 +69,9 @@ export default function BookMark() {
                       <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
                     </TextWrapper>
                     <LinkBox>
-                      <a href="#">자세히 보기</a>
+                      <Link to={`/scholarship/${scholarshipId}`}>
+                        자세히 보기
+                      </Link>
                     </LinkBox>
                   </Box>
                   <IconWrapper

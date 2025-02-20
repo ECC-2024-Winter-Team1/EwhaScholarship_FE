@@ -11,17 +11,15 @@ function ScholarshipInfo() {
   const fetchScholarship = async () => {
     try {
       const url = `${API_URL.SCHOLARSHIP}/${scholarshipId}`;
-      const data = await fetchApi(url, { method: "GET" });
+      const responseData = await fetchApi(url, { method: "GET" });
       
-      if (data) {
-        setScholarship(data.data[0]);
+      if (responseData && responseData.data) {
+        setScholarship(responseData.data[0]);
       }
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(scholarship, scholarshipId);
 
   useEffect(() => {
     fetchScholarship();

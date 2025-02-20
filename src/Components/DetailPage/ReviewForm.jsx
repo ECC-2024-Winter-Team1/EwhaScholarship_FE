@@ -12,7 +12,7 @@ const ReviewForm = ({ scholarshipId }) => {
     const [review, setReview] = useState("");
 
     const handleSubmit = async () => {
-        if (!year || !semester || !review) {
+        if (!received || !year || !semester || !review) {
             alert("모든 필드를 입력해주세요.");
             return;
         }
@@ -37,6 +37,10 @@ const ReviewForm = ({ scholarshipId }) => {
 
             if (data) {
                 setMessage("리뷰 등록 성공!");
+                setReceived(false);  // 상태 초기화
+                setYear("");
+                setSemester("");
+                setReview("");
             } else {
                 setMessage("리뷰 등록 실패");
             }

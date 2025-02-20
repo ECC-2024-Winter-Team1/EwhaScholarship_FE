@@ -78,7 +78,6 @@ export default function Join() {
   };
 
   const onSubmit = (e) => {
-    // TODO: 사용하면 뭐가 좋은지
     e.preventDefault();
 
     if (validateForm()) return;

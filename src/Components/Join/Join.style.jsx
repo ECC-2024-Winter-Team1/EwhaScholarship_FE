@@ -34,11 +34,12 @@ const JoinTitle = styled.h1`
   padding: 0;
   line-height: 1;
   width: 105%;
+   padding-left: 8px;
 `;
 
 const JoinSubtitle = styled.h2`
   width: 105%;
-  font-family: 'SeoulNamsanM', sans-serif;
+  font-family: "Noto Serif KR", serif;
   font-weight: 700;
   font-size: 2.15rem;
   color: #00462a;

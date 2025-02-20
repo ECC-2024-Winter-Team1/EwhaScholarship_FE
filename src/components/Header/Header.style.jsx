@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.h2`
   color: #00462a;
+  font-family: "Noto Serif KR", serif;
   div {
     &:last-child {
       font-size: 35px;
@@ -20,11 +21,10 @@ export const HeaderWrapper = styled.header`
 
 export const Link = styled.a`
   color: black;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   text-decoration-line: none;
   margin-right: 30px;
-
   span: after {
     content: "|";
     margin-left: 25px;

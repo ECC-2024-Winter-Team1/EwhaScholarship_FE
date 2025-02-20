@@ -33,10 +33,10 @@ export const LoginTitle = styled.h1`
 `;
 
 export const LoginSubtitle = styled.h2`
-  font-family: "Orbit", sans-serif;
+  font-family: "Noto Serif KR", serif;
   width: 105%;
   font-weight: 730;
-  font-size: 2.15rem;
+  font-size: 2.0rem;
   color: #00462a;
   margin: 5px;
   padding: 0;

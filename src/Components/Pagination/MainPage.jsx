@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
 import { Pagination } from "./Pagination";
 import SearchBox from "../Main/SearchBox";
 import GradeInput from "../Main/GradeInput";
@@ -86,7 +87,7 @@ export default function MainPage() {
         break;
       }
     }
-    return isBookmarked ? "rgb(10, 141, 88)" : "black";
+    return isBookmarked;
   };
 
   const fetchScholarships = async () => {
@@ -187,10 +188,12 @@ export default function MainPage() {
                 </Box>
                 <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>
                   <FontAwesomeIcon
-                    icon={faBookmark}
-                    style={{
-                      color: setBookmarkColor(scholarshipId),
-                    }}
+                    icon={
+                      setBookmarkColor(scholarshipId)
+                        ? solidBookmark
+                        : regularBookmark
+                    }
+                    style={{ color: "#00462a" }}
                   />
                 </IconWrapper>
               </ItemWrapper>

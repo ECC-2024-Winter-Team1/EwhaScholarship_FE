@@ -9,7 +9,7 @@ import {
   ItemWrapper,
 } from "../Pagination/Content.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
 import { COMMON_API_URL, API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
 import StyledHeader from "../Header/StyledHeader";
@@ -52,10 +52,6 @@ export default function BookMark() {
     }
   };
 
-  const setBookmarkColor = (scholarshipId) => {
-    return "rgb(10, 141, 88)";
-  };
-
   return (
     <>
       <StyledHeader />
@@ -79,9 +75,9 @@ export default function BookMark() {
                     onClick={() => handleBookmarkClick(scholarshipId)}
                   >
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={solidBookmark}
                       style={{
-                        color: setBookmarkColor(scholarshipId),
+                        color: "#00462a",
                       }}
                     />
                   </IconWrapper>
@@ -91,7 +87,7 @@ export default function BookMark() {
           </BoxWrapper>
         </>
       ) : (
-        <p>북마크한 장학금이 없습니다.</p>
+        <Text>북마크한 장학금이 없습니다.</Text>
       )}
     </>
   );

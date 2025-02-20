@@ -101,9 +101,7 @@ export default function MainPage() {
         queryParams.append("incomeLevel", filterOption.incomeLevel);
       if (filterOption.gpa) queryParams.append("gpa", filterOption.gpa);
 
-      const apiUrl = isToggled
-        ? API_URL.CUSTOM_SCHOLARSHIP
-        : API_URL.SCHOLARSHIP;
+      const apiUrl = API_URL.SCHOLARSHIP;
       const url = `${apiUrl}?${queryParams.toString()}`;
 
       const data = await fetchApi(url, { method: "GET" });

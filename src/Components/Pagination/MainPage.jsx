@@ -40,6 +40,9 @@ export default function MainPage() {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
   const [isToggled, setIsToggled] = useState(false);
+  const [firstPostIndex, setFirstPostIndex] = useState(0);
+  const [lastPostIndex, setLastPostIndex] = useState(0);
+  const [currentPosts, setCurrentPosts] = useState([]);
 
   const handleToggleChange = (status) => {
     setIsToggled(status);
@@ -102,7 +105,7 @@ export default function MainPage() {
         queryParams.append("incomeLevel", filterOption.incomeLevel);
       if (filterOption.gpa) queryParams.append("gpa", filterOption.gpa);
 
-      queryParams.append("number", currentPage - 1);
+      queryParams.append("page", currentPage - 1);
       queryParams.append("size", postsPerPage);
 
       const apiUrl = API_URL.SCHOLARSHIP;
@@ -155,9 +158,11 @@ export default function MainPage() {
     console.log("currentPage : ", currentPage);
   }, [search, filterOption, isToggled, currentPage]);
 
-  const firstPostIndex = (currentPage - 1) * postsPerPage;
-  const lastPostIndex = firstPostIndex + postsPerPage;
-  const currentPosts = posts.slice(firstPostIndex, lastPostIndex);
+  useEffect(() => {
+    setFirstPostIndex(0);
+    setLastPostIndex(10);
+    setCurrentPosts(posts.slice(firstPostIndex, lastPostIndex));
+  }, [posts]);
 
   return (
     <>

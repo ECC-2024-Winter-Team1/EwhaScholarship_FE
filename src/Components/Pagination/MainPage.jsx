@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as regularBookmark } from "@fortawesome/free-regular-svg-icons";
 import { Pagination } from "./Pagination";
 import SearchBox from "../Main/SearchBox";
 import GradeInput from "../Main/GradeInput";
@@ -17,11 +18,18 @@ import {
 } from "./Content.style";
 import { COMMON_API_URL, API_URL } from "../../consts";
 import StyledHeader from "../Header/StyledHeader";
+import {
+  ToggleWrapper,
+  MainTextContainer,
+  StyledText,
+} from "../Main/MainText.style";
+import { ToggleSwitch } from "../Main/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(4);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   const [search, setSearch] = useState("");
   const [filterOption, setFilterOption] = useState({
     year: "",
@@ -31,6 +39,11 @@ export default function MainPage() {
   });
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [totalElements, setTotalElements] = useState(0);
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggleChange = (status) => {
+    setIsToggled(status);
+  };
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
@@ -74,7 +87,7 @@ export default function MainPage() {
         break;
       }
     }
-    return isBookmarked ? "rgb(10, 141, 88)" : "black";
+    return isBookmarked;
   };
 
   const fetchScholarships = async () => {
@@ -89,10 +102,20 @@ export default function MainPage() {
         queryParams.append("incomeLevel", filterOption.incomeLevel);
       if (filterOption.gpa) queryParams.append("gpa", filterOption.gpa);
 
-      const url = `${API_URL.SCHOLARSHIP}?${queryParams.toString()}`;
+      queryParams.append("number", currentPage - 1);
+      queryParams.append("size", postsPerPage);
+
+      const apiUrl = API_URL.SCHOLARSHIP;
+      const url = `${apiUrl}?${queryParams.toString()}`;
+
+      console.log("📡 API 요청 URL:", url);
+
       const data = await fetchApi(url, { method: "GET" });
-      setPosts(data.content);
-      setTotalElements(data.totalElements);
+
+      console.log("📢 백엔드 응답 데이터:", data);
+
+      setPosts(data.content || []);
+      setTotalElements(data.totalElements || 0);
       console.log("받아온 데이터:", data);
     } catch (error) {
       console.error("Error:", error);
@@ -100,9 +123,37 @@ export default function MainPage() {
   };
 
   useEffect(() => {
-    setCurrentPage(1);
+    if (isToggled) {
+      const fetchUserData = async () => {
+        const userData = await fetchApi(API_URL.CUSTOM_SCHOLARSHIP, {
+          method: "GET",
+        });
+
+        if (userData) {
+          setFilterOption({
+            year: userData.year,
+            department: userData.department,
+            incomeLevel: userData.incomeLevel,
+            gpa: userData.gpa,
+          });
+        }
+      };
+
+      fetchUserData();
+    } else {
+      setFilterOption({
+        year: "",
+        department: "",
+        incomeLevel: "",
+        gpa: "",
+      });
+    }
+  }, [isToggled]);
+
+  useEffect(() => {
     fetchScholarships();
-  }, [search, filterOption]);
+    console.log("currentPage : ", currentPage);
+  }, [search, filterOption, isToggled, currentPage]);
 
   const firstPostIndex = (currentPage - 1) * postsPerPage;
   const lastPostIndex = firstPostIndex + postsPerPage;
@@ -113,13 +164,26 @@ export default function MainPage() {
       <StyledHeader />
       <MainContainer>
         <SearchBox search={setSearch} />
-        <MainText />
+        <MainTextContainer>
+          <StyledText>원하는 조건별로 검색하세요</StyledText>
+          <ToggleWrapper>
+            <StyledText>내 정보로 바로 검색하기</StyledText>
+            <ToggleSwitch onToggleChange={handleToggleChange} />
+          </ToggleWrapper>
+        </MainTextContainer>
         <GradeInput setFilterOption={setFilterOption} />
-        <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
+        <Text>{totalElements} 개의 장학금 정보가 있어요</Text>
 
         <BoxWrapper>
           {currentPosts.map(
-            ({ scholarshipId, name, amount, applicationPeriod, type }) => (
+            ({
+              scholarshipId,
+              name,
+              amount,
+              applicationPeriod,
+              type,
+              isBookmarked,
+            }) => (
               <ItemWrapper key={scholarshipId}>
                 <Box>
                   <TextWrapper>
@@ -127,15 +191,19 @@ export default function MainPage() {
                     <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
                   </TextWrapper>
                   <LinkBox>
-                    <a href="#">자세히 보기</a>
+                    <Link to={`/scholarship/${scholarshipId}`}>
+                      자세히 보기
+                    </Link>
                   </LinkBox>
                 </Box>
                 <IconWrapper onClick={() => handleBookmarkClick(scholarshipId)}>
                   <FontAwesomeIcon
-                    icon={faBookmark}
-                    style={{
-                      color: setBookmarkColor(scholarshipId),
-                    }}
+                    icon={
+                      setBookmarkColor(scholarshipId)
+                        ? solidBookmark
+                        : regularBookmark
+                    }
+                    style={{ color: "#00462a" }}
                   />
                 </IconWrapper>
               </ItemWrapper>

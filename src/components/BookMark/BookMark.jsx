@@ -9,10 +9,11 @@ import {
   ItemWrapper,
 } from "../Pagination/Content.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
-import { API_URL } from "../../consts";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
+import { COMMON_API_URL, API_URL } from "../../consts";
 import { fetchApi } from "../../utils";
 import StyledHeader from "../Header/StyledHeader";
+import { Link } from "react-router-dom";
 
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -34,6 +35,10 @@ export default function BookMark() {
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
+      await fetchApi(`${COMMON_API_URL}/bookmarks/${scholarshipId}`, {
+        method: "DELETE",
+      });
+
       let updatedBookmarks = [];
 
       for (let i = 0; i < bookmarks.length; i++) {
@@ -46,10 +51,6 @@ export default function BookMark() {
     } catch (error) {
       console.log("북마크 삭제 실패:", error);
     }
-  };
-
-  const setBookmarkColor = (scholarshipId) => {
-    return "rgb(10, 141, 88)";
   };
 
   return (
@@ -68,16 +69,18 @@ export default function BookMark() {
                       <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
                     </TextWrapper>
                     <LinkBox>
-                      <a href="#">자세히 보기</a>
+                      <Link to={`/scholarship/${scholarshipId}`}>
+                        자세히 보기
+                      </Link>
                     </LinkBox>
                   </Box>
                   <IconWrapper
                     onClick={() => handleBookmarkClick(scholarshipId)}
                   >
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={solidBookmark}
                       style={{
-                        color: setBookmarkColor(scholarshipId),
+                        color: "#00462a",
                       }}
                     />
                   </IconWrapper>
@@ -87,7 +90,7 @@ export default function BookMark() {
           </BoxWrapper>
         </>
       ) : (
-        <p>북마크한 장학금이 없습니다.</p>
+        <Text>북마크한 장학금이 없습니다.</Text>
       )}
     </>
   );

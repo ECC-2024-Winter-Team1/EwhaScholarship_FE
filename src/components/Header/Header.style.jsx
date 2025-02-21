@@ -19,7 +19,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 
-export const Link = styled.a`
+export const StyledLink = styled.a`
   color: black;
   font-weight: 500;
   font-size: 20px;

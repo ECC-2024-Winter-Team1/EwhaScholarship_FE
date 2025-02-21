@@ -6,7 +6,7 @@ import DetailPage from "./Components/DetailPage/DetailPage";
 import Login from "./Components/Login/Login";
 import Join from "./Components/Join/Join";
 import BookMark from "./Components/BookMark/BookMark";
-import MainPage from "./Components/Pagination/MainPage";
+import MainPage from "./components/Pagination/MainPage";
 import Info from "./Components/Info/Info";
 
 function App() {

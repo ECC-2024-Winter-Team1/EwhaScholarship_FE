@@ -29,7 +29,7 @@ import { Link } from "react-router-dom";
 export default function MainPage() {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(4);
+  const [postsPerPage, setPostsPerPage] = useState(10);
   const [search, setSearch] = useState("");
   const [filterOption, setFilterOption] = useState({
     year: "",
@@ -102,10 +102,18 @@ export default function MainPage() {
         queryParams.append("incomeLevel", filterOption.incomeLevel);
       if (filterOption.gpa) queryParams.append("gpa", filterOption.gpa);
 
+      queryParams.append("number", currentPage - 1);
+      queryParams.append("size", postsPerPage);
+
       const apiUrl = API_URL.SCHOLARSHIP;
       const url = `${apiUrl}?${queryParams.toString()}`;
 
+      console.log("📡 API 요청 URL:", url);
+
       const data = await fetchApi(url, { method: "GET" });
+
+      console.log("📢 백엔드 응답 데이터:", data);
+
       setPosts(data.content || []);
       setTotalElements(data.totalElements || 0);
       console.log("받아온 데이터:", data);
@@ -143,9 +151,9 @@ export default function MainPage() {
   }, [isToggled]);
 
   useEffect(() => {
-    setCurrentPage(1);
     fetchScholarships();
-  }, [search, filterOption, isToggled]);
+    console.log("currentPage : ", currentPage);
+  }, [search, filterOption, isToggled, currentPage]);
 
   const firstPostIndex = (currentPage - 1) * postsPerPage;
   const lastPostIndex = firstPostIndex + postsPerPage;
@@ -164,7 +172,7 @@ export default function MainPage() {
           </ToggleWrapper>
         </MainTextContainer>
         <GradeInput setFilterOption={setFilterOption} />
-        <Text>{posts.length} 개의 장학금 정보가 있어요</Text>
+        <Text>{totalElements} 개의 장학금 정보가 있어요</Text>
 
         <BoxWrapper>
           {currentPosts.map(

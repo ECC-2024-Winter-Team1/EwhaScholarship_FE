@@ -1,21 +1,33 @@
-import { HeaderWrapper, Title, Link } from "./Header.style";
+import { HeaderWrapper, Title, StyledLink } from "./Header.style";
+import { Link } from "react-router-dom";
 
 export default function StyledHeader() {
   return (
     <div>
       <HeaderWrapper>
         <Title>
-          <div>Ewha scholar</div>
+          <div>Ewha Scholar</div>
           <div>이화장학</div>
         </Title>
         <nav>
-          <Link href="#">
-            <span>홈</span>
+          <Link to="/">
+            <StyledLink>
+              <span>홈</span>
+            </StyledLink>
           </Link>
-          <Link href="#">
-            <span>북마크 목록</span>
+          <Link to="/bookmarks">
+            <StyledLink>
+              <span>북마크 목록</span>
+            </StyledLink>
           </Link>
-          <Link href="#">마이페이지</Link>
+          <Link to="/info">
+            <StyledLink>
+              <span>마이페이지</span>
+            </StyledLink>
+          </Link>
+          <Link to="/login">
+            <StyledLink>로그아웃</StyledLink>
+          </Link>
         </nav>
       </HeaderWrapper>
     </div>

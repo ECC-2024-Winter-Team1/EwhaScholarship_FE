@@ -6,4 +6,5 @@ export const API_URL = {
   JOIN: `${COMMON_API_URL}/auth/register`,
   SCHOLARSHIP: `${COMMON_API_URL}/scholarships`,
   BOOKMARK: `${COMMON_API_URL}/bookmarks`,
+  CUSTOM_SCHOLARSHIP: `${COMMON_API_URL}/user`,
 };

@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 export const IconStyle = styled.i`
   position: absolute;
-  padding: 10px 10px;
+  padding: 11px 10px;
   font-size: 20px;
   color: #00462a;
 `;

@@ -1,19 +1,14 @@
-import SearchBox from "./SearchBox";
-import Text from "./Text";
-import ToggleText from "./ToggleText";
 import { ToggleSwitch } from "./ToggleSwitch";
-import DropDown from "./DropDown";
-import GradeInput from "./GradeInput";
-import { FilterWrapper, ToggleWrapper } from "./MainPage.style";
+import { ToggleWrapper, MainTextContainer, StyledText } from "./MainText.style";
 
 export default function MainText() {
   return (
-    <>
-      <Text />
+    <MainTextContainer>
+      <StyledText>원하는 조건별로 검색하세요</StyledText>
       <ToggleWrapper>
-        <ToggleText />
+        <StyledText>내 정보로 바로 검색하기</StyledText>
         <ToggleSwitch />
       </ToggleWrapper>
-    </>
+    </MainTextContainer>
   );
 }

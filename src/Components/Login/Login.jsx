@@ -22,6 +22,8 @@ const Login = () => {
   const [loginCheck, setLoginCheck] = useState(false);
   const navigate = useNavigate();
 
+  const hasError = username === "" || password === "";
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -99,7 +101,7 @@ const Login = () => {
           </Item>
         </Group>
 
-        <SubmitButton type="submit" onClick={handleLogin}>
+        <SubmitButton type="submit" onClick={handleLogin} disabled={hasError}>
           로그인
         </SubmitButton>
       </LoginForm>

@@ -12,7 +12,7 @@ import {
 import DropDown from "./DropDown";
 
 export default function GradeInput({ setFilterOption }) {
-  const [formData, setFormData] = useState({
+  const [filterOption, setFilterOptionState] = useState({
     year: "",
     department: "",
     incomeLevel: "",
@@ -20,16 +20,16 @@ export default function GradeInput({ setFilterOption }) {
   });
 
   const handleGradeChange = (event) => {
-    setFormData({ ...formData, gpa: event.target.value });
+    setFilterOptionState({ ...filterOption, gpa: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFilterOption({ ...formData });
+    setFilterOption({ ...filterOption });
   };
 
   const handleOptionChange = (name, value) => {
-    setFormData({ ...formData, [name]: value });
+    setFilterOptionState({ ...filterOption, [name]: value });
   };
 
   return (
@@ -45,7 +45,7 @@ export default function GradeInput({ setFilterOption }) {
               name="gpa"
               type="text"
               placeholder="학점 입력"
-              value={formData.gpa}
+              value={filterOption.gpa}
               onChange={handleGradeChange}
             />
           </InputWrapper>

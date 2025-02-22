@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { fetchApi } from "../../utils";
-import { API_URL } from "../../consts";
 import { Container, Title, TitleAndFilter, FilterLabel, DropDown, Number, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton } from "./ReviewList.style";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import axios from "axios";
 
 function ReviewList({ scholarshipId }) {
 
@@ -18,20 +17,14 @@ function ReviewList({ scholarshipId }) {
     useEffect(() => {
         async function fetchReviews() {
             try {
-                const response = await fetch(`${API_URL.SCHOLARSHIP}/${scholarshipId}/reviews`, {
+                const response = await axios.get(`http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships/${Number(scholarshipId)}/reviews`, {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer YOUR_JWT_TOKEN`,
                         "Content-Type": "application/json"
                     }
                 });
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch reviews");
-                }
-
-                const result = await response.json();
-                setReviews(result.data);
+                setReviews(response.data.data);
             } catch (error) {
                 console.error("Error fetching reviews:", error);
             }
@@ -40,12 +33,12 @@ function ReviewList({ scholarshipId }) {
         if (scholarshipId) {
             fetchReviews();
         }
-    }, []);
+    }, [scholarshipId]);
 
     const filteredReviews = reviews.filter((review) => {
         const findIsAwarded = filterIsAwarded === "" || (filterIsAwarded === "수혜함" && review.isAwarded) || (filterIsAwarded === "수혜 안함" && !review.isAwarded);
         const findApplicationYear = filterApplicationYear === "" || review.applicationYear.toString() === filterApplicationYear;
-        const findSemester = filterSemester === "" || review.semester === filterSemester;
+        const findSemester = filterSemester === "" || review.applicationSemester === filterSemester;
         
         return findIsAwarded && findApplicationYear && findSemester;
     });
@@ -115,7 +108,7 @@ function ReviewList({ scholarshipId }) {
                                             )}
                                             {review.isAwarded ? "수혜함" : "수혜 안함"}
                                         </Badge>
-                                        <Badge>{review.applicationYear}-{review.semester}</Badge>
+                                        <Badge>{review.applicationYear}-{review.applicationSemester}</Badge>
                                     </Top>
                                     <Info>{review.content}</Info>
                                 </Text>

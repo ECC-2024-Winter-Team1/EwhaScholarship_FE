@@ -1,63 +1,64 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchApi } from "../../utils";
-import { API_URL } from "../../consts";
+import axios from "axios";
+import { Container, TitleContainer, Title, ShortInfo, ListContainer, ListTitle, Highlight, ListContent } from "./ScholarshipInfo.style";
 
-function ScholarshipInfo() {
+const ScholarshipInfo = () => {
   const { scholarshipId } = useParams();
   const [scholarship, setScholarship] = useState(null);
 
-  const fetchScholarship = async () => {
-    try {
-      const response = await fetchApi(`${API_URL.SCHOLARSHIP}`, {
-        method: "GET",
-        params: {
-          scholarshipId,
-        },
-      });
-      const data = await response.json();
-      setScholarship(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  console.log(scholarship, scholarshipId);
-
   useEffect(() => {
+    const fetchScholarship = async () => {
+      try {
+        const token = localStorage.getItem("token"); 
+        if (!token) {
+          alert("로그인을 먼저 해주세요.");
+          return;
+        }
+
+        const response = await axios.get(
+          `http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships/${Number(scholarshipId)}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setScholarship(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     fetchScholarship();
   }, []);
 
   return (
-    <div>
-      <h2>{scholarship?.name}</h2>
-      <p>
-        최대 {scholarship?.amount} | {scholarship?.applicationPeriod} |{" "}
-        {scholarship?.type}
-      </p>
-      <div>
-        <div>
-          <h3>선발기준 및 대상</h3>
-          <p>{scholarship?.criteria}</p>
-        </div>
-        <div>
-          <h3>장학금액</h3>
-          <p>최대 {scholarship?.amount}</p>
-        </div>
-        <div>
-          <h3>관련학과</h3>
-          <p>{scholarship?.department}</p>
-        </div>
-        <div>
-          <h3>성적기준</h3>
-          <p>{scholarship?.criteria}</p>
-        </div>
-        <div>
-          <h3>장학금성격</h3>
-          <p>{scholarship?.type}</p>
-        </div>
-      </div>
-    </div>
+    <Container>
+      <TitleContainer>
+        <Title>{scholarship?.name}</Title>
+        <ShortInfo>
+          {scholarship?.amount} | {scholarship?.applicationPeriod} |{" "}
+          {scholarship?.type}
+        </ShortInfo>
+      </TitleContainer>
+      <ListContainer>
+        <ListTitle><Highlight>선발기준 및 대상</Highlight></ListTitle>
+        <ListContent>{scholarship?.criteria}</ListContent>
+      </ListContainer>
+      <ListContainer>
+        <ListTitle><Highlight>장학금액</Highlight></ListTitle>
+        <ListContent>{scholarship?.amount}</ListContent>
+      </ListContainer>
+      <ListContainer>
+        <ListTitle><Highlight>지급 시기</Highlight></ListTitle>
+        <ListContent>{scholarship?.paymentPeriod}</ListContent>
+      </ListContainer>
+        <ListContainer>
+        <ListTitle><Highlight>장학금 성격</Highlight></ListTitle>
+        <ListContent>{scholarship?.type}</ListContent>
+      </ListContainer>
+    </Container>
   );
 }
 

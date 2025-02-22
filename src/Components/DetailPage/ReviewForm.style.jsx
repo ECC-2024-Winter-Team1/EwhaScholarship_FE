@@ -1,18 +1,27 @@
 import styled from "styled-components";
 
-export const ReviewSectionName = styled.h2`
+export const Container = styled.div`
+    max-width: 919px;
+    display: flex;
+    margin-top: 100px;
+    flex-direction: column;
+`;
 
+export const ReviewSectionName = styled.h2`
+    font-size: 40px;
+    font-weight: normal;
+    margin-left: 250px;
 `;
 
 export const ReviewFormArea = styled.div`
-    position: absolute;
     width: 918px;
     height: 240px;
     padding: 14px 23px;
     background-color: #00462A;
-    border-radius: 20px;
+    border-radius: 25px;
     flex-direction: column;
     gap: 15px;
+    margin-left: 250px;
 `;
 
 export const Conditions = styled.div`
@@ -38,7 +47,7 @@ export const Checkbox = styled.input`
     border-radius: 20px;
 `;
 
-export const Number = styled.input`
+export const YearInput = styled.input`
     margin-left: 20px;
     border-radius: 20px;
     padding: 8px;
@@ -85,4 +94,11 @@ export const Button = styled.button`
     height: 50px;
     background-color: #F0F7F4;
     border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:active {
+    background-color: #00462A;
+    transform: translateY(2px);
+    }
 `;

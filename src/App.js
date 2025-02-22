@@ -2,11 +2,11 @@ import React from "react";
 import "./index.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DetailPage from "./Components/DetailPage/DetailPage";
+import DetailPage from "./components/DetailPage/DetailPage";
 import Login from "./components/Login/Login";
 import Join from "./components/Join/Join";
 import BookMark from "./components/BookMark/BookMark";
-import MainPage from "./components/Pagination/ShowingPagination";
+import MainPage from "./components/Pagination/MainPage";
 import Info from "./components/Info/Info";
 
 function App() {

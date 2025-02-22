@@ -10,7 +10,7 @@ import {
   Wrapper,
 } from "./DropDown.style";
 
-export default function DropDown(setOption) {
+export default function DropDown({ setOption }) {
   const year = [
     { value: "freshman", label: "1학년" },
     { value: "sophomore", label: "2학년" },
@@ -22,7 +22,7 @@ export default function DropDown(setOption) {
     { value: "humanities", label: "인문과학대학" },
     { value: "social", label: "사회과학대학" },
     { value: "natural", label: "자연과학대학" },
-    { value: "engineering", label: "공과대학" },
+    { value: "engineering", label: "엘텍공과대학" },
     { value: "music", label: "음악대학" },
     { value: "arts", label: "조형예술대학" },
     { value: "education", label: "사범대학" },
@@ -50,6 +50,10 @@ export default function DropDown(setOption) {
     { value: "10", label: "10분위" },
   ];
 
+  const handleChange = (name, value) => {
+    setOption(name, value);
+  };
+
   return (
     <Wrapper>
       <DropDownWrapper>
@@ -58,7 +62,9 @@ export default function DropDown(setOption) {
         </IconStyle>
         <StyledSelect
           name="year"
-          onChange={(event) => setOption(event.target.name, event.target.value)}
+          onChange={(event) =>
+            handleChange(event.target.name, event.target.value)
+          }
         >
           <option value="none" hidden>
             학년
@@ -76,7 +82,9 @@ export default function DropDown(setOption) {
         </IconStyle>
         <StyledSelect
           name="department"
-          onChange={(event) => setOption(event.target.name, event.target.value)}
+          onChange={(event) =>
+            handleChange(event.target.name, event.target.value)
+          }
         >
           <option value="none" hidden>
             단과대학
@@ -94,7 +102,9 @@ export default function DropDown(setOption) {
         </IconStyle>
         <StyledSelect
           name="incomeLevel"
-          onChange={(event) => setOption(event.target.name, event.target.value)}
+          onChange={(event) =>
+            handleChange(event.target.name, event.target.value)
+          }
         >
           <option value="none" hidden>
             소득분위

@@ -9,41 +9,25 @@ import {
   ItemWrapper,
 } from "../Pagination/Content.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as solidBookmark } from "@fortawesome/free-solid-svg-icons";
+import { COMMON_API_URL, API_URL } from "../../consts";
+import { fetchApi } from "../../utils";
+import StyledHeader from "../Header/StyledHeader";
+import { Link } from "react-router-dom";
 
 export default function BookMark() {
   const [bookmarks, setBookmarks] = useState([]);
 
   const fetchBookmarks = async () => {
     try {
-      const response = await fetch(
-        "http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/bookmarks",
-      );
-      const data = await response.json();
+      const data = await fetchApi(API_URL.BOOKMARK, {
+        method: "GET",
+      });
       setBookmarks(data);
     } catch (error) {
       console.log("북마크 목록이 없습니다.");
     }
   };
-
-  // const data = [
-  //   {
-  //     scholarshipId: 1,
-  //     name: "이화미래설계",
-  //     amount: "최대 400만원",
-  //     applicationPeriod: "3월/9월",
-  //     type: "학업보조비",
-  //   },
-  //   {
-  //     scholarshipId: 2,
-  //     name: "전공리더십",
-  //     amount: "학과별 상이",
-  //     applicationPeriod: "4월/10월",
-  //     type: "학비감면",
-  //   },
-  // ];
-
-  // setBookmarks(data);
 
   useEffect(() => {
     fetchBookmarks();
@@ -51,7 +35,9 @@ export default function BookMark() {
 
   const handleBookmarkClick = async (scholarshipId) => {
     try {
-      // await fetch("", {method: "DELETE",});
+      await fetchApi(`${COMMON_API_URL}/bookmarks/${scholarshipId}`, {
+        method: "DELETE",
+      });
 
       let updatedBookmarks = [];
 
@@ -67,12 +53,9 @@ export default function BookMark() {
     }
   };
 
-  const setBookmarkColor = (scholarshipId) => {
-    return "rgb(10, 141, 88)";
-  };
-
   return (
     <>
+      <StyledHeader />
       {bookmarks.length > 0 ? (
         <>
           <Text>{bookmarks.length}개의 북마크한 장학금이 있어요</Text>
@@ -86,26 +69,28 @@ export default function BookMark() {
                       <p>{`${amount} | ${applicationPeriod} | ${type}`}</p>
                     </TextWrapper>
                     <LinkBox>
-                      <a href="#">자세히 보기</a>
+                      <Link to={`/scholarship/${scholarshipId}`}>
+                        자세히 보기
+                      </Link>
                     </LinkBox>
                   </Box>
                   <IconWrapper
                     onClick={() => handleBookmarkClick(scholarshipId)}
                   >
                     <FontAwesomeIcon
-                      icon={faBookmark}
+                      icon={solidBookmark}
                       style={{
-                        color: setBookmarkColor(scholarshipId),
+                        color: "#00462a",
                       }}
                     />
                   </IconWrapper>
                 </ItemWrapper>
-              ),
+              )
             )}
           </BoxWrapper>
         </>
       ) : (
-        <p>북마크한 장학금이 없습니다.</p>
+        <Text>북마크한 장학금이 없습니다.</Text>
       )}
     </>
   );

@@ -42,7 +42,7 @@ export const DropDown = styled.select`
     }
 `;
 
-export const Number = styled.input`
+export const StyledNumber = styled.input`
     border-radius: 20px;
     padding: 8px;
     width: 100px;

@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Container, Title, TitleAndFilter, FilterLabel, DropDown, Number, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton } from "./ReviewList.style";
+import { Container, Title, TitleAndFilter, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton } from "./ReviewList.style";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-function ReviewList({ scholarshipId }) {
-
+function ReviewList() {
+    const { scholarshipId } = useParams();
     const reviewsInOnePage = 5;
     const [currentPage, setCurrentPage] = useState(1);
     const [reviews, setReviews] = useState([]);
@@ -78,7 +79,7 @@ function ReviewList({ scholarshipId }) {
 
                 <FilterLabel>
                     신청 연도
-                    <Number
+                    <StyledNumber
                         type="number"
                         placeholder="신청 연도"
                         value={filterApplicationYear}
@@ -98,7 +99,7 @@ function ReviewList({ scholarshipId }) {
 
             <div>
                 {currentReviews.length > 0 && currentReviews.map((review) => (
-                        <ReviewCard key={review.reviewId}>
+                        <ReviewCard key={review.id}>
                             <Content>
                                 <ProfileImage src="/profileicon.jpg" alt="Profile" />
                                 <Text>

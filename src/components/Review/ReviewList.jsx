@@ -1,36 +1,43 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReviewCard from "./ReviewCard";
+import { Container, Title } from "./ReviewList.style"; 
 
 const ReviewList = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("token");
 
     const fetchReviews = async () => {
       try {
-        const response = await axios.get("서버주소넣을공간", {
-          headers: { Authorization: `Bearer ${accessToken}` }
+        const response = await axios.get("http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/reviews/my", {
+          headers: { Authorization: `Bearer ${token}` }
         });
-        setReviews(response.data);
+        setReviews(response.data.data || []); 
       } catch (error) {
         alert("리뷰 정보 불러오기에 실패했습니다");
       }
     };
+
     fetchReviews();
   }, []);
 
-  const handleDeleteReview = (reviewId) => {
-    setReviews(reviews.filter((review) => review.reviewId !== reviewId));
+  const handleDeleteReview = (id) => {
+    setReviews((prevReviews) => prevReviews.filter((review) => review.id !== id));
   };
 
   return (
-    <>
-      {reviews.map((review) => (
-        <ReviewCard key={review.reviewId} review={review} onDelete={handleDeleteReview} />
-      ))}
-    </>
+    <Container>
+      <Title>내 리뷰 보기</Title>
+      {reviews.length > 0 ? (
+        reviews.map((review) => (
+          <ReviewCard key={review.id} review={review} onDelete={handleDeleteReview} />
+        ))
+      ) : (
+        <p>등록된 리뷰가 없습니다.</p>
+      )}
+    </Container>
   );
 };
 

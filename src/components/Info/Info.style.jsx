@@ -24,6 +24,7 @@ export const Container = styled.div`
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  margin-bottom:-255px;
 `;
 
 export const ProfileCard = styled.div`

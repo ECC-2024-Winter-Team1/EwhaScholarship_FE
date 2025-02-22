@@ -6,6 +6,7 @@ import {
 } from "./Info.style";
 import axios from "axios";
 import Header from "../Header/StyledHeader";
+import ReviewList from "../Review/ReviewList";
 
 const Info = () => {
   const token = localStorage.getItem("token");
@@ -161,6 +162,10 @@ const Info = () => {
 
       <SaveButton onClick={setChangeInfo}>저장하기</SaveButton>
     </Container>
+<<<<<<< feat/reviewlist
+=======
+    <ReviewList />
+>>>>>>> main
     </>
   );
 };

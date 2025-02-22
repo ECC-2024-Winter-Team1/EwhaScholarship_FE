@@ -33,10 +33,10 @@ export const LoginTitle = styled.h1`
 `;
 
 export const LoginSubtitle = styled.h2`
-  font-family: "Noto Serif KR", serif;
+  font-family: 'Gowun Batang', serif;
   width: 105%;
   font-weight: 730;
-  font-size: 2.0rem;
+  font-size: 2.1rem;
   color: #00462a;
   margin: 5px;
   padding: 0;
@@ -99,11 +99,8 @@ export const SubmitButton = styled.button`
 `;
 
 export const Description = styled.p`
-  position: absolute;
-  top: 520px;
-  padding-left: 13px;
-  width: 348px;
   text-align: center;
+  margin-left:15px;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -118,6 +115,6 @@ export const StyledLink = styled(Link)`
   text-decoration: underline;
 
   &:hover {
-    color: gray; // 마우스 오버 시 색상 변경 (선택 사항)
+    color: gray; 
   }
 `;

@@ -17,10 +17,14 @@ function ReviewList({ scholarshipId }) {
     useEffect(() => {
         async function fetchReviews() {
             try {
+                const token = localStorage.getItem("token"); 
+                if (!token) {
+                    alert("로그인을 먼저 해주세요.");
+                    return;
+                }
                 const response = await axios.get(`http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships/${Number(scholarshipId)}/reviews`, {
-                    method: "GET",
                     headers: {
-                        "Authorization": `Bearer YOUR_JWT_TOKEN`,
+                        "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
                     }
                 });

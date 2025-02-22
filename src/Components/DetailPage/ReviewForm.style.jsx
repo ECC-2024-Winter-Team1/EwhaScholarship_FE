@@ -47,7 +47,7 @@ export const Checkbox = styled.input`
     border-radius: 20px;
 `;
 
-export const Number = styled.input`
+export const YearInput = styled.input`
     margin-left: 20px;
     border-radius: 20px;
     padding: 8px;

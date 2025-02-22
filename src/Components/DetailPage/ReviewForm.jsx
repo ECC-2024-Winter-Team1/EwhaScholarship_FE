@@ -1,9 +1,10 @@
-import { Container, ReviewSectionName, Button, ReviewFormArea, Conditions, IfReward, Checkbox, Number, DropDown, ReviewContent } from "./ReviewForm.style";
+import { Container, ReviewSectionName, Button, ReviewFormArea, Conditions, IfReward, Checkbox, YearInput, DropDown, ReviewContent } from "./ReviewForm.style";
 import { useState } from "react";
-import { fetchApi } from "../../utils";
-import { API_URL } from "../../consts";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const ReviewForm = ({ scholarshipId }) => {
+const ReviewForm = () => {
+    const { scholarshipId } = useParams();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [received, setReceived] = useState(false);
@@ -12,32 +13,43 @@ const ReviewForm = ({ scholarshipId }) => {
     const [review, setReview] = useState("");
 
     const handleSubmit = async () => {
-        if (!received || !year || !semester || !review) {
+        console.log("scholarshipId:", scholarshipId);
+
+        const token = localStorage.getItem("token"); 
+        if (!token) {
+            alert("로그인을 먼저 해주세요.");
+            return;
+        }
+
+        if ( !year || !semester || !review) {
             alert("모든 필드를 입력해주세요.");
             return;
         }
 
-        const applicationGrade = semester === "1학기" ? 1 : 2;
         const requestBody = {
-            scholarshipId,
+            scholarshipId: Number(scholarshipId),
             isAwarded: received,
             applicationYear: parseInt(year, 10),
-            applicationGrade,
+            applicationSemester: parseInt(semester, 10),
             content: review,
         };
 
+        console.log("🚀 Request Body:", requestBody);
+        
         setLoading(true);
         setMessage("");
 
         try {
-            const data = await fetchApi(`${API_URL.SCHOLARSHIP}/${scholarshipId}/reviews`, {
-                method: "POST",
-                body: JSON.stringify(requestBody),
+            const response = await axios.post(`http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/scholarships/${scholarshipId}/reviews`, requestBody, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
             });
 
-            if (data) {
+            if (response.data.status === "success") {
                 setMessage("리뷰 등록 성공!");
-                setReceived(false);  // 상태 초기화
+                setReceived(false);
                 setYear("");
                 setSemester("");
                 setReview("");
@@ -46,6 +58,7 @@ const ReviewForm = ({ scholarshipId }) => {
             }
         } catch (error) {
             setMessage("서버 요청 중 오류가 발생했습니다.");
+            console.error("Error submitting review:", error);
         } finally {
             setLoading(false);
         }
@@ -65,7 +78,7 @@ const ReviewForm = ({ scholarshipId }) => {
                         수혜여부
                     </IfReward>
 
-                    <Number
+                    <YearInput
                         type="number"
                         value={year}
                         onChange={(e) => setYear(e.target.value)}
@@ -74,8 +87,8 @@ const ReviewForm = ({ scholarshipId }) => {
 
                     <DropDown value={semester} onChange={(e) => setSemester(e.target.value)}>
                         <option value="">신청 학기</option>
-                        <option value="1학기">1학기</option>
-                        <option value="2학기">2학기</option>
+                        <option value="1">1학기</option>
+                        <option value="2">2학기</option>
                     </DropDown>
                 </Conditions>
 

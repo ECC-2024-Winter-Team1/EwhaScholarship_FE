@@ -104,10 +104,10 @@ const Login = () => {
         <SubmitButton type="submit" onClick={handleLogin} disabled={hasError}>
           로그인
         </SubmitButton>
+        <Description>
+           <StyledLink to="/join">회원가입하기</StyledLink>
+        </Description>
       </LoginForm>
-      <Description>
-        <StyledLink to="/join">회원가입하기</StyledLink>
-      </Description>
     </LoginContainer>
   );
 };

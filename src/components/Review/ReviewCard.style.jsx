@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
   flex-direction: column;
 `;
 
@@ -15,7 +15,7 @@ export const Card = styled.div`
   background: #F0F7F4;
   padding: 25px;
   border-radius: 17px;
-  margin: 20px 0;
+  margin: 10px 0;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 `;
 
@@ -126,7 +126,7 @@ export const EditInput = styled.input`
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  width: 100%
+  width: calc(100% + 380px);
 `;
 
 export const SaveButton = styled.button`
@@ -139,6 +139,6 @@ export const SaveButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  width: 80px;
+  width: 95px;
 
 `;

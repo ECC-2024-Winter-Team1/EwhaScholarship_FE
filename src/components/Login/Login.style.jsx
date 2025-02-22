@@ -99,10 +99,6 @@ export const SubmitButton = styled.button`
 `;
 
 export const Description = styled.p`
-  position: absolute;
-  top: 520px;
-  padding-left: 13px;
-  width: 348px;
   text-align: center;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
@@ -118,6 +114,6 @@ export const StyledLink = styled(Link)`
   text-decoration: underline;
 
   &:hover {
-    color: gray; // 마우스 오버 시 색상 변경 (선택 사항)
+    color: gray; 
   }
 `;

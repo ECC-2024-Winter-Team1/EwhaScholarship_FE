@@ -33,10 +33,10 @@ export const LoginTitle = styled.h1`
 `;
 
 export const LoginSubtitle = styled.h2`
-  font-family: "Noto Serif KR", serif;
+  font-family: 'Gowun Batang', serif;
   width: 105%;
   font-weight: 730;
-  font-size: 2.0rem;
+  font-size: 2.1rem;
   color: #00462a;
   margin: 5px;
   padding: 0;
@@ -100,6 +100,7 @@ export const SubmitButton = styled.button`
 
 export const Description = styled.p`
   text-align: center;
+  margin-left:15px;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
   font-size: 14px;

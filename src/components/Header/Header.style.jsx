@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.h2`
   color: #00462a;
-  font-family: "Noto Serif KR", serif;
+  font-family: 'Gowun Batang', serif;
   div {
     &:last-child {
       font-size: 35px;

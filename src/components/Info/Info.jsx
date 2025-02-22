@@ -162,10 +162,7 @@ const Info = () => {
 
       <SaveButton onClick={setChangeInfo}>저장하기</SaveButton>
     </Container>
-<<<<<<< feat/reviewlist
-=======
     <ReviewList />
->>>>>>> main
     </>
   );
 };

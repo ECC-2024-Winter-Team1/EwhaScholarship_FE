@@ -148,3 +148,19 @@ export const PaginationButton = styled.button`
         transform: scale(0.95);
     }
 `;
+
+export const EditButton = styled.button`
+
+`;
+
+export const DeleteButton = styled.button`
+
+`;
+
+export const SaveButton = styled.button`
+
+`;
+
+export const CancelButton = styled.button`
+
+`;

@@ -69,7 +69,7 @@ export const Top = styled.div`
     gap: 8px;
     position: absolute;
     top: 0px;
-    left: 105px;
+    left: 125px;
 `;
 
 export const Content = styled.div`
@@ -89,13 +89,13 @@ export const ProfileImage = styled.img`
     border-radius: 50px;
     position: absolute;
     top: 50%;
-    left: 20px;
+    left: 30px;
     transform: translateY(-50%);
 `;
 
 export const Text = styled.div`
     align-items: center;
-    margin-left: 80px;
+    margin-left: 100px;
 `;
 
 export const Badge = styled.span`
@@ -149,18 +149,22 @@ export const PaginationButton = styled.button`
     }
 `;
 
-export const EditButton = styled.button`
-
+export const RightTop = styled.span`
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    display: flex;
+    gap: 8px;
 `;
 
-export const DeleteButton = styled.button`
+export const Actions = styled.span`
+    background: none;
+    border: none;
+    color: gray;
+    font-size: 14px;
+    cursor: pointer;
 
-`;
-
-export const SaveButton = styled.button`
-
-`;
-
-export const CancelButton = styled.button`
-
+    &:hover {
+        color: black;
+    }
 `;

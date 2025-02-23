@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Title, TitleAndFilter, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, EditButton, DeleteButton } from "./ReviewList.style";
+import { Container, Title, TitleAndFilter, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop } from "./ReviewList.style";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -206,7 +206,7 @@ function ReviewList() {
                             </Text>
                         </Content>
                         {review.userId === userId && (
-                            <div>
+                            <RightTop>
                                 {editingReviewId === review.id ? (
                                     <>
                                         <div>
@@ -244,11 +244,11 @@ function ReviewList() {
                                     </>
                                 ) : (
                                     <>
-                                        <EditButton onClick={() => handleEdit(review)}>수정</EditButton>
-                                        <DeleteButton onClick={() => handleDelete(review.id)}>삭제</DeleteButton>
+                                        <Actions onClick={() => handleEdit(review)}>수정</Actions>
+                                        <Actions onClick={() => handleDelete(review.id)}>삭제</Actions>
                                     </>
                                 )}
-                            </div>
+                            </RightTop>
                         )}
                     </ReviewCard>
                 )) : <p>리뷰가 없습니다.</p>}

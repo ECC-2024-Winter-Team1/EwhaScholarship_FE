@@ -28,9 +28,13 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "parser": "@babel/eslint-parser",
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "plugins": [
+      "babel"
     ]
   },
   "browserslist": {
@@ -43,6 +47,21 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.26.8",
+    "@babel/plugin-proposal-decorators": "^7.25.9",
+    "eslint-plugin-babel": "^5.3.1"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
     ]
   }
 }

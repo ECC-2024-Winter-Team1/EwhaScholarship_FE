@@ -33,8 +33,6 @@ const ReviewForm = () => {
             applicationSemester: parseInt(semester, 10),
             content: review,
         };
-
-        console.log("🚀 Request Body:", requestBody);
         
         setLoading(true);
         setMessage("");

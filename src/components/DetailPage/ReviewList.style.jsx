@@ -1,26 +1,33 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    margin-top: 100px;
+    max-width: 919px;
+    margin: 0 auto;
     background-color: white;
     display: flex;
     flex-direction: column;
+    padding: 20px;
 `;
 
 export const TitleAndFilter = styled.div`
+    max-width: 919px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    gap: 20px;
+    justify-content: space-between;
     margin-bottom: 0px;
-    margin-left: 250px;
 `;
 
 export const Title = styled.h2`
     font-size: 40px;
     font-weight: normal;
     margin-bottom: 0px;
-    margin-right: 160px;
+`;
+
+export const FilterContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
 `;
 
 export const FilterLabel = styled.label`
@@ -55,7 +62,6 @@ export const ReviewCard = styled.div`
     padding: 25px;
     border-radius: 20px;
     background: #F0F7F4;
-    margin-left: 250px;
     margin-bottom: 20px;
     margin-top: 30px;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Title, TitleAndFilter, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop } from "./ReviewList.style";
+import { Container, Title, TitleAndFilter, FilterContainer, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop } from "./ReviewList.style";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -159,33 +159,35 @@ function ReviewList() {
         <Container>
             <TitleAndFilter>
                 <Title>학생들의 리뷰</Title>
-                <FilterLabel>
-                    수혜 여부
-                    <DropDown value={filterIsAwarded} onChange={(e) => setFilterIsAwarded(e.target.value)}>
-                        <option value="">전체</option>
-                        <option value="수혜함">수혜함</option>
-                        <option value="수혜 안함">수혜 안함</option>
-                    </DropDown>
-                </FilterLabel>
+                <FilterContainer>
+                    <FilterLabel>
+                        수혜 여부
+                        <DropDown value={filterIsAwarded} onChange={(e) => setFilterIsAwarded(e.target.value)}>
+                            <option value="">전체</option>
+                            <option value="수혜함">수혜함</option>
+                            <option value="수혜 안함">수혜 안함</option>
+                        </DropDown>
+                    </FilterLabel>
 
-                <FilterLabel>
-                    신청 연도
-                    <StyledNumber
-                        type="number"
-                        placeholder="신청 연도"
-                        value={filterApplicationYear}
-                        onChange={(e) => setFilterApplicationYear(e.target.value)}
-                    />
-                </FilterLabel>
+                    <FilterLabel>
+                        신청 연도
+                        <StyledNumber
+                            type="number"
+                            placeholder="신청 연도"
+                            value={filterApplicationYear}
+                            onChange={(e) => setFilterApplicationYear(e.target.value)}
+                        />
+                    </FilterLabel>
 
-                <FilterLabel>
-                    학기
-                    <DropDown value={filterSemester} onChange={(e) => setFilterSemester(e.target.value)}>
-                        <option value="">전체</option>
-                        <option value="1">1학기</option>
-                        <option value="2">2학기</option>
-                    </DropDown>
-                </FilterLabel>
+                    <FilterLabel>
+                        학기
+                        <DropDown value={filterSemester} onChange={(e) => setFilterSemester(e.target.value)}>
+                            <option value="">전체</option>
+                            <option value="1">1학기</option>
+                            <option value="2">2학기</option>
+                        </DropDown>
+                    </FilterLabel>
+                </FilterContainer>
             </TitleAndFilter>
 
             <div>

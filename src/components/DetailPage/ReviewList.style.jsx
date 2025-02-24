@@ -174,3 +174,63 @@ export const Actions = styled.span`
         color: black;
     }
 `;
+
+export const EditContainer = styled.div`
+    background: #F0F7F4;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 2px solid #00462A;
+`;
+
+export const EditRow = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+`;
+
+export const MiniSelect = styled.select`
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid #00462A;
+    padding: 4px 8px; 
+    font-size: 14px; 
+    width: 100px; 
+`;
+
+export const MiniInput = styled.input`
+    padding: 4px 8px;
+    font-size: 14px;
+    width: 70px;
+    border-radius: 20px;
+    border: 2px solid #00462A;
+`;
+
+export const MiniButton = styled.button`
+    padding: 6px 10px;
+    font-size: 14px;
+    min-width: 50px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+`;
+
+export const MiniReview = styled.input`
+    width: 80%; // 가로를 전체로 설정
+    height: 60%; // 원하는 높이로 설정
+    padding: 10px; // 여백 추가
+    border: 1px solid #ccc; // 테두리 색상
+    border-radius: 15px; // 모서리 둥글게
+    font-size: 16px; // 글자 크기
+    margin-left: 5px;
+`;
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    gap: 5px;
+    justify-content: center; 
+    margin-top: 10px; 
+`;

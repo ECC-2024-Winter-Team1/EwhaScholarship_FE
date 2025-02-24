@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Title, TitleAndFilter, FilterContainer, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop } from "./ReviewList.style";
+import { Container, Title, TitleAndFilter, FilterContainer, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop, EditContainer, EditRow, MiniSelect, MiniInput, MiniReview, MiniButton, ButtonContainer } from "./ReviewList.style";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -90,44 +90,31 @@ function ReviewList() {
             alert("로그인을 먼저 해주세요.");
             return;
         }
-
-        const reviewToUpdate = reviews.find((review) => review.id === reviewId);
-        if (!reviewToUpdate) {
-            alert("리뷰를 찾을 수 없습니다.");
-            return;
-        }
-
+    
+        const updatedReview = {
+            id: reviewId,
+            scholarshipId,
+            isAwarded: updatedIsAwarded === "수혜함",
+            applicationYear: Number(updatedApplicationYear),
+            applicationSemester: Number(updatedApplicationSemester),
+            content: updatedContent,
+        };
+    
         try {
-            const isAwardedBoolean = updatedIsAwarded === "수혜함";  
-
-            await axios.put(`http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/reviews/${reviewId}`, {
-                id: reviewId,
-                scholarshipId: reviewToUpdate.scholarshipId,
-                isAwarded: isAwardedBoolean,
-                applicationYear: updatedApplicationYear,
-                applicationSemester: updatedApplicationSemester,
-                content: updatedContent,
-            }, {
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
-            });
-
-            setReviews(reviews.map(review => 
-                review.id === reviewId ? { 
-                    ...review, 
-                    isAwarded: updatedIsAwarded === "수혜함",
-                    applicationYear: updatedApplicationYear,
-                    applicationSemester: updatedApplicationSemester,
-                    content: updatedContent 
-                } : review
-            ));
-            setEditingReviewId(null);
+            const response = await axios.patch(
+                `http://ewhascholarship.ap-northeast-2.elasticbeanstalk.com/api/reviews/${reviewId}`,
+                updatedReview,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+    
+            if (response.data && response.data.content) {
+                setEditContent(response.data.content);
+            }
+    
+            setEditingReviewId(null); // 편집 모드 종료
             alert("리뷰 수정 성공!");
         } catch (error) {
-            console.error("Error updating review:", error);
-            alert("리뷰 수정 실패");
+            alert("리뷰 수정에 실패했습니다.");
         }
     };
 
@@ -210,40 +197,40 @@ function ReviewList() {
                         {review.userId === userId && (
                             <RightTop>
                                 {editingReviewId === review.id ? (
-                                    <>
-                                        <div>
+                                    <EditContainer>
+                                        <EditRow>
                                             <label>수혜 여부</label>
-                                            <DropDown value={updatedIsAwarded} onChange={(e) => setUpdatedIsAwarded(e.target.value)}>
+                                            <MiniSelect value={updatedIsAwarded} onChange={(e) => setUpdatedIsAwarded(e.target.value)}>
                                                 <option value="수혜함">수혜함</option>
                                                 <option value="수혜 안함">수혜 안함</option>
-                                            </DropDown>
-                                        </div>
-                                        <div>
+                                            </MiniSelect>
+                                        
                                             <label>신청 연도</label>
-                                            <StyledNumber
+                                            <MiniInput
                                                 type="number"
                                                 value={updatedApplicationYear}
                                                 onChange={(e) => setUpdatedApplicationYear(e.target.value)}
                                             />
-                                        </div>
-                                        <div>
+                                        
                                             <label>신청 학기</label>
-                                            <DropDown value={updatedApplicationSemester} onChange={(e) => setUpdatedApplicationSemester(e.target.value)}>
+                                            <MiniSelect value={updatedApplicationSemester} onChange={(e) => setUpdatedApplicationSemester(e.target.value)}>
                                                 <option value="1">1학기</option>
                                                 <option value="2">2학기</option>
-                                            </DropDown>
-                                        </div>
+                                            </MiniSelect>
+                                        </EditRow>
                                         <div>
                                             <label>리뷰 내용</label>
-                                            <input
+                                            <MiniReview
                                                 type="text"
                                                 value={updatedContent}
                                                 onChange={(e) => setEditContent(e.target.value)}
                                             />
                                         </div>
-                                        <button onClick={() => handleSave(review.id)}>저장</button>
-                                        <button onClick={() => setEditingReviewId(null)}>취소</button>
-                                    </>
+                                        <ButtonContainer>
+                                            <MiniButton onClick={() => handleSave(review.id)}>저장</MiniButton>
+                                            <MiniButton onClick={() => setEditingReviewId(null)}>취소</MiniButton>
+                                        </ButtonContainer>
+                                    </EditContainer>
                                 ) : (
                                     <>
                                         <Actions onClick={() => handleEdit(review)}>수정</Actions>

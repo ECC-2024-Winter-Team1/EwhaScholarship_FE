@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Title, TitleAndFilter, FilterContainer, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop, EditContainer, EditRow, MiniSelect, MiniInput, MiniReview, MiniButton, ButtonContainer } from "./ReviewList.style";
+import { Container, Title, TitleAndFilter, FilterContainer, FilterLabel, DropDown, StyledNumber, ReviewCard, Content, Top, Name, Text, ProfileImage, Badge, Info, Pagination, PaginationButton, Actions, RightTop, EditContainer, EditRow, MiniSelect, MiniInput, MiniReview, MiniButton, ButtonContainer, StyledLabel } from "./ReviewList.style";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -199,27 +199,27 @@ function ReviewList() {
                                 {editingReviewId === review.id ? (
                                     <EditContainer>
                                         <EditRow>
-                                            <label>수혜 여부</label>
+                                            <StyledLabel>수혜 여부</StyledLabel>
                                             <MiniSelect value={updatedIsAwarded} onChange={(e) => setUpdatedIsAwarded(e.target.value)}>
                                                 <option value="수혜함">수혜함</option>
                                                 <option value="수혜 안함">수혜 안함</option>
                                             </MiniSelect>
                                         
-                                            <label>신청 연도</label>
+                                            <StyledLabel>신청 연도</StyledLabel>
                                             <MiniInput
                                                 type="number"
                                                 value={updatedApplicationYear}
                                                 onChange={(e) => setUpdatedApplicationYear(e.target.value)}
                                             />
                                         
-                                            <label>신청 학기</label>
+                                            <StyledLabel>신청 학기</StyledLabel>
                                             <MiniSelect value={updatedApplicationSemester} onChange={(e) => setUpdatedApplicationSemester(e.target.value)}>
                                                 <option value="1">1학기</option>
                                                 <option value="2">2학기</option>
                                             </MiniSelect>
                                         </EditRow>
                                         <div>
-                                            <label>리뷰 내용</label>
+                                            <StyledLabel>리뷰 내용</StyledLabel>
                                             <MiniReview
                                                 type="text"
                                                 value={updatedContent}

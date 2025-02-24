@@ -19,21 +19,24 @@ export const TitleAndFilter = styled.div`
 `;
 
 export const Title = styled.h2`
-    font-size: 40px;
+    font-size: 44px;
     font-weight: normal;
     margin-bottom: 0px;
+    font-family: 'Gowun Batang', serif;
 `;
 
 export const FilterContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const FilterLabel = styled.label`
     display: flex;
     align-items: center;
     gap: 12px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const DropDown = styled.select`
@@ -42,6 +45,7 @@ export const DropDown = styled.select`
     width: 100px;
     cursor: pointer;
     border: 2px solid #00462A;
+    font-family: "Pretendard", sans-serif;
 
     option{
         font-size: 14px;
@@ -54,6 +58,7 @@ export const StyledNumber = styled.input`
     padding: 8px;
     width: 100px;
     border: 2px solid #00462A;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const ReviewCard = styled.div`
@@ -82,10 +87,12 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     padding-top: 60px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const Name = styled.p`
     font-size: 22px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const ProfileImage = styled.img`
@@ -102,6 +109,7 @@ export const ProfileImage = styled.img`
 export const Text = styled.div`
     align-items: center;
     margin-left: 100px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const Badge = styled.span`
@@ -199,6 +207,7 @@ export const MiniSelect = styled.select`
     padding: 4px 8px; 
     font-size: 14px; 
     width: 100px; 
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const MiniInput = styled.input`
@@ -207,6 +216,7 @@ export const MiniInput = styled.input`
     width: 70px;
     border-radius: 20px;
     border: 2px solid #00462A;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const MiniButton = styled.button`
@@ -216,6 +226,7 @@ export const MiniButton = styled.button`
     border-radius: 20px;
     cursor: pointer;
     background-color: white;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const MiniReview = styled.input`
@@ -226,6 +237,7 @@ export const MiniReview = styled.input`
     border-radius: 15px; // 모서리 둥글게
     font-size: 16px; // 글자 크기
     margin-left: 5px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const ButtonContainer = styled.div`
@@ -233,4 +245,8 @@ export const ButtonContainer = styled.div`
     gap: 5px;
     justify-content: center; 
     margin-top: 10px; 
+`;
+
+export const StyledLabel = styled.label`
+    font-family: "Pretendard", sans-serif;
 `;

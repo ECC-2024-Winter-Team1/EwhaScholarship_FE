@@ -18,10 +18,12 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-    font-size: 56px;
+    font-size: 60px;
     display: flex;
     align-items: center;
     gap: 10px;
+    font-family: 'Gowun Batang', serif;
+    font-weight: normal;
 
     @media (max-width: 768px) {
         font-size: 36px;
@@ -36,6 +38,7 @@ export const ShortInfo = styled.div`
     color: #888888;
     margin-left: 10px;
     margin-top: 8px;
+    font-family: "Pretendard", sans-serif;
 
     @media (max-width: 768px) {
         font-size: 18px;
@@ -64,11 +67,12 @@ export const ListContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const ListTitle = styled.h3`
     font-size: 32px;
-    font-weight: bold;
+    font-weight: normal;
   
     @media (max-width: 768px) {
         font-size: 24px;
@@ -85,6 +89,7 @@ export const ListContent = styled.p`
     font-size: 24px;
     line-height: 1.5;
     color: #333333;
+    margin-top: 10px;
 
     @media (max-width: 768px) {
         font-size: 18px;

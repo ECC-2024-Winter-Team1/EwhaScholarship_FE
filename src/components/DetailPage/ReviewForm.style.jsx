@@ -7,12 +7,14 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin-bottom: 100px;
+    padding-bottom: 100px;
+    padding-top: 80px;
 `;
 
 export const ReviewSectionName = styled.h2`
-    font-size: 40px;
+    font-size: 44px;
     font-weight: normal;
+    font-family: 'Gowun Batang', serif;
 `;
 
 export const ReviewFormArea = styled.div`
@@ -38,7 +40,8 @@ export const IfReward = styled.label`
     gap: 4px;
     flex-direction: row-reverse;
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: "Pretendard", sans-serif;
 `;
 
 export const Checkbox = styled.input`
@@ -54,6 +57,8 @@ export const YearInput = styled.input`
     padding: 8px;
     border: none;
     width: 100px;
+    font-family: "Pretendard", sans-serif;
+    font-size: 14px;
 `;
 
 export const DropDown = styled.select`
@@ -63,6 +68,7 @@ export const DropDown = styled.select`
     width: 100px;
     cursor: pointer;
     appearance: none;
+    font-family: "Pretendard", sans-serif;
 
     option{
         font-size: 14px;
@@ -83,7 +89,8 @@ export const ReviewContent = styled.div`
         border-radius: 18px;
         padding: 12px 17px;
         border: none;
-        font-size: 14px;
+        font-size: 16px;
+        font-family: "Pretendard", sans-serif;
     }
 `;
 

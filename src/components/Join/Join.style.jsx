@@ -39,7 +39,7 @@ const JoinTitle = styled.h1`
 
 const JoinSubtitle = styled.h2`
   width: 105%;
-  font-family: "Noto Serif KR", serif;
+  font-family: 'Gowun Batang', serif;
   font-weight: 700;
   font-size: 2.0rem;
   color: #00462a;
